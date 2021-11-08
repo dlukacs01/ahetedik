@@ -10,6 +10,9 @@
     <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.tiny.cloud/1/l64m960rju6okbhjnlqdyicse6160fuv14mcj39yoye2rftp/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
 </head>
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -42,6 +45,7 @@
                     <div class="sb-sidenav-menu-heading">Kezelés</div>
 
                     <x-admin.sidebar.admin-sidebar-posts-links></x-admin.sidebar.admin-sidebar-posts-links>
+                    <x-admin.sidebar.admin-sidebar-categories-links></x-admin.sidebar.admin-sidebar-categories-links>
                     @if(auth()->user()->userHasRole('Admin'))
                         <x-admin.sidebar.admin-sidebar-users-links></x-admin.sidebar.admin-sidebar-users-links>
                         <x-admin.sidebar.authorization-links></x-admin.sidebar.authorization-links>

@@ -1,6 +1,6 @@
 <x-admin-master>
     @section('content')
-        <h1>All Posts</h1>
+        <h1 class="mt-4">Összes cikk</h1>
 
         @if(session('message'))
             <div class="alert alert-danger">{{session('message')}}</div>
@@ -10,34 +10,34 @@
             <div class="alert alert-success">{{session('post-updated-message')}}</div>
         @endif
 
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-table mr-1"></i>
-                DataTable Example
-            </div>
-            <div class="card-body">
+{{--        <div class="card mb-4">--}}
+{{--            <div class="card-header">--}}
+{{--                <i class="fas fa-table mr-1"></i>--}}
+{{--                DataTable Example--}}
+{{--            </div>--}}
+{{--            <div class="card-body">--}}
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Owner</th>
-                            <th>Title</th>
-                            <th>Image</th>
-                            <th>Create At</th>
-                            <th>Updated At</th>
-                            <th>Delete</th>
+                            <th>Szerző</th>
+                            <th>Cím</th>
+                            <th>Borító</th>
+                            <th>Elkészült</th>
+                            <th>Frissítve</th>
+                            <th>Törlés</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
                             <th>Id</th>
-                            <th>Owner</th>
-                            <th>Title</th>
-                            <th>Image</th>
-                            <th>Create At</th>
-                            <th>Updated At</th>
-                            <th>Delete</th>
+                            <th>Szerző</th>
+                            <th>Cím</th>
+                            <th>Borító</th>
+                            <th>Elkészült</th>
+                            <th>Frissítve</th>
+                            <th>Törlés</th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -56,7 +56,7 @@
                                 <form method="post" action="{{route('post.destroy', $post->id)}}" enctype="multipart/form-data">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="submit" class="btn btn-danger">Törlés</button>
                                 </form>
                                 {{--@endcan--}}
                             </td>
@@ -65,8 +65,8 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
+{{--            </div>--}}
+{{--        </div>--}}
 
         <div class="d-flex">
             <div class="mx-auto">

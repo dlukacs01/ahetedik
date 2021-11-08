@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -10,12 +11,14 @@ class PostController extends Controller
     //
 
     public function index(){
+        Carbon::setLocale('hu');
         // $posts = Post::all();
         $posts = auth()->user()->posts()->paginate(5);
         return view('admin.posts.index', ['posts'=>$posts]);
     }
     // route model binding (getting the post directly, instead of post id)
     public function show(Post $post){
+        Carbon::setLocale('hu');
         return view('blog-post', ['post'=>$post]);
     }
     public function create(){
@@ -37,7 +40,7 @@ class PostController extends Controller
 
         auth()->user()->posts()->create($inputs);
 
-        session()->flash('post-created-message', 'Post with title '.$inputs['title'].' was created');
+        session()->flash('post-created-message', 'Az új cikk: '.$inputs['title'].' elkészült');
 
         return redirect()->route('post.index');
     }
