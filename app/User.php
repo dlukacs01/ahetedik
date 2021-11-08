@@ -55,6 +55,11 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    // Get the works for the user.
+    public function works(){
+        return $this->hasMany(Work::class);
+    }
+
     // The permissions that belong to the user.
     public function permissions(){
         return $this->belongsToMany(Permission::class);
