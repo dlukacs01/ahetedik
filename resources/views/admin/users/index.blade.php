@@ -1,39 +1,45 @@
 <x-admin-master>
     @section('content')
-        <h1>Users</h1>
+        <h1 class="mt-4">Felhasználók</h1>
 
         @if(session('user-deleted'))
             <div class="alert alert-danger">{{session('user-deleted')}}</div>
         @endif
+        @if(session('user-created'))
+            <div class="alert alert-success">{{session('user-created')}}</div>
+        @endif
+        @if(session('user-updated'))
+            <div class="alert alert-success">{{session('user-updated')}}</div>
+        @endif
 
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-table mr-1"></i>
-                DataTable Example
-            </div>
-            <div class="card-body">
+{{--        <div class="card mb-4">--}}
+{{--            <div class="card-header">--}}
+{{--                <i class="fas fa-table mr-1"></i>--}}
+{{--                DataTable Example--}}
+{{--            </div>--}}
+{{--            <div class="card-body">--}}
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Username</th>
+                            <th>Felhasználónév</th>
                             <th>Avatar</th>
-                            <th>Name</th>
-                            <th>Registered date</th>
-                            <th>Updated profile date</th>
-                            <th>Delete</th>
+                            <th>Név</th>
+                            <th>Regisztrációs dátum</th>
+                            <th>Profil frissítve</th>
+                            <th>Törlés</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
                             <th>Id</th>
-                            <th>Username</th>
+                            <th>Felhasználónév</th>
                             <th>Avatar</th>
-                            <th>Name</th>
-                            <th>Registered date</th>
-                            <th>Updated profile date</th>
-                            <th>Delete</th>
+                            <th>Név</th>
+                            <th>Regisztrációs dátum</th>
+                            <th>Profil frissítve</th>
+                            <th>Törlés</th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -42,14 +48,14 @@
                                 <td>{{$user->id}}</td>
                                 <td>{{$user->username}}</td>
                                 <td><img height="50px" src="{{$user->avatar}}" alt=""></td>
-                                <td>{{$user->name}}</td>
+                                <td><a href="{{route('user.profile.show', $user)}}">{{$user->name}}</a></td>
                                 <td>{{$user->created_at->diffForHumans()}}</td>
                                 <td>{{$user->updated_at->diffForHumans()}}</td>
                                 <td>
                                     <form method="post" action="{{route('user.destroy', $user->id)}}" enctype="multipart/form-data">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger">Törlés</button>
                                     </form>
                                 </td>
                             </tr>
@@ -57,8 +63,8 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
+{{--            </div>--}}
+{{--        </div>--}}
 
     @endsection
 </x-admin-master>

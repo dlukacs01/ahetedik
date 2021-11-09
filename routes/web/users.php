@@ -8,6 +8,8 @@ Route::delete('/users/{user}/destroy', 'UserController@destroy')->name('user.des
 
 Route::middleware('role:Admin','auth')->group(function(){
     Route::get('/users', 'UserController@index')->name('user.index');
+    Route::get('/users/create', 'UserController@create')->name('user.create');
+    Route::post('/users', 'UserController@store')->name('user.store');
     Route::put('/users/{user}/attach', 'UserController@attach')->name('user.role.attach');
     Route::put('/users/{user}/detach', 'UserController@detach')->name('user.role.detach');
 });
