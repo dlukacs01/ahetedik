@@ -14,6 +14,11 @@ class CategoryController extends Controller
             'categories'=>Category::all()
         ]);
     }
+    public function index_front(){
+        return view('categories', [
+            'categories'=>Category::all()
+        ]);
+    }
     public function edit(Category $category){
         return view('admin.categories.edit', [
             'category'=>$category

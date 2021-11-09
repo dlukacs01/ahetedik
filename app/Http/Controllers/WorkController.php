@@ -6,10 +6,23 @@ use App\Category;
 use App\Work;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class WorkController extends Controller
 {
     //
+    public function work_category($category_slug){
+        $category = Category::where('slug', $category_slug)->first(); // needed for page title
+        $works = $category->works;
+        return view('works', [
+            'category'=>$category,
+            'works'=>$works
+        ]);
+    }
+    public function show($work_slug){
+        $work = Work::where('slug', $work_slug)->first();
+        return view('work', ['work'=>$work]);
+    }
     public function index(){
         Carbon::setLocale('hu');
         $works = auth()->user()->works()->paginate(5);
@@ -29,6 +42,8 @@ class WorkController extends Controller
             'work_image'=>'file',
             'body'=>'required'
         ]);
+
+        $inputs['slug'] = Str::of(Str::lower(request('title')))->slug('-');
 
         if(request('work_image')){
             $inputs['work_image'] = request('work_image')->store('images');
