@@ -17,5 +17,5 @@ Route::middleware('role:Admin','auth')->group(function(){
 // only the admin or the owner of the profile can access
 // auth middleware ide nem kell, ellenoriztem, anelkul is mukodik
 Route::middleware('can:view,user')->group(function(){
-    Route::get('/users/{user}/profile', 'UserController@show')->name('user.profile.show');
+    Route::get('/users/{user}/profile', 'UserController@show')->name('user.profile.edit');
 });

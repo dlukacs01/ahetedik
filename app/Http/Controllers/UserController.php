@@ -15,7 +15,21 @@ class UserController extends Controller
         $users = User::all();
         return view('admin.users.index', ['users'=>$users]);
     }
-    public function show(User $user){
+    public function index_front(){
+        $users = User::all();
+        return view('users', ['users'=>$users]);
+    }
+    public function show($username){
+        $user = User::where('username', $username)->first();
+
+        $works = $user->works; // TODO pagination, how many works we need here
+
+        return view('profile', [
+            'user'=>$user,
+            'works'=>$works
+        ]);
+    }
+    public function edit(User $user){
         return view('admin.users.profile', [
             'user'=>$user,
             'roles'=>Role::all()
