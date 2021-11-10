@@ -25,7 +25,11 @@ class HomeController extends Controller
     public function index()
     {
         // $posts = Post::all();
-        $posts = Post::orderBy('id', 'desc')->paginate(5);
+        $posts = Post::orderBy('id', 'desc')->paginate(3);
         return view('home', ['posts'=>$posts]);
+    }
+    public function szerzoknek()
+    {
+        return view('szerzoknek');
     }
 }

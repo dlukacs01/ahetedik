@@ -14,7 +14,7 @@
     <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
     {{--    main Bootstrap CSS file from laravel ui commands--}}
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('css/app.css')}}"> --}}
 
     <!-- Custom styles for this template -->
     <link href="{{asset('css/blog-home.css')}}" rel="stylesheet">
@@ -56,11 +56,11 @@
                     <a class="nav-link" href="{{route('user.front.index')}}">Szerzők</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
+                    <a class="nav-link" href="{{route('home.szerzoknek')}}">Szerzőink figyelmébe</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="#">Contact</a>--}}
+{{--                </li>--}}
             </ul>
         </div>
     </div>
@@ -148,7 +148,8 @@
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+        <p class="m-0 text-center text-white">Copyright &copy; ahetedik {{\Carbon\Carbon::now()->year}}</p>
+        <p class="text-center text-muted small">v0.1</p>
     </div>
     <!-- /.container -->
 </footer>

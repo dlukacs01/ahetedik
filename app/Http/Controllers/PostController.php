@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -17,8 +18,9 @@ class PostController extends Controller
         return view('admin.posts.index', ['posts'=>$posts]);
     }
     // route model binding (getting the post directly, instead of post id)
-    public function show(Post $post){
+    public function show($post_slug){
         Carbon::setLocale('hu');
+        $post = Post::where('slug', $post_slug)->first();
         return view('blog-post', ['post'=>$post]);
     }
     public function create(){
@@ -33,6 +35,8 @@ class PostController extends Controller
             'post_image'=>'file',
             'body'=>'required'
         ]);
+
+        $inputs['slug'] = Str::of(Str::lower(request('title')))->slug('-');
 
         if(request('post_image')){
             $inputs['post_image'] = request('post_image')->store('images');
