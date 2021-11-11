@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\User;
 use App\Work;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -25,13 +26,18 @@ class WorkController extends Controller
     }
     public function index(){
         Carbon::setLocale('hu');
-        $works = auth()->user()->works()->paginate(5);
+        // $works = auth()->user()->works()->paginate(5);
+        $works = Work::paginate(5);
         return view('admin.works.index', ['works'=>$works]);
     }
     public function create(){
         $this->authorize('create', Work::class); // POLICY
         $categories = Category::all();
-        return view('admin.works.create', ['categories'=>$categories]);
+        $users = User::all();
+        return view('admin.works.create', [
+            'categories'=>$categories,
+            'users'=>$users
+        ]);
     }
     public function store(){
         $this->authorize('create', Work::class); // POLICY
@@ -39,6 +45,7 @@ class WorkController extends Controller
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255',
             'category_id'=>'required|integer',
+            'user_id'=>'required|integer',
             'work_image'=>'file',
             'body'=>'required'
         ]);
@@ -49,7 +56,8 @@ class WorkController extends Controller
             $inputs['work_image'] = request('work_image')->store('images');
         }
 
-        auth()->user()->works()->create($inputs);
+        // auth()->user()->works()->create($inputs);
+        Work::create($inputs);
 
         session()->flash('work-created-message', 'Az új mű: '.$inputs['title'].' elkészült');
 

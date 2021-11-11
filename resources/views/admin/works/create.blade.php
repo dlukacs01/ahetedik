@@ -17,6 +17,14 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="user_id">Szerző:</label>
+                <select class="form-control" id="user_id" name="user_id">
+                    @foreach($users as $user)
+                        <option value="{{$user->id}}">{{$user->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="work_image">Borító</label>
                 <input type="file" name="work_image" class="form-control-file" id="work_image">
             </div>
