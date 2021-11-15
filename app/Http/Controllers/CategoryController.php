@@ -24,16 +24,29 @@ class CategoryController extends Controller
             'category'=>$category
         ]);
     }
+    public function create(){
+        return view('admin.categories.create');
+    }
     public function store(){
-        request()->validate([
-            'name'=>['required']
+        $this->authorize('create', Category::class); // POLICY
+
+        $inputs = request()->validate([
+            'name'=>'required',
+            'category_image'=>'file'
         ]);
 
-        Category::create([
-            'name'=>Str::ucfirst(request('name')),
-            'slug'=>Str::of(Str::lower(request('name')))->slug('-')
-        ]);
-        return back();
+        $inputs['name'] = Str::ucfirst(request('name'));
+        $inputs['slug'] = Str::of(Str::lower(request('name')))->slug('-');
+
+        if(request('category_image')){
+            $inputs['category_image'] = request('category_image')->store('images');
+        }
+
+        Category::create($inputs);
+
+        session()->flash('category-created-message', 'Az új kategória: '.$inputs['name'].' elkészült');
+
+        return redirect()->route('category.index');
     }
     public function update(Category $category){
         $category->name = Str::ucfirst(request('name'));

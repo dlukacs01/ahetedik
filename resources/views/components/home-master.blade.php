@@ -19,6 +19,9 @@
     <!-- Custom styles for this template -->
     <link href="{{asset('css/blog-home.css')}}" rel="stylesheet">
 
+    <!-- Custom styles -->
+    <link href="{{asset('css/custom/categories.css')}}" rel="stylesheet">
+
 </head>
 
 <body>

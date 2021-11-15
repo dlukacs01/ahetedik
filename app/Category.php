@@ -15,4 +15,11 @@ class Category extends Model
         return $this->hasMany(Work::class);
 
     }
+    // ACCESSOR
+    public function getCategoryImageAttribute($value) {
+        if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
+            return $value;
+        }
+        return asset('storage/' . $value);
+    }
 }
