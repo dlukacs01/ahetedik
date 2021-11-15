@@ -13,6 +13,7 @@ class WorkController extends Controller
 {
     //
     public function work_category($category_slug){
+        Carbon::setLocale('hu');
         $category = Category::where('slug', $category_slug)->first(); // needed for page title
         $works = $category->works;
         return view('works', [
