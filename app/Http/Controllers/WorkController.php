@@ -21,6 +21,7 @@ class WorkController extends Controller
         ]);
     }
     public function show($work_slug){
+        Carbon::setLocale('hu');
         $work = Work::where('slug', $work_slug)->first();
         return view('work', ['work'=>$work]);
     }
