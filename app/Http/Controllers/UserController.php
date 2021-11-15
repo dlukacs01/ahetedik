@@ -20,6 +20,7 @@ class UserController extends Controller
         return view('users', ['users'=>$users]);
     }
     public function show($username){
+        Carbon::setLocale('hu');
         $user = User::where('username', $username)->first();
 
         $works = $user->works; // TODO pagination, how many works we need here
@@ -47,6 +48,7 @@ class UserController extends Controller
             'username'=>'required',
             'name'=>'required',
             'email'=>'required',
+            'cv'=>'required',
             'password'=>'required',
             'avatar'=>'file',
         ]);
@@ -66,6 +68,7 @@ class UserController extends Controller
         $inputs = request()->validate([
            'username'=>['required', 'string', 'max:255', 'alpha_dash'],
             'name'=>['required', 'string', 'max:255'],
+            'cv'=>['required', 'string'],
             'email'=>['required', 'email', 'max:255'],
             'avatar'=>['file']
         ]);

@@ -1,9 +1,23 @@
 <x-home-master>
     @section('content')
-        <h1>Profile page for this user: {{$user->name}}</h1>
-        <h1>Művek ehhez a userhez: {{$user->name}}</h1>
+
+        <div class="d-flex mt-4">
+            <div class="profile-img">
+                <img src="{{$user->avatar}}" class="rounded-circle" alt="">
+            </div>
+            <div class="align-self-center">
+                <h1 class="pl-4">{{$user->name}}</h1>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            {!! $user->cv !!}
+        </div>
+
+        <hr>
+
         @foreach($works as $work)
-            <p>{{$work->title}}</p>
+            <x-home.work-card :work="$work"></x-home.work-card>
         @endforeach
     @endsection
 </x-home-master>

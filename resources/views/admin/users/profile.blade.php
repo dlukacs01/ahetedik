@@ -41,6 +41,10 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="cv">Bemutatkozás</label>
+                        <textarea name="cv" class="form-control" id="cv" cols="30" rows="10">{{$user->cv}}</textarea>
+                    </div>
+                    <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" name="password" class="form-control" id="password" aria-describedby="">
                         @error('password')
@@ -143,5 +147,15 @@
                 </div>
             </div>
         </div>
+    @endsection
+
+    @section('scripts')
+        <script>
+            tinymce.init({
+                selector: 'textarea',
+                plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                toolbar_mode: 'floating',
+            });
+        </script>
     @endsection
 </x-admin-master>
