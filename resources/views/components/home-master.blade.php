@@ -24,19 +24,19 @@
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="{{route('home')}}">HOME</a>
+        <a class="navbar-brand" href="{{route('home')}}">A hetedik</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{route('home')}}">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
+{{--                <li class="nav-item active">--}}
+{{--                    <a class="nav-link" href="{{route('home')}}">Home--}}
+{{--                        <span class="sr-only">(current)</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 @if(Auth::check())
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin.index')}}">Admin</a>
@@ -79,16 +79,20 @@
         </div>
 
         <!-- Sidebar Widgets Column -->
+        <?php
+        $categories = App\Category::all();
+        $works = App\Work::latest()->take(3)->get();
+        ?>
         <div class="col-md-4">
 
             <!-- Search Widget -->
             <div class="card my-4">
-                <h5 class="card-header">Search</h5>
+                <h5 class="card-header">Keresés</h5>
                 <div class="card-body">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
+                        <input type="text" class="form-control" placeholder="Keresés...">
                         <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Go!</button>
+                <button class="btn btn-secondary" type="button">Mehet!</button>
               </span>
                     </div>
                 </div>
@@ -96,44 +100,52 @@
 
             <!-- Categories Widget -->
             <div class="card my-4">
-                <h5 class="card-header">Categories</h5>
+                <h5 class="card-header">Kategóriák</h5>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">Web Design</a>
-                                </li>
-                                <li>
-                                    <a href="#">HTML</a>
-                                </li>
-                                <li>
-                                    <a href="#">Freebies</a>
-                                </li>
+                                @foreach($categories as $category)
+                                    <li>
+                                        <a href="{{route('work.category', $category->slug)}}">{{$category->name}}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">JavaScript</a>
-                                </li>
-                                <li>
-                                    <a href="#">CSS</a>
-                                </li>
-                                <li>
-                                    <a href="#">Tutorials</a>
-                                </li>
-                            </ul>
-                        </div>
+{{--                        <div class="col-lg-6">--}}
+{{--                            <ul class="list-unstyled mb-0">--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">JavaScript</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">CSS</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Tutorials</a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
             </div>
 
             <!-- Side Widget -->
             <div class="card my-4">
-                <h5 class="card-header">Side Widget</h5>
+                <h5 class="card-header">Legújabb művek</h5>
                 <div class="card-body">
-                    You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul class="list-unstyled mb-0">
+                                @foreach($works as $work)
+                                    <li>
+                                        <a href="{{route('work', $work->slug)}}">{{$work->title}}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -146,9 +158,9 @@
 <!-- /.container -->
 
 <!-- Footer -->
-<footer class="py-5 bg-dark">
+<footer class="py-5">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; ahetedik {{\Carbon\Carbon::now()->year}}</p>
+        <p class="m-0 text-center text-muted">Copyright &copy; A hetedik {{\Carbon\Carbon::now()->year}}</p>
         <p class="text-center text-muted small">v0.1</p>
     </div>
     <!-- /.container -->

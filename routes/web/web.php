@@ -11,7 +11,7 @@ Route::get('/categories/{category_slug}', 'WorkController@work_category')->name(
 Route::get('/post/{post_slug}', 'PostController@show')->name('post'); // route model binding (post instead of post id)
 Route::get('/work/{work_slug}', 'WorkController@show')->name('work');
 Route::get('/szerzok', 'UserController@index_front')->name('user.front.index'); // view all users in front
-Route::get('/szerzok/{user}', 'UserController@show')->name('user.profile.show'); // user profile page in front
+Route::get('/szerzok/{username}', 'UserController@show')->name('user.profile.show'); // user profile page in front
 
 Route::middleware('auth')->group(function(){
     Route::get('/admin', 'AdminsController@index')->name('admin.index');

@@ -1,23 +1,22 @@
 <x-home-master>
-
 @section('content')
 
-    <h1 class="my-4">Page Heading
-        <small>Secondary Text</small>
-    </h1>
+{{--    <h1 class="my-4">Page Heading--}}
+{{--        <small>Secondary Text</small>--}}
+{{--    </h1>--}}
 
     <!-- Blog Post -->
     @foreach($posts as $post)
-    <div class="card mb-4">
+    <div class="card mb-4 my-4">
         <img class="card-img-top" src="{{$post->post_image}}" alt="Card image cap">
         <div class="card-body">
             <h2 class="card-title">{{$post->title}}</h2>
-            <p class="card-text">{!! Str::limit($post->body, '50', '...') !!}</p>
-            <a href="{{route('post', $post->slug)}}" class="btn btn-primary">Read More &rarr;</a>
+{{--            <p class="card-text">{!! Str::limit($post->body, '50', '...') !!}</p>--}}
+            <a href="{{route('post', $post->slug)}}" class="btn btn-primary">Elolvasom &rarr;</a>
         </div>
         <div class="card-footer text-muted">
-            Posted on {{$post->created_at->diffForHumans()}}
-            <a href="#">Start Bootstrap</a>
+            Közzétéve {{$post->created_at->diffForHumans()}}
+            <a href="{{route('user.profile.show', $post->user->username)}}">{{$post->user->name}}</a>
         </div>
     </div>
     @endforeach
@@ -39,5 +38,4 @@
     </div>
 
 @endsection
-
 </x-home-master>
