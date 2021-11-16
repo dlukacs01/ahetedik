@@ -61,7 +61,7 @@
                     <a class="nav-link" href="{{route('user.front.index')}}">Szerzők</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('meta.szerzoknek')}}">Szerzőink figyelmébe</a>
+                    <a class="nav-link" href="{{route('home.szerzoknek')}}">Szerzőink figyelmébe</a>
                 </li>
 {{--                <li class="nav-item">--}}
 {{--                    <a class="nav-link" href="#">Contact</a>--}}
@@ -169,19 +169,19 @@
         <p class="text-center text-muted small">v0.1</p>
         <ul class="nav justify-content-center">
             <li class="nav-item">
-                <a class="nav-link" href="{{route('meta.nyilatkozat')}}">Szerkesztőségi nyilatkozat</a>
+                <a class="nav-link" href="{{route('home.nyilatkozat')}}">Szerkesztőségi nyilatkozat</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('meta.elvek')}}">Szerkesztési elvek</a>
+                <a class="nav-link" href="{{route('home.elvek')}}">Szerkesztési elvek</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('meta.jogok')}}">Szerzői jogok</a>
+                <a class="nav-link" href="{{route('home.jogok')}}">Szerzői jogok</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('meta.impresszum')}}">Impresszum</a>
+                <a class="nav-link" href="{{route('home.impresszum')}}">Impresszum</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('meta.gdpr')}}">Általános Adatvédelmi Nyilatkozat</a>
+                <a class="nav-link" href="{{route('home.gdpr')}}">Általános Adatvédelmi Nyilatkozat</a>
             </li>
         </ul>
     </div>

@@ -5,6 +5,14 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/szerzoink-figyelmebe', 'HomeController@szerzoknek')->name('home.szerzoknek');
+
+Route::get('/szerkesztosegi-nyilatkozat', 'HomeController@nyilatkozat')->name('home.nyilatkozat');
+Route::get('/szerkesztesi-elvek', 'HomeController@elvek')->name('home.elvek');
+Route::get('/szerzoi-jogok', 'HomeController@jogok')->name('home.jogok');
+Route::get('/impresszum', 'HomeController@impresszum')->name('home.impresszum');
+Route::get('/adatvedelmi-nyilatkozat', 'HomeController@gdpr')->name('home.gdpr');
+
 Route::get('/kategoriak', 'CategoryController@index_front')->name('category.front.index');
 Route::get('/kategoriak/{category_slug}', 'WorkController@work_category')->name('work.category');
 Route::get('/cikkek/{post_slug}', 'PostController@show')->name('post'); // route model binding (post instead of post id)
