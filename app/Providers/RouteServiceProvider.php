@@ -52,6 +52,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapCategoriesRoutes();
 
+        $this->mapMetasRoutes();
+
         $this->mapUsersRoutes();
 
         $this->mapRolesRoutes();
@@ -112,6 +114,14 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware(['web','auth','role:admin'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web/categories.php'));
+    }
+
+    protected function mapMetasRoutes()
+    {
+        Route::prefix('admin')
+            ->middleware(['web','auth','role:admin'])
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web/metas.php'));
     }
 
     protected function mapUsersRoutes()

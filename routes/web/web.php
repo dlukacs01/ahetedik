@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/szerzoknek', 'HomeController@szerzoknek')->name('home.szerzoknek');
 Route::get('/kategoriak', 'CategoryController@index_front')->name('category.front.index');
 Route::get('/kategoriak/{category_slug}', 'WorkController@work_category')->name('work.category');
 Route::get('/cikkek/{post_slug}', 'PostController@show')->name('post'); // route model binding (post instead of post id)

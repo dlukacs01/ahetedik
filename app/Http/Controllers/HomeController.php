@@ -34,8 +34,4 @@ class HomeController extends Controller
 
         return view('home', ['posts'=>$posts]);
     }
-    public function szerzoknek()
-    {
-        return view('szerzoknek');
-    }
 }

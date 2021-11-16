@@ -61,7 +61,7 @@
                     <a class="nav-link" href="{{route('user.front.index')}}">Szerzők</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('home.szerzoknek')}}">Szerzőink figyelmébe</a>
+                    <a class="nav-link" href="{{route('meta.szerzoknek')}}">Szerzőink figyelmébe</a>
                 </li>
 {{--                <li class="nav-item">--}}
 {{--                    <a class="nav-link" href="#">Contact</a>--}}
@@ -167,6 +167,23 @@
     <div class="container">
         <p class="m-0 text-center text-muted">Copyright &copy; A hetedik {{\Carbon\Carbon::now()->year}}</p>
         <p class="text-center text-muted small">v0.1</p>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('meta.nyilatkozat')}}">Szerkesztőségi nyilatkozat</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('meta.elvek')}}">Szerkesztési elvek</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('meta.jogok')}}">Szerzői jogok</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('meta.impresszum')}}">Impresszum</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('meta.gdpr')}}">Általános Adatvédelmi Nyilatkozat</a>
+            </li>
+        </ul>
     </div>
     <!-- /.container -->
 </footer>
