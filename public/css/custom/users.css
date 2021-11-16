@@ -1,0 +1,19 @@
+.grid-container-users {
+    display: grid;
+    /*Define our columns */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 1em;
+}
+
+.grid-item-users {
+    border-radius: 6px;
+    border: 1px solid #ebedef;
+    padding: 14px;
+    background-color: #fff;
+}
+
+.grid-item-users img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}

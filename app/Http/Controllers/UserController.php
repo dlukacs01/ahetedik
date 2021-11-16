@@ -15,9 +15,20 @@ class UserController extends Controller
         $users = User::all();
         return view('admin.users.index', ['users'=>$users]);
     }
-    public function index_front(){
-        $users = User::all();
-        return view('users', ['users'=>$users]);
+    public function index_front(Request $request){
+        if($request->ajax()) {
+
+            $users = User::where('name','LIKE',$request->search."%")->get();
+
+            return view('partials.home.users', ['users'=>$users]);
+
+        } else {
+
+            $users = User::all();
+
+            return view('users', ['users'=>$users]);
+
+        }
     }
     public function show($username){
         Carbon::setLocale('hu');

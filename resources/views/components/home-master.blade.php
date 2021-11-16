@@ -22,6 +22,7 @@
     <!-- Custom styles -->
     <link href="{{asset('css/custom/categories.css')}}" rel="stylesheet">
     <link href="{{asset('css/custom/profile.css')}}" rel="stylesheet">
+    <link href="{{asset('css/custom/users.css')}}" rel="stylesheet">
 
 </head>
 
@@ -173,6 +174,9 @@
 <!-- Bootstrap core JavaScript -->
 <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<!-- for loading page level scripts -->
+@yield('scripts')
 
 </body>
 
