@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/kereses', 'HomeController@search')->name('home.search');
 Route::get('/szerzoink-figyelmebe', 'HomeController@szerzoknek')->name('home.szerzoknek');
 
 Route::get('/szerkesztosegi-nyilatkozat', 'HomeController@nyilatkozat')->name('home.nyilatkozat');

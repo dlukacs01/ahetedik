@@ -94,12 +94,14 @@
             <div class="card my-4">
                 <h5 class="card-header">Keresés</h5>
                 <div class="card-body">
+                    <form action="{{route('home.search')}}" method="GET">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Keresés...">
+                        <input type="text" name="search" class="form-control" placeholder="Keresés...">
                         <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Mehet!</button>
-              </span>
+                            <button class="btn btn-secondary" type="button">Mehet!</button>
+                        </span>
                     </div>
+                    </form>
                 </div>
             </div>
 

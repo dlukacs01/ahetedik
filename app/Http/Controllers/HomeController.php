@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Meta;
 use App\Post;
+use App\User;
 use App\Work;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -34,6 +35,31 @@ class HomeController extends Controller
         $posts = Post::orderBy('id', 'desc')->paginate(3);
 
         return view('home', ['posts'=>$posts]);
+    }
+    public function search(){
+
+        // Get the search value from the request
+        $search = request('search');
+
+        // Search in the title and body columns from the posts table
+        $users = User::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->get();
+
+        // Search in the title and body columns from the posts table
+        $works = Work::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orwhereHas('user', function($q) use($search) {
+                $q->where('name', 'LIKE', "%{$search}%");
+            })->get();
+
+        // Return the search view with the resluts compacted
+        return view('search', [
+            'search'=>$search,
+            'users'=>$users,
+            'works'=>$works
+        ]);
+
     }
     public function szerzoknek(){
         $meta = Meta::findOrFail(1);
