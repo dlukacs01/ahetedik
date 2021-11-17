@@ -37,6 +37,7 @@ class HomeController extends Controller
         return view('home', ['posts'=>$posts]);
     }
     public function search(){
+        Carbon::setLocale('hu');
 
         // Get the search value from the request
         $search = request('search');
