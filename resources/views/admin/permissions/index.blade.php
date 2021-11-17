@@ -1,5 +1,6 @@
 <x-admin-master>
     @section('content')
+        <h1>Permissions</h1>
         <div class="row">
             <div class="col-sm-3">
                 <form method="post" action="{{route('permission.store')}}">

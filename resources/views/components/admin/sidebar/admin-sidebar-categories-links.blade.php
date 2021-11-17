@@ -6,6 +6,6 @@
 <div class="collapse" id="collapseCategories" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
     <nav class="sb-sidenav-menu-nested nav">
         <a class="nav-link" href="{{route('category.create')}}">Új kategória</a>
-        <a class="nav-link" href="">Összes kategória</a>
+        <a class="nav-link" href="{{route('category.index')}}">Összes kategória</a>
     </nav>
 </div>

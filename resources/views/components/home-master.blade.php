@@ -167,7 +167,7 @@
 <!-- Footer -->
 <footer class="py-5">
     <div class="container">
-        <p class="m-0 text-center text-muted">Copyright &copy; A hetedik {{\Carbon\Carbon::now()->year}}</p>
+        <p class="m-0 text-center text-muted">Minden jog fenntartva &copy; A hetedik {{\Carbon\Carbon::now()->year}}</p>
         <p class="text-center text-muted small">v0.1</p>
         <ul class="nav justify-content-center">
             <li class="nav-item">
