@@ -30,14 +30,14 @@
                 <textarea name="cv" class="form-control" id="cv" cols="30" rows="10"></textarea>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">Jelszó</label>
                 <input type="password" name="password" class="form-control" id="password" aria-describedby="">
                 @error('password')
                 <div class="invalid-feedback">{{$message}}</div>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="password-confirmation">Confirm Password</label>
+                <label for="password-confirmation">Jelszó megerősítése</label>
                 <input type="password" name="password-confirmation" class="form-control" id="password-confirmation" aria-describedby="">
                 @error('password-confirmation')
                 <div class="invalid-feedback">{{$message}}</div>

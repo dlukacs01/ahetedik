@@ -44,24 +44,34 @@ class CategoryController extends Controller
 
         Category::create($inputs);
 
-        session()->flash('category-created-message', 'Az új kategória: '.$inputs['name'].' elkészült');
+        session()->flash('category-created-message', 'Az új kategória létrehozása sikeres volt ('.$inputs['name'].')');
 
         return redirect()->route('category.index');
     }
     public function update(Category $category){
+        $inputs = request()->validate([
+            'name'=>'required|min:8|max:255',
+            'category_image'=>'file'
+        ]);
+
+        if(request('category_image')){
+            $inputs['category_image'] = request('category_image')->store('images');
+            $category->category_image = $inputs['category_image'];
+        }
+
         $category->name = Str::ucfirst(request('name'));
         $category->slug = Str::of(request('name'))->slug('-');
         if($category->isDirty('name')){
-            session()->flash('category-updated', 'Category Updated: '.request('name'));
+            session()->flash('category-updated', 'A kategória frissítése sikeres volt ('.request('name').')');
             $category->save();
         } else {
-            session()->flash('category-updated', 'Nothing has been modified');
+            session()->flash('category-updated', 'Nem történt módosítás');
         }
-        return back();
+        return redirect()->route('category.index');
     }
     public function destroy(Category $category){
         $category->delete();
-        session()->flash('category-deleted', 'Deleted Category '.$category->name);
+        session()->flash('category-deleted', 'A kategória törlése sikeres volt: '.$category->name);
         return back();
     }
 }

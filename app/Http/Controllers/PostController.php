@@ -44,7 +44,7 @@ class PostController extends Controller
 
         auth()->user()->posts()->create($inputs);
 
-        session()->flash('post-created-message', 'Az új cikk: '.$inputs['title'].' elkészült');
+        session()->flash('post-created-message', 'Az új cikk létrehozása sikeres volt ('.$inputs['title'].')');
 
         return redirect()->route('post.index');
     }
@@ -58,7 +58,7 @@ class PostController extends Controller
     public function destroy(Post $post, Request $request){
         $this->authorize('delete', $post); // POLICY
         $post->delete();
-        $request->session()->flash('message', 'Post was deleted');
+        $request->session()->flash('message', 'A cikk törlése sikeres volt');
         return back();
     }
     public function update(Post $post){
@@ -80,7 +80,7 @@ class PostController extends Controller
 
         $post->save();
 
-        session()->flash('post-updated-message', 'Post with title '.$inputs['title'].' was updated');
+        session()->flash('post-updated-message', 'A cikk frissítése sikeres volt ('.$inputs['title'].')');
 
         return redirect()->route('post.index');
     }

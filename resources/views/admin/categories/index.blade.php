@@ -7,25 +7,35 @@
                 {{session('category-deleted')}}
             </div>
         @endif
+        @if(session()->has('category-created-message'))
+            <div class="alert alert-success">
+                {{session('category-created-message')}}
+            </div>
+        @endif
+        @if(session()->has('category-updated'))
+            <div class="alert alert-success">
+                {{session('category-updated')}}
+            </div>
+        @endif
 
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
+                    <th>Név</th>
                     <th>Slug</th>
                     <th>Borító</th>
-                    <th>Delete</th>
+                    <th>Törlés</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
+                    <th>Név</th>
                     <th>Slug</th>
                     <th>Borító</th>
-                    <th>Delete</th>
+                    <th>Törlés</th>
                 </tr>
                 </tfoot>
                 <tbody>
@@ -39,7 +49,7 @@
                             <form method="post" action="{{route('category.destroy', $category->id)}}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger">Törlés</button>
                             </form>
                         </td>
                     </tr>

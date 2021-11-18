@@ -61,19 +61,19 @@ class WorkController extends Controller
         // auth()->user()->works()->create($inputs);
         Work::create($inputs);
 
-        session()->flash('work-created-message', 'Az új mű: '.$inputs['title'].' elkészült');
+        session()->flash('work-created-message', 'Az új mű létrehozása sikeres volt ('.$inputs['title'].')');
 
         return redirect()->route('work.index');
     }
     public function edit(Work $work){
-        $this->authorize('view', $work); // POLICY
+        // $this->authorize('view', $work); // POLICY
         $categories = Category::all();
         return view('admin.works.edit', ['work'=>$work,'categories'=>$categories]);
     }
     public function destroy(Work $work, Request $request){
-        $this->authorize('delete', $work); // POLICY
+        // $this->authorize('delete', $work); // POLICY
         $work->delete();
-        $request->session()->flash('message', 'Work was deleted');
+        $request->session()->flash('message', 'A mű törlése sikeres volt');
         return back();
     }
     public function update(Work $work){
@@ -93,11 +93,11 @@ class WorkController extends Controller
         $work->category_id = $inputs['category_id'];
         $work->body = $inputs['body'];
 
-        $this->authorize('update', $work); // POLICY
+        // $this->authorize('update', $work); // POLICY
 
         $work->save();
 
-        session()->flash('work-updated-message', 'Work with title '.$inputs['title'].' was updated');
+        session()->flash('work-updated-message', 'A mű frissítése sikeres volt ('.$inputs['title'].')');
 
         return redirect()->route('work.index');
     }

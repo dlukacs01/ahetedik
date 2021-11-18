@@ -70,7 +70,7 @@ class UserController extends Controller
 
         User::create($inputs);
 
-        session()->flash('user-created', 'Az új felhasználó: '.$inputs['name'].' elkészült');
+        session()->flash('user-created', 'Az új felhasználó létrehozása sikeres volt ('.$inputs['name'].')');
 
         return redirect()->route('user.index');
     }
@@ -90,7 +90,7 @@ class UserController extends Controller
 
         $user->update($inputs);
 
-        session()->flash('user-updated', 'A felhasználó: '.request('name').' frissült');
+        session()->flash('user-updated', 'A felhasználó frissítése sikeres volt ('.request('name').')');
 
         // return back();
         return redirect()->route('user.index');
@@ -105,7 +105,7 @@ class UserController extends Controller
     }
     public function destroy(User $user){
         $user->delete();
-        session()->flash('user-deleted', 'User has been deleted');
+        session()->flash('user-deleted', 'A felhasználó törlése sikeres volt');
         return back();
     }
 }

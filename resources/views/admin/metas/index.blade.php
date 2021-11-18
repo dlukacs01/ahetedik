@@ -2,8 +2,15 @@
     @section('content')
         <h1 class="mt-4">Az oldalhoz tartozó leírások</h1>
 
-        <form method="post" action="{{route('meta.store')}}">
+        @if(session()->has('meta-updated-message'))
+            <div class="alert alert-success">
+                {{session('meta-updated-message')}}
+            </div>
+        @endif
+
+        <form method="post" action="{{route('meta.update',$meta->id)}}">
             @csrf
+            @method('PUT')
             <div class="form-group">
                 <label for="szerzoknek">Szerzőink figyelmébe</label>
                 <textarea name="szerzoknek" class="form-control" id="szerzoknek" cols="30" rows="10">{{$meta->szerzoknek}}</textarea>

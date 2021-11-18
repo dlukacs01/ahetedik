@@ -1,53 +1,53 @@
 <x-admin-master>
     @section('content')
-        @if(session()->has('role-updated'))
-            <div class="alert alert-success">
-                {{session('role-updated')}}
-            </div>
-        @endif
+
     <div class="row">
         <div class="col-sm-6">
-            <h1>Edit role: {{$role->name}}</h1>
+            <h1 class="mt-4">Szerepkör szerkesztése</h1>
             <form method="post" action="{{route('role.update', $role->id)}}">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">Név</label>
                     <input type="text" name="name" class="form-control" id="name" value="{{$role->name}}">
                 </div>
-                <button class="btn btn-primary">Update</button>
+                <button class="btn btn-primary">Mentés</button>
             </form>
         </div>
     </div>
+
+    <hr>
+
     <div class="row">
         <div class="col-lg-12">
             @if($permissions->isNotEmpty())
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-table mr-1"></i>
-                    Permissions
-                </div>
-                <div class="card-body">
+{{--            <div class="card mb-4">--}}
+{{--                <div class="card-header">--}}
+{{--                    <i class="fas fa-table mr-1"></i>--}}
+{{--                    Permissions--}}
+{{--                </div>--}}
+{{--                <div class="card-body">--}}
+                    <h3>Jogosultságok</h3>
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                             <tr>
-                                <th>Options</th>
+                                <th>Opciók</th>
                                 <th>Id</th>
-                                <th>Name</th>
+                                <th>Név</th>
                                 <th>Slug</th>
-                                <th>Attach</th>
-                                <th>Detach</th>
+                                <th>Hozzárendel</th>
+                                <th>Leválaszt</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>Options</th>
+                                <th>Opciók</th>
                                 <th>Id</th>
-                                <th>Name</th>
+                                <th>Név</th>
                                 <th>Slug</th>
-                                <th>Attach</th>
-                                <th>Detach</th>
+                                <th>Hozzárendel</th>
+                                <th>Leválaszt</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -76,7 +76,7 @@
                                                 @if($role->permissions->contains($permission))
                                                 disabled
                                                 @endif
-                                            >Attach
+                                            >Hozzárendel
                                             </button>
                                         </form>
                                     </td>
@@ -91,7 +91,7 @@
                                                 @if(!$role->permissions->contains($permission))
                                                 disabled
                                                 @endif
-                                            >Detach
+                                            >Leválaszt
                                             </button>
                                         </form>
                                     </td>
@@ -100,8 +100,8 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-            </div>
+{{--                </div>--}}
+{{--            </div>--}}
             @endif
         </div>
     </div>

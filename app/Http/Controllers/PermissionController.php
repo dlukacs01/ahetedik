@@ -23,6 +23,7 @@ class PermissionController extends Controller
             'name'=>Str::ucfirst(request('name')),
             'slug'=>Str::of(Str::lower(request('name')))->slug('-')
         ]);
+        session()->flash('permission-created', 'Az új jogosultság létrehozása sikeres volt ('.request('name').')');
         return back();
     }
     public function edit(Permission $permission){
@@ -32,15 +33,17 @@ class PermissionController extends Controller
         $permission->name = Str::ucfirst(request('name'));
         $permission->slug = Str::of(request('name'))->slug('-');
         if($permission->isDirty('name')){
-            session()->flash('permission-updated', 'Permission Updated: '.request('name'));
+            session()->flash('permission-updated', 'A jogosultság frissítése sikeres volt ('.request('name').')');
             $permission->save();
         } else {
-            session()->flash('permission-updated', 'Nothing has been modified');
+            session()->flash('permission-updated', 'Nem történt módosítás');
         }
-        return back();
+        // return back();
+        return redirect()->route('permission.index');
     }
     public function destroy(Permission $permission){
         $permission->delete();
+        session()->flash('permission-deleted', 'A jogosultság törlése sikeres volt: '.$permission->name);
         return back();
     }
 }

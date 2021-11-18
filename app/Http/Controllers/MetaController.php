@@ -12,15 +12,16 @@ class MetaController extends Controller
         $meta = Meta::findOrFail(1);
         return view('admin.metas.index', ['meta'=>$meta]);
     }
-    public function store(){
-        Meta::create([
-            'szerzoknek'=>request('szerzoknek'),
-            'nyilatkozat'=>request('nyilatkozat'),
-            'elvek'=>request('elvek'),
-            'jogok'=>request('jogok'),
-            'impresszum'=>request('impresszum'),
-            'gdpr'=>request('gdpr')
-        ]);
+    public function update(Meta $meta){
+        $meta->szerzoknek = request('szerzoknek');
+        $meta->nyilatkozat = request('nyilatkozat');
+        $meta->elvek = request('elvek');
+        $meta->jogok = request('jogok');
+        $meta->impresszum = request('impresszum');
+        $meta->gdpr = request('gdpr');
+
+        $meta->save();
+        session()->flash('meta-updated-message', 'A leírások frissítése sikeres volt');
         return back();
     }
 }

@@ -30,18 +30,20 @@ class RoleController extends Controller
             'name'=>Str::ucfirst(request('name')),
             'slug'=>Str::of(Str::lower(request('name')))->slug('-')
         ]);
+        session()->flash('role-created', 'Az új szerepkör létrehozása sikeres volt ('.request('name').')');
         return back();
     }
     public function update(Role $role){
         $role->name = Str::ucfirst(request('name'));
         $role->slug = Str::of(request('name'))->slug('-');
         if($role->isDirty('name')){
-            session()->flash('role-updated', 'Role Updated: '.request('name'));
+            session()->flash('role-updated', 'A szerepkör frissítése sikeres volt ('.request('name').')');
             $role->save();
         } else {
-            session()->flash('role-updated', 'Nothing has been modified');
+            session()->flash('role-updated', 'Nem történt módosítás');
         }
-        return back();
+        // return back();
+        return redirect()->route('role.index');
     }
     public function attach_permission(Role $role){
         $role->permissions()->attach(request('permission'));
@@ -53,7 +55,7 @@ class RoleController extends Controller
     }
     public function destroy(Role $role){
         $role->delete();
-        session()->flash('role-deleted', 'Deleted Role '.$role->name);
+        session()->flash('role-deleted', 'A szerepkör törlése sikeres volt: '.$role->name);
         return back();
     }
 }

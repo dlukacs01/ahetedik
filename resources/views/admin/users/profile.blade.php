@@ -1,20 +1,17 @@
 <x-admin-master>
     @section('content')
-        <h1>User Profile for: {{$user->name}}</h1>
+        <h1 class="mt-4">{{$user->name}}</h1>
 
         <div class="row">
             <div class="col-sm-6">
                 <form method="post" action="{{route('user.profile.update', $user)}}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="mb-4">
+                    <div class="mb-4 profile-img">
                         <img class="img-profile rounded-circle" src="{{$user->avatar}}">
                     </div>
                     <div class="form-group">
-                        <input type="file" name="avatar">
-                    </div>
-                    <div class="form-group">
-                        <label for="username">Username</label>
+                        <label for="username">Felhasználónév</label>
                         <input
                             type="text"
                             name="username"
@@ -27,7 +24,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Név</label>
                         <input type="text" name="name" class="form-control" id="name" aria-describedby="" value="{{$user->name}}">
                         @error('name')
                         <div class="alert alert-danger">{{$message}}</div>
@@ -45,52 +42,59 @@
                         <textarea name="cv" class="form-control" id="cv" cols="30" rows="10">{{$user->cv}}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">Jelszó</label>
                         <input type="password" name="password" class="form-control" id="password" aria-describedby="">
                         @error('password')
                         <div class="alert alert-danger">{{$message}}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="password-confirmation">Confirm Password</label>
+                        <label for="password-confirmation">Jelszó megerősítése</label>
                         <input type="password" name="password-confirmation" class="form-control" id="password-confirmation" aria-describedby="">
+                        @error('password-confirmation')
+                        <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
                     </div>
-                    @error('password-confirmation')
-                    <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="form-group">
+                        <label for="avatar">Avatar</label>
+                        <input type="file" name="avatar" class="form-control-file" id="avatar">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Mentés</button>
                 </form>
             </div>
         </div>
 
+        <hr>
+
         <div class="row">
             <div class="col-sm-12">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-table mr-1"></i>
-                        Roles
-                    </div>
-                    <div class="card-body">
+{{--                <div class="card mb-4">--}}
+{{--                    <div class="card-header">--}}
+{{--                        <i class="fas fa-table mr-1"></i>--}}
+{{--                        Roles--}}
+{{--                    </div>--}}
+{{--                    <div class="card-body">--}}
+                        <h3>Szerepkörök</h3>
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
-                                    <th>Options</th>
+                                    <th>Opciók</th>
                                     <th>Id</th>
-                                    <th>Name</th>
+                                    <th>Név</th>
                                     <th>Slug</th>
-                                    <th>Attach</th>
-                                    <th>Detach</th>
+                                    <th>Hozzárendel</th>
+                                    <th>Leválaszt</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th>Options</th>
+                                    <th>Opciók</th>
                                     <th>Id</th>
-                                    <th>Name</th>
+                                    <th>Név</th>
                                     <th>Slug</th>
-                                    <th>Attach</th>
-                                    <th>Detach</th>
+                                    <th>Hozzárendel</th>
+                                    <th>Leválaszt</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
@@ -119,7 +123,7 @@
                                                     @if($user->roles->contains($role))
                                                     disabled
                                                     @endif
-                                                >Attach
+                                                >Hozzárendel
                                                 </button>
                                             </form>
                                         </td>
@@ -134,7 +138,7 @@
                                                     @if(!$user->roles->contains($role))
                                                     disabled
                                                     @endif
-                                                >Detach
+                                                >Leválaszt
                                                 </button>
                                             </form>
                                         </td>
@@ -143,8 +147,8 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                </div>
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     @endsection

@@ -31,7 +31,7 @@ class WorkPolicy
     public function view(User $user, Work $work)
     {
         //
-        return $user->id === $work->user_id;
+        // return $user->id === $work->user_id;
     }
 
     /**
@@ -56,7 +56,7 @@ class WorkPolicy
     public function update(User $user, Work $work)
     {
         //
-        return $user->id === $work->user_id;
+        // return $user->id === $work->user_id;
     }
 
     /**
@@ -69,7 +69,7 @@ class WorkPolicy
     public function delete(User $user, Work $work)
     {
         //
-        return $user->id === $work->user_id;
+        // return $user->id === $work->user_id;
     }
 
     /**
