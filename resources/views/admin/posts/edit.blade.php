@@ -1,6 +1,6 @@
 <x-admin-master>
     @section('content')
-        <h1 class="mt-4">Cikk szerkesztése</h1>
+        <h1 class="mt-4">Lapszám szerkesztése</h1>
 
         <form method="post" action="{{route('post.update', $post->id)}}" enctype="multipart/form-data">
             @csrf

@@ -1,6 +1,6 @@
 <x-admin-master>
     @section('content')
-        <h1 class="mt-4">Új cikk</h1>
+        <h1 class="mt-4">Új lapszám</h1>
 
         <form method="post" action="{{route('post.store')}}" enctype="multipart/form-data">
             @csrf

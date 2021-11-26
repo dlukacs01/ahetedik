@@ -6,36 +6,23 @@
 {{--    </h1>--}}
 
     <!-- Blog Post -->
-    @foreach($posts as $post)
-    <div class="card mb-4 my-4">
-        <img class="card-img-top" src="{{$post->post_image}}" alt="Card image cap">
-        <div class="card-body">
-            <h2 class="card-title">{{$post->title}}</h2>
-{{--            <p class="card-text">{!! Str::limit($post->body, '50', '...') !!}</p>--}}
-            <a href="{{route('post', $post->slug)}}" class="btn btn-primary">Elolvasom &rarr;</a>
-        </div>
-        <div class="card-footer text-muted">
-            Közzétéve {{$post->created_at->diffForHumans()}}
-            <a href="{{route('user.profile.show', $post->user->username)}}">{{$post->user->name}}</a>
-        </div>
-    </div>
+    <p>{{$post->title}}</p>
+    <p>{!! $post->body !!}</p>
+
+    <hr>
+
+    @foreach($post->headings as $heading)
+        <p>{{$heading->title}}</p>
+
+        <hr>
+
+        @foreach($heading->articles as $article)
+            <p>{{$article->title}}</p>
+            <p>
+                <img src="{{$article->user->avatar}}" alt="" width="100px">
+            </p>
+        @endforeach
     @endforeach
-
-    <!-- Pagination -->
-{{--    <ul class="pagination justify-content-center mb-4">--}}
-{{--        <li class="page-item">--}}
-{{--            <a class="page-link" href="#">&larr; Older</a>--}}
-{{--        </li>--}}
-{{--        <li class="page-item disabled">--}}
-{{--            <a class="page-link" href="#">Newer &rarr;</a>--}}
-{{--        </li>--}}
-{{--    </ul>--}}
-
-    <div class="d-flex">
-        <div class="mx-auto">
-            {{$posts->links()}}
-        </div>
-    </div>
 
 @endsection
 </x-home-master>

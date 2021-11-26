@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -80,7 +81,7 @@ class PostController extends Controller
 
         $post->save();
 
-        session()->flash('post-updated-message', 'A cikk frissítése sikeres volt ('.$inputs['title'].')');
+        session()->flash('post-updated-message', 'A lapszám frissítése sikeres volt ('.$inputs['title'].')');
 
         return redirect()->route('post.index');
     }

@@ -16,6 +16,11 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    // Get the headings for the posts.
+    public function headings() {
+        return $this->hasMany(Heading::class);
+    }
+
     // MUTATOR
 //    public function setPostImageAttribute($value){
 //        $this->attributes['post_image'] = asset($value);

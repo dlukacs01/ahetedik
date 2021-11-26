@@ -48,6 +48,10 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapPostsRoutes();
 
+        $this->mapHeadingsRoutes();
+
+        $this->mapArticlesRoutes();
+
         $this->mapWorksRoutes();
 
         $this->mapCategoriesRoutes();
@@ -98,6 +102,22 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/web/posts.php'));
+    }
+
+    protected function mapHeadingsRoutes()
+    {
+        Route::prefix('admin')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web/headings.php'));
+    }
+
+    protected function mapArticlesRoutes()
+    {
+        Route::prefix('admin')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web/articles.php'));
     }
 
     protected function mapWorksRoutes()
