@@ -56,4 +56,48 @@ class ArticleController extends Controller
 
         return redirect()->route('article.index');
     }
+    public function edit(Article $article){
+        // TODO check
+        // $this->authorize('view', $article); // POLICY
+
+        $posts = Post::all();
+        $headings = Heading::all();
+        $users = User::all();
+        return view('admin.articles.edit', [
+            'article'=>$article,
+            'posts'=>$posts,
+            'headings'=>$headings,
+            'users'=>$users
+        ]);
+    }
+    public function update(Article $article){
+        $inputs = request()->validate([
+            'heading_id'=>'integer',
+            'title'=>'required|min:4|max:255',
+            'user_id'=>'integer',
+            'body'=>'required'
+        ]);
+
+        $article->heading_id = $inputs['heading_id'];
+        $article->title = $inputs['title'];
+        $article->user_id = $inputs['user_id'];
+        $article->body = $inputs['body'];
+
+        // TODO check
+        // $this->authorize('update', $article); // POLICY
+
+        $article->save();
+
+        session()->flash('article-updated-message', 'A cikk frissítése sikeres volt ('.$inputs['title'].')');
+
+        return redirect()->route('article.index');
+    }
+    public function destroy(Article $article, Request $request){
+        // TODO check
+        // $this->authorize('delete', $article); // POLICY
+
+        $article->delete();
+        $request->session()->flash('message', 'A cikk törlése sikeres volt');
+        return back();
+    }
 }

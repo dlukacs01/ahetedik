@@ -25,7 +25,7 @@ class HeadingController extends Controller
         $this->authorize('create', Heading::class); // POLICY
 
         $inputs = request()->validate([
-            'title'=>'required|min:8|max:255'
+            'title'=>'required|min:4|max:255'
         ]);
 
         $post = Post::findOrFail(request('post_id'));
@@ -34,5 +34,41 @@ class HeadingController extends Controller
         session()->flash('heading-created-message', 'Az új rovat létrehozása sikeres volt ('.$inputs['title'].')');
 
         return redirect()->route('heading.index');
+    }
+    public function edit(Heading $heading){
+        // TODO check
+        // $this->authorize('view', $heading); // POLICY
+
+        $posts = Post::all();
+        return view('admin.headings.edit', [
+            'heading'=>$heading,
+            'posts'=>$posts
+        ]);
+    }
+    public function update(Heading $heading){
+        $inputs = request()->validate([
+            'title'=>'required|min:4|max:255',
+            'post_id'=>'integer'
+        ]);
+
+        $heading->title = $inputs['title'];
+        $heading->post_id = $inputs['post_id'];
+
+        // TODO check
+        // $this->authorize('update', $heading); // POLICY
+
+        $heading->save();
+
+        session()->flash('heading-updated-message', 'A rovat frissítése sikeres volt ('.$inputs['title'].')');
+
+        return redirect()->route('heading.index');
+    }
+    public function destroy(Heading $heading, Request $request){
+        // TODO check
+        // $this->authorize('delete', $heading); // POLICY
+
+        $heading->delete();
+        $request->session()->flash('message', 'A rovat törlése sikeres volt');
+        return back();
     }
 }

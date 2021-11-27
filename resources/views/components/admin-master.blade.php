@@ -47,10 +47,11 @@
                         Vezérlőpult
                     </a>
                     <div class="sb-sidenav-menu-heading">Kezelés</div>
-
                     <x-admin.sidebar.admin-sidebar-posts-links></x-admin.sidebar.admin-sidebar-posts-links>
                     <x-admin.sidebar.admin-sidebar-headings-links></x-admin.sidebar.admin-sidebar-headings-links>
                     <x-admin.sidebar.admin-sidebar-articles-links></x-admin.sidebar.admin-sidebar-articles-links>
+                    <div class="sb-sidenav-menu-heading">Egyéb</div>
+
                     <x-admin.sidebar.admin-sidebar-works-links></x-admin.sidebar.admin-sidebar-works-links>
                     <x-admin.sidebar.admin-sidebar-categories-links></x-admin.sidebar.admin-sidebar-categories-links>
                     <x-admin.sidebar.admin-sidebar-metas-links></x-admin.sidebar.admin-sidebar-metas-links>

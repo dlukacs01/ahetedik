@@ -31,6 +31,8 @@ class HeadingPolicy
     public function view(User $user, Heading $heading)
     {
         //
+        // TODO check
+        // return $user->id === $heading->user_id;
     }
 
     /**
