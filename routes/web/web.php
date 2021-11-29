@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/lapszamok', 'HomeController@index_all')->name('home.all');
 Route::get('/kereses', 'HomeController@search')->name('home.search');
 Route::get('/szerzoink-figyelmebe', 'HomeController@szerzoknek')->name('home.szerzoknek');
 
@@ -16,7 +17,7 @@ Route::get('/adatvedelmi-nyilatkozat', 'HomeController@gdpr')->name('home.gdpr')
 
 Route::get('/kategoriak', 'CategoryController@index_front')->name('category.front.index');
 Route::get('/kategoriak/{category_slug}', 'WorkController@work_category')->name('work.category');
-Route::get('/cikkek/{post_slug}', 'PostController@show')->name('post'); // route model binding (post instead of post id)
+Route::get('/lapszamok/{post_slug}', 'PostController@show')->name('post'); // route model binding (post instead of post id)
 Route::get('/muvek/{work_slug}', 'WorkController@show')->name('work');
 Route::get('/szerzok', 'UserController@index_front')->name('user.front.index'); // view all users in front
 Route::get('/szerzok/{username}', 'UserController@show')->name('user.profile.show'); // user profile page in front

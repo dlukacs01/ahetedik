@@ -35,6 +35,14 @@ class HomeController extends Controller
 
         return view('home', ['post'=>$post]);
     }
+    public function index_all()
+    {
+        Carbon::setLocale('hu');
+
+        $posts = Post::orderBy('id', 'desc')->paginate(3);
+
+        return view('posts', ['posts'=>$posts]);
+    }
     public function search(){
         Carbon::setLocale('hu');
 
