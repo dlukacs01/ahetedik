@@ -26,16 +26,16 @@ class ArticleController extends Controller
 
             if($request->post_id) {
                 $headings = Heading::where('post_id','=',$request->post_id)->get();
-                return view('partials.admin.headings', ['headings'=>$headings]);
+                return view('partials.admin.articles.create.headings', ['headings'=>$headings]);
             }
             if($request->heading_id) {
                 $heading = Heading::findOrFail($request->heading_id);
                 if($heading->type == 'egyeb') {
-                    return view('partials.admin.cim');
+                    return view('partials.admin.articles.create.cim');
                 }
                 if($heading->type == 'muvek') {
                     $users = User::all();
-                    return view('partials.admin.szerzok', ['users'=>$users]);
+                    return view('partials.admin.articles.create.szerzok', ['users'=>$users]);
                 }
             }
 
@@ -47,6 +47,7 @@ class ArticleController extends Controller
     public function store(){
         $this->authorize('create', Article::class); // POLICY
 
+        // TODO user_id title
         $inputs = request()->validate([
             'heading_id'=>'integer',
             'body'=>'required'
@@ -66,31 +67,58 @@ class ArticleController extends Controller
 
         return redirect()->route('article.index');
     }
-    public function edit(Article $article){
+    public function edit(Article $article, Request $request){
         // TODO check
         // $this->authorize('view', $article); // POLICY
 
-        $posts = Post::all();
-        $headings = Heading::all();
-        $users = User::all();
-        return view('admin.articles.edit', [
-            'article'=>$article,
-            'posts'=>$posts,
-            'headings'=>$headings,
-            'users'=>$users
-        ]);
+        if($request->ajax()) {
+            if($request->post_id) {
+                $headings = Heading::where('post_id','=',$request->post_id)->get();
+                $article = Article::findOrFail($request->article_id);
+                return view('partials.admin.articles.edit.headings', [
+                    'headings'=>$headings,
+                    'article'=>$article
+                ]);
+            }
+            if($request->heading_id) {
+                $heading = Heading::findOrFail($request->heading_id);
+                if($heading->type == 'egyeb') {
+                    $article = Article::findOrFail($request->article_id);
+                    return view('partials.admin.articles.edit.cim',['article'=>$article]);
+                }
+                if($heading->type == 'muvek') {
+                    $article = Article::findOrFail($request->article_id);
+                    $users = User::all();
+                    return view('partials.admin.articles.edit.szerzok', [
+                        'article'=>$article,
+                        'users'=>$users
+                    ]);
+                }
+            }
+        } else {
+            $posts = Post::all();
+            return view('admin.articles.edit', [
+                'article'=>$article,
+                'posts'=>$posts
+            ]);
+        }
     }
     public function update(Article $article){
+        // TODO user_id title
         $inputs = request()->validate([
             'heading_id'=>'integer',
-            'title'=>'required|min:4|max:255',
-            'user_id'=>'integer',
             'body'=>'required'
         ]);
 
         $article->heading_id = $inputs['heading_id'];
-        $article->title = $inputs['title'];
-        $article->user_id = $inputs['user_id'];
+
+        if(request('title')){
+            $article->title = request('title');
+        }
+        if(request('user_id')){
+            $article->user_id = request('user_id');
+        }
+
         $article->body = $inputs['body'];
 
         // TODO check
@@ -98,7 +126,7 @@ class ArticleController extends Controller
 
         $article->save();
 
-        session()->flash('article-updated-message', 'A cikk frissítése sikeres volt ('.$inputs['title'].')');
+        session()->flash('article-updated-message', 'A cikk frissítése sikeres volt');
 
         return redirect()->route('article.index');
     }

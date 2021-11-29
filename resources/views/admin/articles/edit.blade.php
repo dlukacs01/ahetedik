@@ -13,26 +13,16 @@
                     @endforeach
                 </select>
             </div>
+
+            <input name="article_id" id="article_id" type="hidden" value="{{$article->id}}">
+
             <div class="form-group">
                 <label for="heading_id">Rovat:</label>
-                <select class="form-control" id="heading_id" name="heading_id">
-                    @foreach($headings as $heading)
-                        <option value="{{$heading->id}}" {{$article->heading_id == $heading->id ? 'selected' : ''}}>{{$heading->title}}</option>
-                    @endforeach
-                </select>
+                <select class="form-control" id="heading_id" name="heading_id"></select>
             </div>
-            <div class="form-group">
-                <label for="title">Cím</label>
-                <input type="text" name="title" class="form-control" id="title" aria-describedby="" placeholder="Írd be a címet" value="{{$article->title}}">
-            </div>
-            <div class="form-group">
-                <label for="user_id">Szerző (akihez a cikkben lévő művek tartoznak):</label>
-                <select class="form-control" id="user_id" name="user_id">
-                    @foreach($users as $user)
-                        <option value="{{$user->id}}" {{$article->user_id == $user->id ? 'selected' : ''}}>{{$user->name}}</option>
-                    @endforeach
-                </select>
-            </div>
+
+            <div class="form-group" id="ajax_result"></div>
+
             <div class="form-group">
                 <textarea name="body" class="form-control" id="body" cols="30" rows="30">{{$article->body}}</textarea>
             </div>
@@ -68,14 +58,37 @@
         </script>
 
         <script>
+            $(document).ready(function() {
+                $('#post_id').trigger("change");
+            });
+        </script>
+
+        <script>
             $('#post_id').on('change',function(){
                 $value=$(this).val();
+                $article_id=$('#article_id').val();
                 $.ajax({
                     type : 'get',
-                    url : '{{URL::to('admin/articles/create')}}',
-                    data:{'post_id':$value},
+                    url : '{{Request::url()}}',
+                    data:{'post_id':$value,'article_id':$article_id},
                     success:function(data){
                         $('#heading_id').html(data);
+                        $('#heading_id').trigger("change");
+                    }
+                });
+            })
+        </script>
+
+        <script>
+            $('#heading_id').on('change',function(){
+                $value=$(this).val();
+                $article_id=$('#article_id').val();
+                $.ajax({
+                    type : 'get',
+                    url : '{{Request::url()}}',
+                    data:{'heading_id':$value,'article_id':$article_id},
+                    success:function(data){
+                        $('#ajax_result').html(data);
                     }
                 });
             })
