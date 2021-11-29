@@ -24,6 +24,7 @@
                     <th>Lapszám</th>
                     <th>Rovat</th>
                     <th>Cím</th>
+                    <th>Szerző</th>
                     <th>Elkészült</th>
                     <th>Frissítve</th>
                     <th>Törlés</th>
@@ -35,6 +36,7 @@
                     <th>Lapszám</th>
                     <th>Rovat</th>
                     <th>Cím</th>
+                    <th>Szerző</th>
                     <th>Elkészült</th>
                     <th>Frissítve</th>
                     <th>Törlés</th>
@@ -47,6 +49,11 @@
                         <td>{{$article->heading->post->title}}</td>
                         <td>{{$article->heading->title}}</td>
                         <td><a href="{{route('article.edit', $article->id)}}">{{$article->title}}</a></td>
+                        <td>
+                            @if($article->user)
+                            <a href="{{route('article.edit', $article->id)}}">{{$article->user->name}}</a>
+                            @endif
+                        </td>
                         <td>{{$article->created_at->diffForHumans()}}</td>
                         <td>{{$article->updated_at->diffForHumans()}}</td>
                         <td>

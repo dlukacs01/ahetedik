@@ -20,9 +20,9 @@
                 <label for="post_image">Borító</label>
                 <input type="file" name="post_image" class="form-control-file" id="post_image">
             </div>
-            <div class="form-group">
-                <textarea name="body" class="form-control" id="body" cols="30" rows="10">{{$post->body}}</textarea>
-            </div>
+{{--            <div class="form-group">--}}
+{{--                <textarea name="body" class="form-control" id="body" cols="30" rows="10">{{$post->body}}</textarea>--}}
+{{--            </div>--}}
             <button type="submit" class="btn btn-primary">Mentés</button>
         </form>
     @endsection

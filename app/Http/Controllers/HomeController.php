@@ -31,7 +31,7 @@ class HomeController extends Controller
     {
         Carbon::setLocale('hu');
 
-        $post = Post::first();
+        $post = Post::latest()->first();
 
         return view('home', ['post'=>$post]);
     }

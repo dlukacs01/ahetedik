@@ -31,10 +31,10 @@ class PostController extends Controller
     public function store(){
         $this->authorize('create', Post::class); // POLICY
 
+        // body => required
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255',
-            'post_image'=>'file',
-            'body'=>'required'
+            'post_image'=>'file'
         ]);
 
         $inputs['slug'] = Str::of(Str::lower(request('title')))->slug('-');
@@ -63,10 +63,10 @@ class PostController extends Controller
         return back();
     }
     public function update(Post $post){
+        // body => required
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255',
-            'post_image'=>'file',
-            'body'=>'required'
+            'post_image'=>'file'
         ]);
 
         if(request('post_image')){
@@ -75,7 +75,7 @@ class PostController extends Controller
         }
 
         $post->title = $inputs['title'];
-        $post->body = $inputs['body'];
+        // $post->body = $inputs['body'];
 
         $this->authorize('update', $post); // POLICY
 

@@ -20,9 +20,9 @@ class CreateArticlesTable extends Migration
             $table->foreignId('heading_id')->constrained()->onDelete('cascade');
 
             // every time we delete a user that owns an article, its going to delete that users article with it
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
 
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->text('body');
             $table->timestamps();
         });

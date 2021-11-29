@@ -34,7 +34,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <textarea name="body" class="form-control" id="body" cols="30" rows="10">{{$article->body}}</textarea>
+                <textarea name="body" class="form-control" id="body" cols="30" rows="30">{{$article->body}}</textarea>
             </div>
             <button type="submit" class="btn btn-primary">Mentés</button>
         </form>
@@ -46,6 +46,24 @@
                 selector: 'textarea',
                 plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
                 toolbar_mode: 'floating',
+                style_formats: [
+                    {
+                        title: 'Image Left',
+                        selector: 'img',
+                        styles: {
+                            'float': 'left',
+                            'margin': '0 10px 0 10px'
+                        }
+                    },
+                    {
+                        title: 'Image Right',
+                        selector: 'img',
+                        styles: {
+                            'float': 'right',
+                            'margin': '0 0 10px 10px'
+                        }
+                    }
+                ]
             });
         </script>
 

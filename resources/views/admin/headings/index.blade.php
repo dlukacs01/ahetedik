@@ -22,6 +22,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Lapszám</th>
+                    <th>Típus</th>
                     <th>Cím</th>
                     <th>Elkészült</th>
                     <th>Frissítve</th>
@@ -32,6 +33,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Lapszám</th>
+                    <th>Típus</th>
                     <th>Cím</th>
                     <th>Elkészült</th>
                     <th>Frissítve</th>
@@ -43,6 +45,7 @@
                     <tr>
                         <td>{{$heading->id}}</td>
                         <td>{{$heading->post->title}}</td>
+                        <td>{{$heading->type}}</td>
                         <td><a href="{{route('heading.edit', $heading->id)}}">{{$heading->title}}</a></td>
                         <td>{{$heading->created_at->diffForHumans()}}</td>
                         <td>{{$heading->updated_at->diffForHumans()}}</td>

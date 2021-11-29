@@ -25,6 +25,7 @@ class HeadingController extends Controller
         $this->authorize('create', Heading::class); // POLICY
 
         $inputs = request()->validate([
+            'type'=>'required',
             'title'=>'required|min:4|max:255'
         ]);
 
@@ -47,10 +48,12 @@ class HeadingController extends Controller
     }
     public function update(Heading $heading){
         $inputs = request()->validate([
+            'type'=>'required',
             'title'=>'required|min:4|max:255',
             'post_id'=>'integer'
         ]);
 
+        $heading->type = $inputs['type'];
         $heading->title = $inputs['title'];
         $heading->post_id = $inputs['post_id'];
 

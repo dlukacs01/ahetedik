@@ -24,19 +24,24 @@ class ArticleController extends Controller
         // displaying headings based on selected post
         if($request->ajax()) {
 
-            $headings = Heading::where('post_id','=',$request->post_id)->get();
-
-            return view('partials.admin.headings', ['headings'=>$headings]);
+            if($request->post_id) {
+                $headings = Heading::where('post_id','=',$request->post_id)->get();
+                return view('partials.admin.headings', ['headings'=>$headings]);
+            }
+            if($request->heading_id) {
+                $heading = Heading::findOrFail($request->heading_id);
+                if($heading->type == 'egyeb') {
+                    return view('partials.admin.cim');
+                }
+                if($heading->type == 'muvek') {
+                    $users = User::all();
+                    return view('partials.admin.szerzok', ['users'=>$users]);
+                }
+            }
 
         } else {
             $posts = Post::all();
-            $headings = Heading::all();
-            $users = User::all();
-            return view('admin.articles.create', [
-                'posts'=>$posts,
-                'headings'=>$headings,
-                'users'=>$users
-            ]);
+            return view('admin.articles.create', ['posts'=>$posts]);
         }
     }
     public function store(){
@@ -44,15 +49,20 @@ class ArticleController extends Controller
 
         $inputs = request()->validate([
             'heading_id'=>'integer',
-            'title'=>'required|min:4|max:255',
-            'user_id'=>'integer',
             'body'=>'required'
         ]);
+
+        if(request('title')){
+            $inputs['title'] = request('title');
+        }
+        if(request('user_id')){
+            $inputs['user_id'] = request('user_id');
+        }
 
         $heading = Heading::findOrFail(request('heading_id'));
         $heading->articles()->create($inputs);
 
-        session()->flash('article-created-message', 'Az új cikk létrehozása sikeres volt ('.$inputs['title'].')');
+        session()->flash('article-created-message', 'Az új cikk létrehozása sikeres volt');
 
         return redirect()->route('article.index');
     }

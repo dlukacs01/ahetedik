@@ -20,6 +20,7 @@
     <link href="{{asset('css/blog-home.css')}}" rel="stylesheet">
 
     <!-- Custom styles -->
+    <link href="{{asset('css/custom/articles.css')}}" rel="stylesheet">
     <link href="{{asset('css/custom/categories.css')}}" rel="stylesheet">
     <link href="{{asset('css/custom/profile.css')}}" rel="stylesheet">
     <link href="{{asset('css/custom/users.css')}}" rel="stylesheet">

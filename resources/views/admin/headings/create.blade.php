@@ -13,6 +13,13 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="type">Típus:</label>
+                <select class="form-control" id="type" name="type">
+                    <option value="egyeb">Egyéb</option>
+                    <option value="muvek">Művek</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="title">Cím</label>
                 <input type="text" name="title" class="form-control" id="title" aria-describedby="" placeholder="Írd be a címet">
             </div>

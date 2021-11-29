@@ -21,7 +21,7 @@ class CreatePostsTable extends Migration
             $table->string('slug');
             // not every post has its own image
             $table->text('post_image')->nullable();
-            $table->text('body');
+            // $table->text('body');
             $table->timestamps();
         });
     }

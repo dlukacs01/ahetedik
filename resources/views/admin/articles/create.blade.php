@@ -12,28 +12,16 @@
                     @endforeach
                 </select>
             </div>
+
             <div class="form-group">
                 <label for="heading_id">Rovat:</label>
-                <select class="form-control" id="heading_id" name="heading_id">
-                    @foreach($headings as $heading)
-                        <option value="{{$heading->id}}">{{$heading->title}}</option>
-                    @endforeach
-                </select>
+                <select class="form-control" id="heading_id" name="heading_id"></select>
             </div>
+
+            <div class="form-group" id="ajax_result"></div>
+
             <div class="form-group">
-                <label for="title">Cím</label>
-                <input type="text" name="title" class="form-control" id="title" aria-describedby="" placeholder="Írd be a címet">
-            </div>
-            <div class="form-group">
-                <label for="user_id">Szerző (akihez a cikkben lévő művek tartoznak):</label>
-                <select class="form-control" id="user_id" name="user_id">
-                    @foreach($users as $user)
-                        <option value="{{$user->id}}">{{$user->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <textarea name="body" class="form-control" id="body" cols="30" rows="10"></textarea>
+                <textarea name="body" class="form-control" id="body" cols="30" rows="30"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Mentés</button>
         </form>
@@ -45,6 +33,30 @@
                 selector: 'textarea',
                 plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
                 toolbar_mode: 'floating',
+                style_formats: [
+                    {
+                        title: 'Image Left',
+                        selector: 'img',
+                        styles: {
+                            'float': 'left',
+                            'margin': '0 10px 0 10px'
+                        }
+                    },
+                    {
+                        title: 'Image Right',
+                        selector: 'img',
+                        styles: {
+                            'float': 'right',
+                            'margin': '0 0 10px 10px'
+                        }
+                    }
+                ]
+            });
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                $('#post_id').trigger("change");
             });
         </script>
 
@@ -57,6 +69,21 @@
                     data:{'post_id':$value},
                     success:function(data){
                         $('#heading_id').html(data);
+                        $('#heading_id').trigger("change");
+                    }
+                });
+            })
+        </script>
+
+        <script>
+            $('#heading_id').on('change',function(){
+                $value=$(this).val();
+                $.ajax({
+                    type : 'get',
+                    url : '{{URL::to('admin/articles/create')}}',
+                    data:{'heading_id':$value},
+                    success:function(data){
+                        $('#ajax_result').html(data);
                     }
                 });
             })
