@@ -68,7 +68,12 @@ class WorkController extends Controller
     public function edit(Work $work){
         // $this->authorize('view', $work); // POLICY
         $categories = Category::all();
-        return view('admin.works.edit', ['work'=>$work,'categories'=>$categories]);
+        $users = User::all();
+        return view('admin.works.edit', [
+            'work'=>$work,
+            'categories'=>$categories,
+            'users'=>$users
+        ]);
     }
     public function destroy(Work $work, Request $request){
         // $this->authorize('delete', $work); // POLICY
@@ -80,7 +85,7 @@ class WorkController extends Controller
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255',
             'category_id'=>'required|integer',
-            'work_image'=>'file',
+            'user_id'=>'required|integer',
             'body'=>'required'
         ]);
 
@@ -91,6 +96,7 @@ class WorkController extends Controller
 
         $work->title = $inputs['title'];
         $work->category_id = $inputs['category_id'];
+        $work->user_id = $inputs['user_id'];
         $work->body = $inputs['body'];
 
         // $this->authorize('update', $work); // POLICY
