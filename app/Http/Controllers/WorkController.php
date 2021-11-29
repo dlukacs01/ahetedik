@@ -29,7 +29,7 @@ class WorkController extends Controller
     public function index(){
         Carbon::setLocale('hu');
         // $works = auth()->user()->works()->paginate(5);
-        $works = Work::paginate(5);
+        $works = Work::paginate(30);
         return view('admin.works.index', ['works'=>$works]);
     }
     public function create(){
