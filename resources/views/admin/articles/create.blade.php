@@ -31,6 +31,7 @@
         <script>
             tinymce.init({
                 selector: 'textarea',
+                // content_style: "p {margin: 0}",
                 plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
                 toolbar_mode: 'floating',
                 style_formats: [

@@ -10,9 +10,9 @@
                         {{$article->user->name}}
                     </a>
                 </h5>
-                <p class="card-text mb-1">
+                <div class="article-body">
                     {!! $article->body !!}
-                </p>
+                </div>
             </div>
         </div>
     </div>
