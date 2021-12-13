@@ -15,9 +15,15 @@ class Work extends Model
         return $this->belongsTo(User::class);
     }
     // Get the category that owns the work.
-    public function category(){
-        return $this->belongsTo(Category::class);
+//    public function category(){
+//        return $this->belongsTo(Category::class);
+//    }
+
+    // The categories that belong to the work.
+    public function categories(){
+        return $this->belongsToMany(Category::class);
     }
+
     // ACCESSOR
     public function getWorkImageAttribute($value) {
         if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {

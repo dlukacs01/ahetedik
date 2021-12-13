@@ -19,7 +19,7 @@ class CreateWorksTable extends Migration
             $table->string('slug');
 
             // every time we delete a category that owns a work, its going to delete the categories work with it
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('category_id')->constrained()->onDelete('cascade');
 
             // every time we delete a user that owns a post, its going to delete that users post with it
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

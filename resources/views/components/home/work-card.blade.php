@@ -17,7 +17,12 @@
                 </p>
                 <p class="card-text mb-1">
                     <small>
-                        Kategória: <a href="{{route('work.category', $work->category->slug)}}">{{$work->category->name}}</a>
+                        Kategória(ák):
+                        <br>
+                        @foreach($work->categories as $category)
+                            <a href="{{route('work.category', $category->slug)}}" class="ml-2">{{$category->name}}</a>
+                            <br>
+                        @endforeach
                     </small>
                 </p>
                 <p class="card-text"><small class="text-muted">Közzétéve {{$work->created_at->diffForHumans()}}</small></p>

@@ -22,7 +22,6 @@
                         <tr>
                             <th>Id</th>
                             <th>Cím</th>
-                            <th>Kategória</th>
                             <th>Szerző</th>
                             <th>Borító</th>
                             <th>Elkészült</th>
@@ -34,7 +33,6 @@
                         <tr>
                             <th>Id</th>
                             <th>Cím</th>
-                            <th>Kategória</th>
                             <th>Szerző</th>
                             <th>Borító</th>
                             <th>Elkészült</th>
@@ -47,7 +45,6 @@
                         <tr>
                             <td>{{$work->id}}</td>
                             <td><a href="{{route('work.edit', $work->id)}}">{{$work->title}}</a></td>
-                            <td>{{$work->category->name}}</td>
                             <td>{{$work->user->name}}</td>
                             <td>
                                 <img width="100px" src="{{$work->work_image}}" alt="">

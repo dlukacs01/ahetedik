@@ -46,7 +46,6 @@ class WorkController extends Controller
 
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255',
-            'category_id'=>'required|integer',
             'user_id'=>'required|integer',
             'work_image'=>'file',
             'body'=>'required'
@@ -59,7 +58,13 @@ class WorkController extends Controller
         }
 
         // auth()->user()->works()->create($inputs);
-        Work::create($inputs);
+        $work = Work::create($inputs);
+
+        // multiple categories
+        $categories = request('categories');
+        foreach ($categories as $category) {
+            $work->categories()->attach($category);
+        }
 
         session()->flash('work-created-message', 'Az új mű létrehozása sikeres volt ('.$inputs['title'].')');
 
@@ -84,7 +89,6 @@ class WorkController extends Controller
     public function update(Work $work){
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255',
-            'category_id'=>'required|integer',
             'user_id'=>'required|integer',
             'body'=>'required'
         ]);
@@ -95,7 +99,12 @@ class WorkController extends Controller
         }
 
         $work->title = $inputs['title'];
-        $work->category_id = $inputs['category_id'];
+        // $work->category_id = $inputs['category_id'];
+
+        // multiple categories
+        $categories = request('categories');
+        $work->categories()->sync($categories);
+
         $work->user_id = $inputs['user_id'];
         $work->body = $inputs['body'];
 
