@@ -13,11 +13,11 @@ class RoleMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $role)
+    public function handle($request, Closure $next, $role1, $role2="")
     {
-        if(!$request->user()->userHasRole($role)){
-            abort('403', 'You are not authorized');
+        if($request->user()->userHasRole($role1) or $request->user()->userHasRole($role2)){
+            return $next($request);
         }
-        return $next($request);
+        abort('403', 'You are not authorized');
     }
 }

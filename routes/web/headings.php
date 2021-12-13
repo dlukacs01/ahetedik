@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['role:Editor','role:Admin','auth'])->group(function(){
+Route::middleware(['role:Editor,Admin','auth'])->group(function(){
     Route::get('/headings', 'HeadingController@index')->name('heading.index');
     Route::get('/headings/create', 'HeadingController@create')->name('heading.create');
     Route::post('/headings', 'HeadingController@store')->name('heading.store');

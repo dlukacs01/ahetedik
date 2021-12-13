@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['role:Editor','role:Admin','auth'])->group(function(){
+Route::middleware(['role:Editor,Admin','auth'])->group(function(){
     Route::get('/stories', 'StoryController@index')->name('story.index');
     Route::get('/stories/create', 'StoryController@create')->name('story.create');
     Route::post('/stories', 'StoryController@store')->name('story.store');
