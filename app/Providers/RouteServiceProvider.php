@@ -54,6 +54,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWorksRoutes();
 
+        $this->mapStoriesRoutes();
+
         $this->mapCategoriesRoutes();
 
         $this->mapMetasRoutes();
@@ -126,6 +128,14 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/web/works.php'));
+    }
+
+    protected function mapStoriesRoutes()
+    {
+        Route::prefix('admin')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web/stories.php'));
     }
 
     protected function mapCategoriesRoutes()

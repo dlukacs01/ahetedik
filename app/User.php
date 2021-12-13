@@ -60,6 +60,11 @@ class User extends Authenticatable
         return $this->hasMany(Work::class);
     }
 
+    // Get the stories for the user.
+    public function stories(){
+        return $this->hasMany(Story::class);
+    }
+
     // The permissions that belong to the user.
     public function permissions(){
         return $this->belongsToMany(Permission::class);

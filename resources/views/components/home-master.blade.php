@@ -89,6 +89,7 @@
 
         <!-- Sidebar Widgets Column -->
         <?php
+        $stories = App\Story::latest()->take(3)->get();
         $categories = App\Category::all();
         $works = App\Work::latest()->take(3)->get();
         ?>
@@ -106,6 +107,26 @@
                         </span>
                     </div>
                     </form>
+                </div>
+            </div>
+
+            <!-- Side Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Hírek</h5>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul class="list-unstyled mb-0">
+                                @foreach($stories as $story)
+                                    <li>
+                                        <a href="{{route('story', $story->slug)}}">{{$story->title}}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
