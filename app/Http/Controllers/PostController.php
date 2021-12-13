@@ -34,7 +34,8 @@ class PostController extends Controller
         // body => required
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255',
-            'post_image'=>'file'
+            'post_image'=>'file',
+            'active'=>'integer'
         ]);
 
         $inputs['slug'] = Str::of(Str::lower(request('title')))->slug('-');

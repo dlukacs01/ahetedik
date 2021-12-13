@@ -31,9 +31,10 @@ class HomeController extends Controller
     {
         Carbon::setLocale('hu');
 
-        $post = Post::latest()->first();
+        // $post = Post::latest()->first();
+        $posts = Post::where('active',1)->orderBy('id', 'desc')->get();
 
-        return view('home', ['post'=>$post]);
+        return view('home', ['posts'=>$posts]);
     }
     public function index_all()
     {

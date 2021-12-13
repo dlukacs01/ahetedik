@@ -27,6 +27,7 @@
                             <th>Elkészült</th>
                             <th>Frissítve</th>
                             <th>Törlés</th>
+                            <th>Aktív</th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -38,6 +39,7 @@
                             <th>Elkészült</th>
                             <th>Frissítve</th>
                             <th>Törlés</th>
+                            <th>Aktív</th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -60,6 +62,7 @@
                                 </form>
                                 {{--@endcan--}}
                             </td>
+                            <td>{{$post->active ? 'igen' : 'nem'}}</td>
                         </tr>
                         @endforeach
                         </tbody>
