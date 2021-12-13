@@ -46,17 +46,20 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Vezérlőpult
                     </a>
-                    <div class="sb-sidenav-menu-heading">Kezelés</div>
-                    <x-admin.sidebar.admin-sidebar-posts-links></x-admin.sidebar.admin-sidebar-posts-links>
-                    <x-admin.sidebar.admin-sidebar-headings-links></x-admin.sidebar.admin-sidebar-headings-links>
-                    <x-admin.sidebar.admin-sidebar-articles-links></x-admin.sidebar.admin-sidebar-articles-links>
-                    <x-admin.sidebar.admin-sidebar-works-links></x-admin.sidebar.admin-sidebar-works-links>
-                    <x-admin.sidebar.admin-sidebar-stories-links></x-admin.sidebar.admin-sidebar-stories-links>
-                    <div class="sb-sidenav-menu-heading">Egyéb</div>
 
-                    <x-admin.sidebar.admin-sidebar-categories-links></x-admin.sidebar.admin-sidebar-categories-links>
-                    <x-admin.sidebar.admin-sidebar-metas-links></x-admin.sidebar.admin-sidebar-metas-links>
+                    <div class="sb-sidenav-menu-heading">Kezelés</div>
+                    @if(auth()->user()->userHasRole('Editor') or auth()->user()->userHasRole('Admin'))
+                        <x-admin.sidebar.admin-sidebar-posts-links></x-admin.sidebar.admin-sidebar-posts-links>
+                        <x-admin.sidebar.admin-sidebar-headings-links></x-admin.sidebar.admin-sidebar-headings-links>
+                        <x-admin.sidebar.admin-sidebar-articles-links></x-admin.sidebar.admin-sidebar-articles-links>
+                        <x-admin.sidebar.admin-sidebar-works-links></x-admin.sidebar.admin-sidebar-works-links>
+                        <x-admin.sidebar.admin-sidebar-stories-links></x-admin.sidebar.admin-sidebar-stories-links>
+                    @endif
+
+                    <div class="sb-sidenav-menu-heading">Egyéb</div>
                     @if(auth()->user()->userHasRole('Admin'))
+                        <x-admin.sidebar.admin-sidebar-categories-links></x-admin.sidebar.admin-sidebar-categories-links>
+                        <x-admin.sidebar.admin-sidebar-metas-links></x-admin.sidebar.admin-sidebar-metas-links>
                         <x-admin.sidebar.admin-sidebar-users-links></x-admin.sidebar.admin-sidebar-users-links>
                         <x-admin.sidebar.authorization-links></x-admin.sidebar.authorization-links>
                     @endif

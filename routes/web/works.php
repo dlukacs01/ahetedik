@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['role:Editor','role:Admin','auth'])->group(function(){
     Route::get('/works', 'WorkController@index')->name('work.index');
     Route::get('/works/create', 'WorkController@create')->name('work.create');
     Route::post('/works', 'WorkController@store')->name('work.store');
