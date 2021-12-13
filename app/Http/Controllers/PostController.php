@@ -67,7 +67,8 @@ class PostController extends Controller
         // body => required
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255',
-            'post_image'=>'file'
+            'post_image'=>'file',
+            'active'=>'integer'
         ]);
 
         if(request('post_image')){
@@ -77,6 +78,7 @@ class PostController extends Controller
 
         $post->title = $inputs['title'];
         // $post->body = $inputs['body'];
+        $post->active = $inputs['active'];
 
         $this->authorize('update', $post); // POLICY
 
