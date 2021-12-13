@@ -23,8 +23,8 @@
             <div class="form-group">
                 <label for="type">Megjelenik a főoladlon?</label>
                 <select class="form-control" id="active" name="active">
-                    <option value="1">Igen</option>
-                    <option value="0">Nem</option>
+                    <option value="1" {{$post->active == 1 ? 'selected' : ''}}>Igen</option>
+                    <option value="0" {{$post->active == 0 ? 'selected' : ''}}>Nem</option>
                 </select>
             </div>
 {{--            <div class="form-group">--}}

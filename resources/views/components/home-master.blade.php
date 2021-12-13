@@ -92,6 +92,7 @@
         $stories = App\Story::latest()->take(3)->get();
         $categories = App\Category::all();
         $works = App\Work::latest()->take(3)->get();
+        $works_active = App\Work::where('active',1)->latest()->take(3)->get();
         ?>
         <div class="col-md-4">
 
@@ -172,6 +173,26 @@
                                 @foreach($works as $work)
                                     <li>
                                         <a href="{{route('work', $work->slug)}}">{{$work->title}}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Side Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Kiemelt művek</h5>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul class="list-unstyled mb-0">
+                                @foreach($works_active as $work_active)
+                                    <li>
+                                        <a href="{{route('work', $work_active->slug)}}">{{$work_active->title}}</a>
                                     </li>
                                 @endforeach
                             </ul>

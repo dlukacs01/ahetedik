@@ -29,6 +29,7 @@ class CreateWorksTable extends Migration
 
             $table->text('body');
 
+            $table->integer('active');
             $table->timestamps();
         });
     }

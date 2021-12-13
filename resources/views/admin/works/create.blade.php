@@ -48,6 +48,13 @@
                 <input type="file" name="work_image" class="form-control-file" id="work_image">
             </div>
             <div class="form-group">
+                <label for="type">Kiemelt mű?</label>
+                <select class="form-control" id="active" name="active">
+                    <option value="1">Igen</option>
+                    <option value="0">Nem</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <textarea name="body" class="form-control" id="body" cols="30" rows="10"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Mentés</button>

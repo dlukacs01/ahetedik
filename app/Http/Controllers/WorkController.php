@@ -48,6 +48,7 @@ class WorkController extends Controller
             'title'=>'required|min:8|max:255',
             'user_id'=>'required|integer',
             'work_image'=>'file',
+            'active'=>'integer',
             'body'=>'required'
         ]);
 
@@ -90,6 +91,7 @@ class WorkController extends Controller
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255',
             'user_id'=>'required|integer',
+            'active'=>'integer',
             'body'=>'required'
         ]);
 
@@ -106,6 +108,7 @@ class WorkController extends Controller
         $work->categories()->sync($categories);
 
         $work->user_id = $inputs['user_id'];
+        $work->active = $inputs['active'];
         $work->body = $inputs['body'];
 
         // $this->authorize('update', $work); // POLICY
