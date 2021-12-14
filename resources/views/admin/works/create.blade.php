@@ -2,6 +2,10 @@
     @section('content')
         <h1 class="mt-4">Új mű</h1>
 
+        @if(session('work-duplicate-message'))
+            <div class="alert alert-danger">{{session('work-duplicate-message')}}</div>
+        @endif
+
         <form method="post" action="{{route('work.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
