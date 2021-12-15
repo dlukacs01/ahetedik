@@ -28,32 +28,7 @@
     @endsection
 
     @section('scripts')
-        <script>
-            tinymce.init({
-                selector: 'textarea',
-                // content_style: "p {margin: 0}",
-                plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-                toolbar_mode: 'floating',
-                style_formats: [
-                    {
-                        title: 'Image Left',
-                        selector: 'img',
-                        styles: {
-                            'float': 'left',
-                            'margin': '0 10px 0 10px'
-                        }
-                    },
-                    {
-                        title: 'Image Right',
-                        selector: 'img',
-                        styles: {
-                            'float': 'right',
-                            'margin': '0 0 10px 10px'
-                        }
-                    }
-                ]
-            });
-        </script>
+        @include('includes.tinyeditor');
 
         <script>
             $(document).ready(function() {
