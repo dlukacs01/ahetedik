@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Meta;
 use App\Post;
+use App\Story;
 use App\User;
 use App\Work;
 use Carbon\Carbon;
@@ -43,6 +44,14 @@ class HomeController extends Controller
         $posts = Post::orderBy('id', 'desc')->paginate(3);
 
         return view('posts', ['posts'=>$posts]);
+    }
+    public function stories_all()
+    {
+        Carbon::setLocale('hu');
+
+        $stories = Story::orderBy('id', 'desc')->paginate(3);
+
+        return view('stories', ['stories'=>$stories]);
     }
     public function search(){
         Carbon::setLocale('hu');

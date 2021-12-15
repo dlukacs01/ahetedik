@@ -59,7 +59,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <textarea name="body" class="form-control" id="body" cols="30" rows="10"></textarea>
+                <textarea name="body" class="form-control" id="body" cols="30" rows="30"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Mentés</button>
         </form>

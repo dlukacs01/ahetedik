@@ -6,6 +6,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/lapszamok', 'HomeController@index_all')->name('home.all');
+Route::get('/hirek', 'HomeController@stories_all')->name('home.all.stories');
 Route::get('/kereses', 'HomeController@search')->name('home.search');
 Route::get('/szerzoink-figyelmebe', 'HomeController@szerzoknek')->name('home.szerzoknek');
 

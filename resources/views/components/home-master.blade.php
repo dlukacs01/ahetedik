@@ -59,6 +59,9 @@
                     <a class="nav-link" href="{{route('home.all')}}">Korábbi lapszámok</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{route('home.all.stories')}}">Hírek</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{route('category.front.index')}}">Kategóriák</a>
                 </li>
                 <li class="nav-item">
