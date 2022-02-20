@@ -18,6 +18,8 @@ class CreateWorksTable extends Migration
             $table->string('title');
             $table->string('slug');
 
+            $table->date('release_date');
+
             // every time we delete a category that owns a work, its going to delete the categories work with it
             // $table->foreignId('category_id')->constrained()->onDelete('cascade');
 

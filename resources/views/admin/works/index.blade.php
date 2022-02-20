@@ -24,6 +24,7 @@
                             <th>Cím</th>
                             <th>Szerző</th>
                             <th>Borító</th>
+                            <th>Megjelenési idő</th>
                             <th>Elkészült</th>
                             <th>Frissítve</th>
                             <th>Törlés</th>
@@ -36,6 +37,7 @@
                             <th>Cím</th>
                             <th>Szerző</th>
                             <th>Borító</th>
+                            <th>Megjelenési idő</th>
                             <th>Elkészült</th>
                             <th>Frissítve</th>
                             <th>Törlés</th>
@@ -51,6 +53,7 @@
                             <td>
                                 <img width="100px" src="{{$work->work_image}}" alt="">
                             </td>
+                            <td>{{$work->release_date}}</td>
                             <td>{{$work->created_at->diffForHumans()}}</td>
                             <td>{{$work->updated_at->diffForHumans()}}</td>
                             <td>

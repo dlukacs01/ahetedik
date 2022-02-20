@@ -15,7 +15,7 @@ class WorkController extends Controller
     public function work_category($category_slug){
         Carbon::setLocale('hu');
         $category = Category::where('slug', $category_slug)->first(); // needed for page title
-        $works = $category->works;
+        $works = $category->works()->whereDate('release_date', '<=', date('Y-m-d'))->get();
         return view('works', [
             'category'=>$category,
             'works'=>$works
@@ -46,6 +46,7 @@ class WorkController extends Controller
 
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255',
+            'release_date'=>'required|date',
             'user_id'=>'required|integer',
             'work_image'=>'file',
             'active'=>'integer',
