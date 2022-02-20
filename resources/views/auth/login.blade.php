@@ -8,7 +8,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Home - Start Bootstrap Template</title>
+    <title>A hetedik - Admin belépés</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{asset('css/favicon.jpg')}}">
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
