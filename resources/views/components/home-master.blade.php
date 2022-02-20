@@ -92,7 +92,7 @@
 
         <!-- Sidebar Widgets Column -->
         <?php
-        $stories = App\Story::latest()->take(3)->get();
+        $stories = App\Story::latest()->whereDate('expiration_date', '>=', date('Y-m-d'))->take(3)->get();
         $categories = App\Category::all();
         $works = App\Work::latest()->take(3)->get();
         $works_active = App\Work::where('active',1)->latest()->take(3)->get();

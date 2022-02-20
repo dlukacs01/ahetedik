@@ -19,6 +19,7 @@ class CreateStoriesTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->string('slug');
+            $table->date('expiration_date');
             // not every story has its own image
             $table->text('story_image')->nullable();
             $table->text('body');

@@ -18,6 +18,7 @@
                     <th>Cím</th>
                     <th>Szerző</th>
                     <th>Borító</th>
+                    <th>Lejárati idő</th>
                     <th>Elkészült</th>
                     <th>Frissítve</th>
                     <th>Törlés</th>
@@ -29,6 +30,7 @@
                     <th>Cím</th>
                     <th>Szerző</th>
                     <th>Borító</th>
+                    <th>Lejárati idő</th>
                     <th>Elkészült</th>
                     <th>Frissítve</th>
                     <th>Törlés</th>
@@ -43,6 +45,7 @@
                         <td>
                             <img width="100px" src="{{$story->story_image}}" alt="">
                         </td>
+                        <td>{{$story->expiration_date}}</td>
                         <td>{{$story->created_at->diffForHumans()}}</td>
                         <td>{{$story->updated_at->diffForHumans()}}</td>
                         <td>

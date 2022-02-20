@@ -9,6 +9,10 @@
                 <input type="text" name="title" class="form-control" id="title" aria-describedby="" placeholder="Írd be a címet">
             </div>
             <div class="form-group">
+                <label for="expiration_date">Lejárati idő</label>
+                <input type="date" name="expiration_date" class="form-control" id="expiration_date" aria-describedby="">
+            </div>
+            <div class="form-group">
                 <label for="work_image">Borító</label>
                 <input type="file" name="story_image" class="form-control-file" id="story_image">
             </div>

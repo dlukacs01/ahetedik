@@ -49,7 +49,7 @@ class HomeController extends Controller
     {
         Carbon::setLocale('hu');
 
-        $stories = Story::orderBy('id', 'desc')->paginate(3);
+        $stories = Story::whereDate('expiration_date', '>=', date('Y-m-d'))->orderBy('id', 'desc')->paginate(3);
 
         return view('stories', ['stories'=>$stories]);
     }
