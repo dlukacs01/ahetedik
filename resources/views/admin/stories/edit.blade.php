@@ -16,6 +16,10 @@
                        value="{{$story->title}}">
             </div>
             <div class="form-group">
+                <label for="expiration_date">Lejárati idő</label>
+                <input type="date" name="expiration_date" class="form-control" id="expiration_date" aria-describedby="" value="{{$story->expiration_date}}">
+            </div>
+            <div class="form-group">
                 <div><img height="100px" src="{{$story->story_image}}" alt=""></div>
                 <label for="story_image">Borító</label>
                 <input type="file" name="story_image" class="form-control-file" id="story_image">

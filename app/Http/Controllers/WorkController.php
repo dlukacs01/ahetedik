@@ -101,6 +101,7 @@ class WorkController extends Controller
     public function update(Work $work){
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255',
+            'release_date'=>'required|date',
             'user_id'=>'required|integer',
             'active'=>'integer',
             'body'=>'required'
@@ -113,6 +114,8 @@ class WorkController extends Controller
 
         $work->title = $inputs['title'];
         $work->slug = Str::of(Str::lower(request('title')))->slug('-');
+
+        $work->release_date = $inputs['release_date'];
 
         // $work->category_id = $inputs['category_id'];
 

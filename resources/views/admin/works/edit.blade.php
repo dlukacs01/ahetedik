@@ -15,6 +15,12 @@
                        placeholder="Enter title"
                        value="{{$work->title}}">
             </div>
+
+            <div class="form-group">
+                <label for="release_date">Megjelenési idő</label>
+                <input type="date" name="release_date" class="form-control" id="release_date" aria-describedby="" value="{{$work->release_date}}">
+            </div>
+
 {{--            <div class="form-group">--}}
 {{--                <label for="category_id">Kategória:</label>--}}
 {{--                <select class="form-control" id="category_id" name="category_id">--}}

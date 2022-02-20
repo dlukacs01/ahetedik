@@ -53,6 +53,7 @@ class StoryController extends Controller
     public function update(Story $story){
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255',
+            'expiration_date'=>'required|date',
             'body'=>'required'
         ]);
 
@@ -62,6 +63,9 @@ class StoryController extends Controller
         }
 
         $story->title = $inputs['title'];
+        $story->slug = Str::of(Str::lower(request('title')))->slug('-');
+
+        $story->expiration_date = $inputs['expiration_date'];
         $story->body = $inputs['body'];
 
         $this->authorize('update', $story); // POLICY
