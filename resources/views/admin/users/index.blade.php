@@ -66,5 +66,11 @@
 {{--            </div>--}}
 {{--        </div>--}}
 
+        <div class="d-flex">
+            <div class="mx-auto">
+                {{$users->links()}}
+            </div>
+        </div>
+
     @endsection
 </x-admin-master>
