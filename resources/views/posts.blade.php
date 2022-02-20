@@ -5,6 +5,10 @@
     {{--        <small>Secondary Text</small>--}}
     {{--    </h1>--}}
 
+    <div class="alert alert-info my-4">
+        <strong>Figyelem!</strong> A régebbi lapszámok <a href="http://ahetedik.hu/idaig-megjelent-kiadvanyaink.html" target="_blank">ezen az oldalon</a> érhetőek el.
+    </div>
+
     <!-- Blog Post -->
         @foreach($posts as $post)
             <div class="card mb-4 my-4">
