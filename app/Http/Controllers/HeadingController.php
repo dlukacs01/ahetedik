@@ -13,7 +13,7 @@ class HeadingController extends Controller
 
     public function index(){
         Carbon::setLocale('hu');
-        $headings = Heading::paginate(5);
+        $headings = Heading::orderBy('id','DESC')->paginate(10);
         return view('admin.headings.index', ['headings'=>$headings]);
     }
     public function create(){

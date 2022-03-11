@@ -17,7 +17,7 @@ class StoryController extends Controller
     }
     public function index(){
         Carbon::setLocale('hu');
-        $stories = Story::paginate(30);
+        $stories = Story::orderBy('id','DESC')->paginate(10);
         return view('admin.stories.index', ['stories'=>$stories]);
     }
     public function create(){
