@@ -108,13 +108,23 @@ class WorkController extends Controller
             'body'=>'required|string'
         ]);
 
+        $work->title = $inputs['title'];
+        $work->slug = Str::of(Str::lower(request('title')))->slug('-');
+
+        // check for duplicate work for same author (user)
+        $user = User::findOrFail(request('user_id'));
+        $user_works = $user->works;
+        foreach($user_works as $user_work){
+            if($user_work->slug == $work->slug) {
+                session()->flash('work-duplicate-message', 'Ehhez a szerzőhőz ezzel a címmel már tartozik mű ('.$inputs['title'].')');
+                return back();
+            }
+        }
+
         if(request('work_image')){
             $inputs['work_image'] = request('work_image')->store('images');
             $work->work_image = $inputs['work_image'];
         }
-
-        $work->title = $inputs['title'];
-        $work->slug = Str::of(Str::lower(request('title')))->slug('-');
 
         $work->release_date = $inputs['release_date'];
 
