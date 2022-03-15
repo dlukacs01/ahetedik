@@ -46,7 +46,7 @@ class StoryController extends Controller
         return redirect()->route('story.index');
     }
     public function edit(Story $story){
-        $this->authorize('view', $story); // POLICY
+        // $this->authorize('view', $story); // POLICY
         return view('admin.stories.edit', ['story'=>$story]);
     }
     public function update(Story $story){
@@ -67,7 +67,7 @@ class StoryController extends Controller
         $story->expiration_date = $inputs['expiration_date'];
         $story->body = $inputs['body'];
 
-        $this->authorize('update', $story); // POLICY
+        // $this->authorize('update', $story); // POLICY
 
         $story->save();
 
@@ -76,7 +76,7 @@ class StoryController extends Controller
         return redirect()->route('story.index');
     }
     public function destroy(Story $story, Request $request){
-        $this->authorize('delete', $story); // POLICY
+        // $this->authorize('delete', $story); // POLICY
         $story->delete();
         $request->session()->flash('message', 'A hír törlése sikeres volt');
         return back();

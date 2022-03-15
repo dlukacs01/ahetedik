@@ -52,14 +52,14 @@ class PostController extends Controller
         return redirect()->route('post.index');
     }
     public function edit(Post $post){
-        $this->authorize('view', $post); // POLICY
+        // $this->authorize('view', $post); // POLICY
 //        if(auth()->user()->can('view', $post)) {
 //
 //        }
         return view('admin.posts.edit', ['post'=>$post]);
     }
     public function destroy(Post $post, Request $request){
-        $this->authorize('delete', $post); // POLICY
+        // $this->authorize('delete', $post); // POLICY
         $post->delete();
         $request->session()->flash('message', 'A lapszám törlése sikeres volt');
         return back();
@@ -80,7 +80,7 @@ class PostController extends Controller
         // $post->body = $inputs['body'];
         $post->active = $inputs['active'];
 
-        $this->authorize('update', $post); // POLICY
+        // $this->authorize('update', $post); // POLICY
 
         $post->save();
 
