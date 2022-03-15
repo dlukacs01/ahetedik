@@ -4,8 +4,8 @@
 
         <form method="post" action="{{route('article.store')}}">
             @csrf
-            <div class="form-group">
-                <label for="post_id">Lapszám:</label>
+            <div class="form-group required">
+                <label for="post_id" class="control-label">Lapszám:</label>
                 <select class="form-control" id="post_id" name="post_id">
                     @foreach($posts as $post)
                         <option value="{{$post->id}}">{{$post->title}}</option>
@@ -13,15 +13,21 @@
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="heading_id">Rovat:</label>
+            <div class="form-group required">
+                <label for="heading_id" class="control-label">Rovat:</label>
                 <select class="form-control" id="heading_id" name="heading_id"></select>
             </div>
 
-            <div class="form-group" id="ajax_result"></div>
+            <div class="form-group required" id="ajax_result"></div>
 
-            <div class="form-group">
-                <textarea name="body" class="form-control" id="body" cols="30" rows="30"></textarea>
+            <div class="form-group required">
+                <label for="body" class="control-label">Tartalom</label>
+                <div>
+                    @error('body')
+                    <span><strong>{{$message}}</strong></span>
+                    @enderror
+                </div>
+                <textarea name="body" class="form-control" id="body" cols="30" rows="20"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Mentés</button>
         </form>

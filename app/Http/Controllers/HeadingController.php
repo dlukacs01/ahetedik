@@ -25,8 +25,9 @@ class HeadingController extends Controller
         $this->authorize('create', Heading::class); // POLICY
 
         $inputs = request()->validate([
-            'type'=>'required',
-            'title'=>'required|min:4|max:255'
+            'post_id'=>'required|integer',
+            'type'=>'required|string',
+            'title'=>'required|string'
         ]);
 
         $post = Post::findOrFail(request('post_id'));
@@ -48,14 +49,14 @@ class HeadingController extends Controller
     }
     public function update(Heading $heading){
         $inputs = request()->validate([
-            'type'=>'required',
-            'title'=>'required|min:4|max:255',
-            'post_id'=>'integer'
+            'post_id'=>'required|integer',
+            'type'=>'required|string',
+            'title'=>'required|string'
         ]);
 
+        $heading->post_id = $inputs['post_id'];
         $heading->type = $inputs['type'];
         $heading->title = $inputs['title'];
-        $heading->post_id = $inputs['post_id'];
 
         // TODO check
         // $this->authorize('update', $heading); // POLICY

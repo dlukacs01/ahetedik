@@ -45,12 +45,11 @@ class WorkController extends Controller
         $this->authorize('create', Work::class); // POLICY
 
         $inputs = request()->validate([
-            'title'=>'required|min:8|max:255',
+            'title'=>'required|string',
             'release_date'=>'required|date',
             'user_id'=>'required|integer',
-            'work_image'=>'file',
-            'active'=>'integer',
-            'body'=>'required'
+            'active'=>'required|integer',
+            'body'=>'required|string'
         ]);
 
         $inputs['slug'] = Str::of(Str::lower(request('title')))->slug('-');
@@ -102,11 +101,11 @@ class WorkController extends Controller
     }
     public function update(Work $work){
         $inputs = request()->validate([
-            'title'=>'required|min:8|max:255',
+            'title'=>'required|string',
             'release_date'=>'required|date',
             'user_id'=>'required|integer',
-            'active'=>'integer',
-            'body'=>'required'
+            'active'=>'required|integer',
+            'body'=>'required|string'
         ]);
 
         if(request('work_image')){

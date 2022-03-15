@@ -28,10 +28,9 @@ class StoryController extends Controller
         $this->authorize('create', Story::class); // POLICY
 
         $inputs = request()->validate([
-            'title'=>'required|min:8|max:255',
+            'title'=>'required|string',
             'expiration_date'=>'required|date',
-            'story_image'=>'file',
-            'body'=>'required'
+            'body'=>'required|string'
         ]);
 
         $inputs['slug'] = Str::of(Str::lower(request('title')))->slug('-');
@@ -52,9 +51,9 @@ class StoryController extends Controller
     }
     public function update(Story $story){
         $inputs = request()->validate([
-            'title'=>'required|min:8|max:255',
+            'title'=>'required|string',
             'expiration_date'=>'required|date',
-            'body'=>'required'
+            'body'=>'required|string'
         ]);
 
         if(request('story_image')){

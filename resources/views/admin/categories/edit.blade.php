@@ -6,9 +6,9 @@
             <form method="post" action="{{route('category.update', $category->id)}}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
-                <div class="form-group">
-                    <label for="name">Név</label>
-                    <input type="text" name="name" class="form-control" id="name" value="{{$category->name}}">
+                <div class="form-group required">
+                    <label for="name" class="control-label">Név</label>
+                    <input type="text" name="name" class="form-control" id="name" value="{{$category->name}}" required>
                 </div>
                 <div class="form-group">
                     <div><img height="100px" src="{{$category->category_image}}" alt=""></div>

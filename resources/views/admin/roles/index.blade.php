@@ -22,12 +22,13 @@
             <div class="col-sm-3">
                 <form method="post" action="{{route('role.store')}}">
                     @csrf
-                    <div class="form-group">
-                        <label for="name">Név</label>
+                    <div class="form-group required">
+                        <label for="name" class="control-label">Név</label>
                         <input
                             type="text"
                             name="name"
                             id="name"
+                            required
                             class="form-control @error('name') is-invalid @enderror">
                         <div>
                             @error('name')

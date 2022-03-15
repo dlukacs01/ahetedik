@@ -7,9 +7,9 @@
             <form method="post" action="{{route('role.update', $role->id)}}">
                 @csrf
                 @method('PUT')
-                <div class="form-group">
-                    <label for="name">Név</label>
-                    <input type="text" name="name" class="form-control" id="name" value="{{$role->name}}">
+                <div class="form-group required">
+                    <label for="name" class="control-label">Név</label>
+                    <input type="text" name="name" class="form-control" id="name" required value="{{$role->name}}">
                 </div>
                 <button class="btn btn-primary">Mentés</button>
             </form>

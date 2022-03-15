@@ -4,20 +4,26 @@
 
         <form method="post" action="{{route('story.store')}}" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-                <label for="title">Cím</label>
-                <input type="text" name="title" class="form-control" id="title" aria-describedby="" placeholder="Írd be a címet">
+            <div class="form-group required">
+                <label for="title" class="control-label">Cím</label>
+                <input type="text" name="title" class="form-control" id="title" aria-describedby="" placeholder="Írd be a címet" required>
             </div>
-            <div class="form-group">
-                <label for="expiration_date">Lejárati idő</label>
-                <input type="date" name="expiration_date" class="form-control" id="expiration_date" aria-describedby="">
+            <div class="form-group required">
+                <label for="expiration_date" class="control-label">Lejárati idő</label>
+                <input type="date" name="expiration_date" class="form-control" id="expiration_date" aria-describedby="" required>
             </div>
-            <div class="form-group">
-                <label for="work_image">Borító</label>
-                <input type="file" name="story_image" class="form-control-file" id="story_image">
+            <div class="form-group required">
+                <label for="work_image" class="control-label">Borító</label>
+                <input type="file" name="story_image" class="form-control-file" id="story_image" required>
             </div>
-            <div class="form-group">
-                <textarea name="body" class="form-control" id="body" cols="30" rows="30"></textarea>
+            <div class="form-group required">
+                <label for="body" class="control-label">Tartalom</label>
+                <div>
+                    @error('body')
+                    <span><strong>{{$message}}</strong></span>
+                    @enderror
+                </div>
+                <textarea name="body" class="form-control" id="body" cols="30" rows="20"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Mentés</button>
         </form>

@@ -4,16 +4,16 @@
 
         <form method="post" action="{{route('post.store')}}" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-                <label for="title">Cím</label>
-                <input type="text" name="title" class="form-control" id="title" aria-describedby="" placeholder="Írd be a címet">
+            <div class="form-group required">
+                <label for="title" class="control-label">Cím</label>
+                <input type="text" name="title" class="form-control" id="title" aria-describedby="" placeholder="Írd be a címet" required>
             </div>
-            <div class="form-group">
-                <label for="post_image">Borító</label>
-                <input type="file" name="post_image" class="form-control-file" id="post_image">
+            <div class="form-group required">
+                <label for="post_image" class="control-label">Borító</label>
+                <input type="file" name="post_image" class="form-control-file" id="post_image" required>
             </div>
-            <div class="form-group">
-                <label for="type">Megjelenik a főoldalon?</label>
+            <div class="form-group required">
+                <label for="type" class="control-label">Megjelenik a főoldalon?</label>
                 <select class="form-control" id="active" name="active">
                     <option value="1">Igen</option>
                     <option value="0">Nem</option>

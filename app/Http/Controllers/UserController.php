@@ -56,12 +56,11 @@ class UserController extends Controller
 
         // TODO validation
         $inputs = request()->validate([
-            'username'=>'required',
-            'name'=>'required',
-            'email'=>'required',
-            'cv'=>'required',
-            'password'=>'required',
-            'avatar'=>'file',
+            'username'=>'required|string|max:255|alpha_dash',
+            'name'=>'required|string|max:255',
+            'email'=>'required|email|max:255',
+            'cv'=>'required|string',
+            'password'=>'required|min:8'
         ]);
 
         if(request('avatar')){
@@ -81,9 +80,8 @@ class UserController extends Controller
         $inputs = request()->validate([
            'username'=>['required', 'string', 'max:255', 'alpha_dash'],
             'name'=>['required', 'string', 'max:255'],
-            'cv'=>['required', 'string'],
             'email'=>['required', 'email', 'max:255'],
-            'avatar'=>['file']
+            'cv'=>['required', 'string']
         ]);
 
         if(request('avatar')){

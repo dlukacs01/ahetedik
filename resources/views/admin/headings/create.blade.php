@@ -4,24 +4,24 @@
 
         <form method="post" action="{{route('heading.store')}}">
             @csrf
-            <div class="form-group">
-                <label for="post_id">Lapszám:</label>
+            <div class="form-group required">
+                <label for="post_id" class="control-label">Lapszám:</label>
                 <select class="form-control" id="post_id" name="post_id">
                     @foreach($posts as $post)
                         <option value="{{$post->id}}">{{$post->title}}</option>
                     @endforeach
                 </select>
             </div>
-            <div class="form-group">
-                <label for="type">Típus:</label>
+            <div class="form-group required">
+                <label for="type" class="control-label">Típus:</label>
                 <select class="form-control" id="type" name="type">
                     <option value="egyeb">Egyéb</option>
                     <option value="muvek">Művek</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="title">Cím</label>
-                <input type="text" name="title" class="form-control" id="title" aria-describedby="" placeholder="Írd be a címet">
+            <div class="form-group required">
+                <label for="title" class="control-label">Cím</label>
+                <input type="text" name="title" class="form-control" id="title" aria-describedby="" placeholder="Írd be a címet" required>
             </div>
             <button type="submit" class="btn btn-primary">Mentés</button>
         </form>

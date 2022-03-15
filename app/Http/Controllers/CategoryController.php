@@ -31,8 +31,8 @@ class CategoryController extends Controller
         $this->authorize('create', Category::class); // POLICY
 
         $inputs = request()->validate([
-            'name'=>'required',
-            'category_image'=>'file'
+            'name'=>'required|string',
+            'category_image'=>'required|file'
         ]);
 
         $inputs['name'] = Str::ucfirst(request('name'));
@@ -50,8 +50,7 @@ class CategoryController extends Controller
     }
     public function update(Category $category){
         $inputs = request()->validate([
-            'name'=>'required|min:8|max:255',
-            'category_image'=>'file'
+            'name'=>'required|string'
         ]);
 
         if(request('category_image')){

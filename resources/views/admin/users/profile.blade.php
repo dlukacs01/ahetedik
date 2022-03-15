@@ -10,47 +10,65 @@
                     <div class="mb-4 profile-img">
                         <img class="img-profile rounded-circle" src="{{$user->avatar}}">
                     </div>
-                    <div class="form-group">
-                        <label for="username">Felhasználónév</label>
+                    <div class="form-group required">
+                        <label for="username" class="control-label">Felhasználónév</label>
                         <input
                             type="text"
                             name="username"
                             class="form-control @error('username') is-invalid @enderror"
                             id="username"
                             aria-describedby=""
+                            required
                             value="{{$user->username}}">
                         @error('username')
                         <div class="invalid-feedback">{{$message}}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="name">Név</label>
-                        <input type="text" name="name" class="form-control" id="name" aria-describedby="" value="{{$user->name}}">
+                    <div class="form-group required">
+                        <label for="name" class="control-label">Név</label>
+                        <input type="text" name="name" class="form-control" id="name" aria-describedby="" required value="{{$user->name}}">
                         @error('name')
                         <div class="alert alert-danger">{{$message}}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control" id="email" aria-describedby="" value="{{$user->email}}">
+                    <div class="form-group required">
+                        <label for="email" class="control-label">Email</label>
+                        <input type="email" name="email" class="form-control" id="email" aria-describedby="" required value="{{$user->email}}">
                         @error('email')
                         <div class="alert alert-danger">{{$message}}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="cv">Bemutatkozás</label>
-                        <textarea name="cv" class="form-control" id="cv" cols="30" rows="10">{{$user->cv}}</textarea>
+                    <div class="form-group required">
+                        <label for="cv" class="control-label">Bemutatkozás</label>
+                        <div>
+                            @error('cv')
+                            <span><strong>{{$message}}</strong></span>
+                            @enderror
+                        </div>
+                        <textarea name="cv" class="form-control" id="cv" cols="30" rows="20">{{$user->cv}}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="password">Jelszó</label>
-                        <input type="password" name="password" class="form-control" id="password" aria-describedby="">
+                        <input type="password"
+                               name="password"
+                               class="form-control"
+                               id="password"
+                               aria-describedby=""
+                               pattern=".{8,}"
+                               title="8 characters minimum">
                         @error('password')
                         <div class="alert alert-danger">{{$message}}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="password-confirmation">Jelszó megerősítése</label>
-                        <input type="password" name="password-confirmation" class="form-control" id="password-confirmation" aria-describedby="">
+                        <input type="password"
+                               name="password-confirmation"
+                               class="form-control"
+                               id="password-confirmation"
+                               aria-describedby=""
+                               pattern=".{8,}"
+                               title="8 characters minimum">
                         @error('password-confirmation')
                         <div class="alert alert-danger">{{$message}}</div>
                         @enderror

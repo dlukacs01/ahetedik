@@ -34,9 +34,9 @@ class PostController extends Controller
 
         // body => required
         $inputs = request()->validate([
-            'title'=>'required|min:8|max:255',
-            'post_image'=>'file',
-            'active'=>'integer'
+            'title'=>'required|string',
+            'post_image'=>'required|file',
+            'active'=>'required|integer'
         ]);
 
         $inputs['slug'] = Str::of(Str::lower(request('title')))->slug('-');
@@ -67,9 +67,8 @@ class PostController extends Controller
     public function update(Post $post){
         // body => required
         $inputs = request()->validate([
-            'title'=>'required|min:8|max:255',
-            'post_image'=>'file',
-            'active'=>'integer'
+            'title'=>'required|string',
+            'active'=>'required|integer'
         ]);
 
         if(request('post_image')){

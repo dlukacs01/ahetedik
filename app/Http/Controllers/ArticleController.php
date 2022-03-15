@@ -49,8 +49,8 @@ class ArticleController extends Controller
 
         // TODO user_id title
         $inputs = request()->validate([
-            'heading_id'=>'integer',
-            'body'=>'required'
+            'heading_id'=>'required|integer',
+            'body'=>'required|string'
         ]);
 
         if(request('title')){
@@ -106,8 +106,8 @@ class ArticleController extends Controller
     public function update(Article $article){
         // TODO user_id title
         $inputs = request()->validate([
-            'heading_id'=>'integer',
-            'body'=>'required'
+            'heading_id'=>'required|integer',
+            'body'=>'required|string'
         ]);
 
         $article->heading_id = $inputs['heading_id'];

@@ -8,14 +8,14 @@
 
         <form method="post" action="{{route('work.store')}}" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-                <label for="title">Cím</label>
-                <input type="text" name="title" class="form-control" id="title" aria-describedby="" placeholder="Írd be a címet">
+            <div class="form-group required">
+                <label for="title" class="control-label">Cím</label>
+                <input type="text" name="title" class="form-control" id="title" aria-describedby="" placeholder="Írd be a címet" required>
             </div>
 
-            <div class="form-group">
-                <label for="release_date">Megjelenési idő</label>
-                <input type="date" name="release_date" class="form-control" id="release_date" aria-describedby="">
+            <div class="form-group required">
+                <label for="release_date" class="control-label">Megjelenési idő</label>
+                <input type="date" name="release_date" class="form-control" id="release_date" aria-describedby="" required>
             </div>
 
 {{--            <div class="form-group">--}}
@@ -27,8 +27,8 @@
 {{--                </select>--}}
 {{--            </div>--}}
 
-            <div class="form-group">
-            <label for="">Kategóriák</label>
+            <div class="form-group required">
+            <label for="" class="control-label">Kategóriák</label>
             @foreach($categories as $category)
             <div class="form-check">
                 <label class="form-check-label" for="{{$category->id}}">
@@ -44,8 +44,8 @@
             @endforeach
             </div>
 
-            <div class="form-group">
-                <label for="user_id">Szerző:</label>
+            <div class="form-group required">
+                <label for="user_id" class="control-label">Szerző:</label>
                 <select class="form-control" id="user_id" name="user_id">
                     @foreach($users as $user)
                         <option value="{{$user->id}}">{{$user->name}}</option>
@@ -56,15 +56,21 @@
                 <label for="work_image">Borító</label>
                 <input type="file" name="work_image" class="form-control-file" id="work_image">
             </div>
-            <div class="form-group">
-                <label for="type">Kiemelt mű?</label>
+            <div class="form-group required">
+                <label for="type" class="control-label">Kiemelt mű?</label>
                 <select class="form-control" id="active" name="active">
                     <option value="1">Igen</option>
                     <option value="0">Nem</option>
                 </select>
             </div>
-            <div class="form-group">
-                <textarea name="body" class="form-control" id="body" cols="30" rows="30"></textarea>
+            <div class="form-group required">
+                <label for="body" class="control-label">Tartalom</label>
+                <div>
+                    @error('body')
+                    <span><strong>{{$message}}</strong></span>
+                    @enderror
+                </div>
+                <textarea name="body" class="form-control" id="body" cols="30" rows="20"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Mentés</button>
         </form>

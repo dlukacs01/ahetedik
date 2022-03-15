@@ -5,14 +5,15 @@
         <form method="post" action="{{route('post.update', $post->id)}}" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
-            <div class="form-group">
-                <label for="title">Cím</label>
+            <div class="form-group required">
+                <label for="title" class="control-label">Cím</label>
                 <input type="text"
                        name="title"
                        class="form-control"
                        id="title"
                        aria-describedby=""
                        placeholder="Enter title"
+                       required
                        value="{{$post->title}}">
             </div>
             <div class="form-group">
@@ -20,8 +21,8 @@
                 <label for="post_image">Borító</label>
                 <input type="file" name="post_image" class="form-control-file" id="post_image">
             </div>
-            <div class="form-group">
-                <label for="type">Megjelenik a főoladlon?</label>
+            <div class="form-group required">
+                <label for="type" class="control-label">Megjelenik a főoldalon?</label>
                 <select class="form-control" id="active" name="active">
                     <option value="1" {{$post->active == 1 ? 'selected' : ''}}>Igen</option>
                     <option value="0" {{$post->active == 0 ? 'selected' : ''}}>Nem</option>
