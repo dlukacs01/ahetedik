@@ -25,16 +25,21 @@
                 </div>
                 <textarea name="body" class="form-control" id="body" cols="30" rows="20"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Mentés</button>
+            <button type="submit" id="submit" class="btn btn-primary">Mentés</button>
         </form>
     @endsection
 
     @section('scripts')
+        @include('includes.tinyeditor');
+
         <script>
-            tinymce.init({
-                selector: 'textarea',
-                plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-                toolbar_mode: 'floating',
+            $(document).ready(function(){
+                $('#submit').click(function(event) {
+                    if(tinymce.get('body').getContent().length < 1) {
+                        alert('A tartalom mező kitöltése kötelező!');
+                        event.preventDefault();
+                    }
+                });
             });
         </script>
     @endsection

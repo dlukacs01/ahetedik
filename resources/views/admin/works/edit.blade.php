@@ -46,18 +46,20 @@
                 @foreach($categories as $category)
                     <div class="form-check">
                         <label class="form-check-label" for="{{$category->id}}">
-                            <input
-                                type="checkbox"
-                                class="form-check-input"
-                                id="{{$category->id}}"
-                                name="categories[]"
-                                value="{{$category->id}}"
-                                @foreach($work->categories as $work_category)
-                                    @if($category->name === $work_category->name)
-                                        checked
-                                    @endif
-                                @endforeach
-                            >{{$category->name}}
+                            <div class="checkbox-group required-chckbx">
+                                <input
+                                    type="checkbox"
+                                    class="form-check-input"
+                                    id="{{$category->id}}"
+                                    name="categories[]"
+                                    value="{{$category->id}}"
+                                    @foreach($work->categories as $work_category)
+                                        @if($category->name === $work_category->name)
+                                            checked
+                                        @endif
+                                    @endforeach
+                                >{{$category->name}}
+                            </div>
                         </label>
                     </div>
                 @endforeach
@@ -92,16 +94,32 @@
                 </div>
                 <textarea name="body" class="form-control" id="body" cols="30" rows="20">{{$work->body}}</textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Mentés</button>
+            <button type="submit" id="submit" class="btn btn-primary">Mentés</button>
         </form>
     @endsection
 
     @section('scripts')
+        @include('includes.tinyeditor');
+
         <script>
-            tinymce.init({
-                selector: 'textarea',
-                plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-                toolbar_mode: 'floating',
+            $(document).ready(function(){
+                $('#submit').click(function(event) {
+                    if($('div.checkbox-group.required-chckbx :checkbox:checked').length < 1) {
+                        alert('Legalább egy kategória választása kötelező!');
+                        event.preventDefault();
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            $(document).ready(function(){
+                $('#submit').click(function(event) {
+                    if(tinymce.get('body').getContent().length < 1) {
+                        alert('A tartalom mező kitöltése kötelező!');
+                        event.preventDefault();
+                    }
+                });
             });
         </script>
     @endsection

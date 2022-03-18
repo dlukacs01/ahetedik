@@ -32,34 +32,21 @@
                 </div>
                 <textarea name="body" class="form-control" id="body" cols="30" rows="20">{{$article->body}}</textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Mentés</button>
+            <button type="submit" id="submit" class="btn btn-primary">Mentés</button>
         </form>
     @endsection
 
     @section('scripts')
+        @include('includes.tinyeditor');
+
         <script>
-            tinymce.init({
-                selector: 'textarea',
-                plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-                toolbar_mode: 'floating',
-                style_formats: [
-                    {
-                        title: 'Image Left',
-                        selector: 'img',
-                        styles: {
-                            'float': 'left',
-                            'margin': '0 10px 0 10px'
-                        }
-                    },
-                    {
-                        title: 'Image Right',
-                        selector: 'img',
-                        styles: {
-                            'float': 'right',
-                            'margin': '0 0 10px 10px'
-                        }
+            $(document).ready(function(){
+                $('#submit').click(function(event) {
+                    if(tinymce.get('body').getContent().length < 1) {
+                        alert('A tartalom mező kitöltése kötelező!');
+                        event.preventDefault();
                     }
-                ]
+                });
             });
         </script>
 

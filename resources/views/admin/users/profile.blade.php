@@ -77,7 +77,7 @@
                         <label for="avatar">Avatar</label>
                         <input type="file" name="avatar" class="form-control-file" id="avatar">
                     </div>
-                    <button type="submit" class="btn btn-primary">Mentés</button>
+                    <button type="submit" id="submit" class="btn btn-primary">Mentés</button>
                 </form>
             </div>
         </div>
@@ -172,12 +172,26 @@
     @endsection
 
     @section('scripts')
+{{--        <script>--}}
+{{--            tinymce.init({--}}
+{{--                selector: 'textarea',--}}
+{{--                plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',--}}
+{{--                toolbar_mode: 'floating',--}}
+{{--            });--}}
+{{--        </script>--}}
+
+        @include('includes.tinyeditor');
+
         <script>
-            tinymce.init({
-                selector: 'textarea',
-                plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-                toolbar_mode: 'floating',
+            $(document).ready(function(){
+                $('#submit').click(function(event) {
+                    if(tinymce.get('cv').getContent().length < 1) {
+                        alert('A tartalom mező kitöltése kötelező!');
+                        event.preventDefault();
+                    }
+                });
             });
         </script>
+
     @endsection
 </x-admin-master>

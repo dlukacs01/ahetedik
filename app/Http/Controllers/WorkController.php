@@ -112,14 +112,14 @@ class WorkController extends Controller
         $work->slug = Str::of(Str::lower(request('title')))->slug('-');
 
         // check for duplicate work for same author (user)
-        $user = User::findOrFail(request('user_id'));
-        $user_works = $user->works;
-        foreach($user_works as $user_work){
-            if($user_work->slug == $work->slug) {
-                session()->flash('work-duplicate-message', 'Ehhez a szerzőhőz ezzel a címmel már tartozik mű ('.$inputs['title'].')');
-                return back();
-            }
-        }
+//        $user = User::findOrFail(request('user_id'));
+//        $user_works = $user->works;
+//        foreach($user_works as $user_work){
+//            if($user_work->slug == $work->slug) {
+//                session()->flash('work-duplicate-message', 'Ehhez a szerzőhőz ezzel a címmel már tartozik mű ('.$inputs['title'].')');
+//                return back();
+//            }
+//        }
 
         if(request('work_image')){
             $inputs['work_image'] = request('work_image')->store('images');

@@ -30,6 +30,7 @@ class StoryController extends Controller
         $inputs = request()->validate([
             'title'=>'required|string',
             'expiration_date'=>'required|date',
+            'story_image'=>'required|file',
             'body'=>'required|string'
         ]);
 

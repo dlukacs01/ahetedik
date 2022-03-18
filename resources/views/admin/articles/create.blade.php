@@ -29,12 +29,23 @@
                 </div>
                 <textarea name="body" class="form-control" id="body" cols="30" rows="20"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Mentés</button>
+            <button type="submit" id="submit" class="btn btn-primary">Mentés</button>
         </form>
     @endsection
 
     @section('scripts')
         @include('includes.tinyeditor');
+
+        <script>
+            $(document).ready(function(){
+                $('#submit').click(function(event) {
+                    if(tinymce.get('body').getContent().length < 1) {
+                        alert('A tartalom mező kitöltése kötelező!');
+                        event.preventDefault();
+                    }
+                });
+            });
+        </script>
 
         <script>
             $(document).ready(function() {
