@@ -5,5 +5,12 @@
         @foreach($works as $work)
             <x-home.work-card :work="$work"></x-home.work-card>
         @endforeach
+
+        <div class="d-flex">
+            <div class="mx-auto">
+                {{$works->links()}}
+            </div>
+        </div>
+
     @endsection
 </x-home-master>
