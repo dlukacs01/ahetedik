@@ -110,7 +110,7 @@
                     <div class="input-group">
                         <input type="text" name="search" class="form-control" placeholder="Keresés...">
                         <span class="input-group-btn">
-                            <button class="btn btn-secondary" type="button">Mehet!</button>
+                            <button class="btn btn-secondary" type="submit">Mehet!</button>
                         </span>
                     </div>
                     </form>
