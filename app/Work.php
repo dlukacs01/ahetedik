@@ -26,6 +26,9 @@ class Work extends Model
 
     // ACCESSOR
     public function getWorkImageAttribute($value) {
+        if(empty($value)) {
+            return asset('web/images/work_image_default.jpg');
+        }
         if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
             return $value;
         }

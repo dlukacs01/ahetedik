@@ -67,8 +67,6 @@ class WorkController extends Controller
 
         if(request('work_image')){
             $inputs['work_image'] = request('work_image')->store('images');
-        } else {
-            $inputs['work_image'] = "http://127.0.0.1:8000/web/images/hetedik_logo_default.jpg";
         }
 
         // auth()->user()->works()->create($inputs);

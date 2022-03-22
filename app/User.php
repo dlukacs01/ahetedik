@@ -44,6 +44,9 @@ class User extends Authenticatable
 
     // ACCESSOR
     public function getAvatarAttribute($value) {
+        if(empty($value)) {
+            return asset('web/images/avatar_default.png');
+        }
         if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
             return $value;
         }

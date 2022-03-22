@@ -65,8 +65,6 @@ class UserController extends Controller
 
         if(request('avatar')){
             $inputs['avatar'] = request('avatar')->store('images');
-        } else {
-            $inputs['avatar'] = "http://127.0.0.1:8000/web/images/gender_neutral_avatar.jpg";
         }
 
         User::create($inputs);
