@@ -16,15 +16,17 @@ class UserController extends Controller
         return view('admin.users.index', ['users'=>$users]);
     }
     public function index_front(Request $request){
+
         if($request->ajax()) {
 
-            $users = User::where('name','LIKE',$request->search."%")->get();
+            $users = User::where('name','LIKE',$request->search."%")->orderBy('name')->get();
 
             return view('partials.home.users', ['users'=>$users]);
 
         } else {
 
-            $users = User::all();
+            // $users = User::all();
+            $users = User::orderBy('name')->paginate(10);
 
             return view('users', ['users'=>$users]);
 
