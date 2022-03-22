@@ -41,7 +41,8 @@ class HomeController extends Controller
     {
         Carbon::setLocale('hu');
 
-        $posts = Post::orderBy('id', 'desc')->paginate(3);
+        // LAPSZÁMOK >>> legújabb legelöl, 10 lapszám / oldal
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
 
         return view('posts', ['posts'=>$posts]);
     }
@@ -49,7 +50,8 @@ class HomeController extends Controller
     {
         Carbon::setLocale('hu');
 
-        $stories = Story::whereDate('expiration_date', '>=', date('Y-m-d'))->orderBy('id', 'desc')->paginate(3);
+        // HÍREK >>> legújabb legelöl, 10 hír / oldal
+        $stories = Story::whereDate('expiration_date', '>=', date('Y-m-d'))->orderBy('id', 'desc')->paginate(10);
 
         return view('stories', ['stories'=>$stories]);
     }

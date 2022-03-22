@@ -17,5 +17,12 @@
             </div>
 
         @endforeach
+
+        <div class="d-flex">
+            <div class="mx-auto">
+                {{$categories->links()}}
+            </div>
+        </div>
+
     @endsection
 </x-home-master>

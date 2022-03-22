@@ -15,11 +15,14 @@ class UserController extends Controller
         $users = User::orderBy('name')->paginate(10);
         return view('admin.users.index', ['users'=>$users]);
     }
+
+    // FELHASZNÁLÓK >>> ABC sorrend, 10 felhasználó / oldal
     public function index_front(Request $request){
 
         if($request->ajax()) {
 
-            $users = User::where('name','LIKE',$request->search."%")->orderBy('name')->get();
+            // $users = User::where('name','LIKE',$request->search."%")->orderBy('name')->get();
+            $users = User::where('name','LIKE',$request->search."%")->orderBy('name')->paginate(10);
 
             return view('partials.home.users', ['users'=>$users]);
 

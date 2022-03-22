@@ -1,6 +1,6 @@
 <x-admin-master>
     @section('content')
-        <h1 class="mt-4">Összes mű</h1>
+        <h1 class="mt-4">Összes mű (legújabb legelől, 10 mű / oldal)</h1>
 
         @if(session('message'))
             <div class="alert alert-danger">{{session('message')}}</div>

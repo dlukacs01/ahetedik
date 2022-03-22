@@ -1,5 +1,6 @@
 <x-home-master>
 @section('content')
+        <h1 class="mt-4 mb-3">Hírek</h1>
 
     <!-- Blog Post -->
         @foreach($stories as $story)

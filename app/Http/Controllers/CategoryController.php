@@ -11,12 +11,14 @@ class CategoryController extends Controller
     //
     public function index(){
         return view('admin.categories.index', [
-            'categories'=>Category::all()
+            'categories'=>Category::orderBy('name')->paginate(10)
         ]);
     }
+
+    // KATEGÓRIÁK >>> ABC sorrend, 10 kategória / oldal
     public function index_front(){
         return view('categories', [
-            'categories'=>Category::all()
+            'categories'=>Category::orderBy('name')->paginate(10)
         ]);
     }
     public function edit(Category $category){

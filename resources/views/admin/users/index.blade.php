@@ -1,6 +1,6 @@
 <x-admin-master>
     @section('content')
-        <h1 class="mt-4">Felhasználók</h1>
+        <h1 class="mt-4">Felhasználók (ABC sorrend, 10 felhasználó / oldal)</h1>
 
         @if(session('user-deleted'))
             <div class="alert alert-danger">{{session('user-deleted')}}</div>

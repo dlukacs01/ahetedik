@@ -10,3 +10,9 @@
     </div>
 
 @endforeach
+
+<div class="d-flex">
+    <div class="mx-auto">
+        {{$users->links()}}
+    </div>
+</div>

@@ -1,6 +1,6 @@
 <x-admin-master>
     @section('content')
-        <h1 class="mt-4">Kategóriák</h1>
+        <h1 class="mt-4">Kategóriák (ABC sorrend, 10 kategória / oldal)</h1>
 
         @if(session()->has('category-deleted'))
             <div class="alert alert-danger">
@@ -56,6 +56,12 @@
                 @endforeach
                 </tbody>
             </table>
+        </div>
+
+        <div class="d-flex">
+            <div class="mx-auto">
+                {{$categories->links()}}
+            </div>
         </div>
 
     @endsection

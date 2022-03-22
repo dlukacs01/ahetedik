@@ -49,6 +49,7 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Jelszó</label>
+                        <small>Minimum 8 karakter!</small>
                         <input type="password"
                                name="password"
                                class="form-control"
@@ -62,6 +63,7 @@
                     </div>
                     <div class="form-group">
                         <label for="password-confirmation">Jelszó megerősítése</label>
+                        <small>Minimum 8 karakter!</small>
                         <input type="password"
                                name="password-confirmation"
                                class="form-control"

@@ -13,12 +13,22 @@ class MetaController extends Controller
         return view('admin.metas.index', ['meta'=>$meta]);
     }
     public function update(Meta $meta){
-        $meta->szerzoknek = request('szerzoknek');
-        $meta->nyilatkozat = request('nyilatkozat');
-        $meta->elvek = request('elvek');
-        $meta->jogok = request('jogok');
-        $meta->impresszum = request('impresszum');
-        $meta->gdpr = request('gdpr');
+
+        $inputs = request()->validate([
+            'szerzoknek'=>'required|string',
+            'nyilatkozat'=>'required|string',
+            'elvek'=>'required|string',
+            'jogok'=>'required|string',
+            'impresszum'=>'required|string',
+            'gdpr'=>'required|string'
+        ]);
+
+        $meta->szerzoknek = $inputs['szerzoknek'];
+        $meta->nyilatkozat = $inputs['nyilatkozat'];
+        $meta->elvek = $inputs['elvek'];
+        $meta->jogok = $inputs['jogok'];
+        $meta->impresszum = $inputs['impresszum'];
+        $meta->gdpr = $inputs['gdpr'];
 
         $meta->save();
         session()->flash('meta-updated-message', 'A leírások frissítése sikeres volt');

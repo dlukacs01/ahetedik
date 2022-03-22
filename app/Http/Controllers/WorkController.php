@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 class WorkController extends Controller
 {
-    //
+    // MŰVEK >>> legújabb legelől, 10 mű / oldal
     public function work_category($category_slug){
         Carbon::setLocale('hu');
         $category = Category::where('slug', $category_slug)->first(); // needed for page title
