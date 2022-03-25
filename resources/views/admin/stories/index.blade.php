@@ -11,7 +11,7 @@
         @endif
 
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable-stories" width="100%" cellspacing="0">
                 <thead>
                 <tr>
                     <th>Id</th>
@@ -63,10 +63,10 @@
             </table>
         </div>
 
-        <div class="d-flex">
-            <div class="mx-auto">
-                {{$stories->links()}}
-            </div>
-        </div>
+{{--        <div class="d-flex">--}}
+{{--            <div class="mx-auto">--}}
+{{--                {{$stories->links()}}--}}
+{{--            </div>--}}
+{{--        </div>--}}
     @endsection
 </x-admin-master>

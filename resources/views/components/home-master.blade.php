@@ -46,18 +46,18 @@
 {{--                        <span class="sr-only">(current)</span>--}}
 {{--                    </a>--}}
 {{--                </li>--}}
-                @if(Auth::check())
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.index')}}">Admin</a>
-                    </li>
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('login')}}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('register')}}">Register</a>
-                    </li>
-                @endif
+{{--                @if(Auth::check())--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" href="{{route('admin.index')}}">Admin</a>--}}
+{{--                    </li>--}}
+{{--                @else--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" href="{{route('login')}}">Login</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" href="{{route('register')}}">Register</a>--}}
+{{--                    </li>--}}
+{{--                @endif--}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('home.all')}}">Korábbi lapszámok</a>
                 </li>
@@ -220,7 +220,7 @@
 <footer class="py-5">
     <div class="container">
         <p class="m-0 text-center text-muted">Minden jog fenntartva &copy; A hetedik {{\Carbon\Carbon::now()->year}}</p>
-        <p class="text-center text-muted small">v0.6.1</p>
+        <p class="text-center text-muted small">v0.6.2</p>
         <ul class="nav justify-content-center">
             <li class="nav-item">
                 <a class="nav-link" href="{{route('home.nyilatkozat')}}">Szerkesztőségi nyilatkozat</a>

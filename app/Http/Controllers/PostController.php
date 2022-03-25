@@ -16,7 +16,8 @@ class PostController extends Controller
         Carbon::setLocale('hu');
         // $posts = Post::all();
         // $posts = auth()->user()->posts()->orderBy('id','DESC')->paginate(10);
-        $posts = Post::orderBy('id','DESC')->paginate(10);
+        // $posts = Post::orderBy('id','DESC')->paginate(10);
+        $posts = Post::orderBy('id','DESC')->get();
         return view('admin.posts.index', ['posts'=>$posts]);
     }
     // route model binding (getting the post directly, instead of post id)

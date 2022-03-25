@@ -12,7 +12,8 @@ class UserController extends Controller
     //
     public function index(){
         Carbon::setLocale('hu');
-        $users = User::orderBy('name')->paginate(10);
+        // $users = User::orderBy('name')->paginate(10);
+        $users = User::orderBy('name')->get();
         return view('admin.users.index', ['users'=>$users]);
     }
 

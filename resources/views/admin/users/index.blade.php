@@ -19,7 +19,7 @@
 {{--            </div>--}}
 {{--            <div class="card-body">--}}
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="dataTable-users" width="100%" cellspacing="0">
                         <thead>
                         <tr>
                             <th>Id</th>
@@ -66,11 +66,11 @@
 {{--            </div>--}}
 {{--        </div>--}}
 
-        <div class="d-flex">
-            <div class="mx-auto">
-                {{$users->links()}}
-            </div>
-        </div>
+{{--        <div class="d-flex">--}}
+{{--            <div class="mx-auto">--}}
+{{--                {{$users->links()}}--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
     @endsection
 </x-admin-master>

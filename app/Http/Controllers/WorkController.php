@@ -30,7 +30,8 @@ class WorkController extends Controller
     public function index(){
         Carbon::setLocale('hu');
         // $works = auth()->user()->works()->paginate(5);
-        $works = Work::orderBy('id','DESC')->paginate(10);
+        // $works = Work::orderBy('id','DESC')->paginate(10);
+        $works = Work::orderBy('id','DESC')->get();
         return view('admin.works.index', ['works'=>$works]);
     }
     public function create(){

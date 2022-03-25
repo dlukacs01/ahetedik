@@ -15,7 +15,8 @@ class ArticleController extends Controller
 
     public function index(){
         Carbon::setLocale('hu');
-        $articles = Article::orderBy('id','DESC')->paginate(10);
+        // $articles = Article::orderBy('id','DESC')->paginate(10);
+        $articles = Article::orderBy('id','DESC')->get();
         return view('admin.articles.index', ['articles'=>$articles]);
     }
     public function create(Request $request){
