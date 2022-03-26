@@ -82,7 +82,7 @@
 </nav>
 
 <!-- Page Content -->
-<div class="container">
+<div class="container" style="background-color: rgb(229,229,233);">
 
     <div class="row">
 
