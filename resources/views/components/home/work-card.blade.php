@@ -7,7 +7,7 @@
             <div class="card-body pt-2">
                 <h5 class="card-title mb-1">
                     <a href="{{route('work', [
-                        'work_slug' => $work->id,
+                        'work_slug' => $work->slug,
                         'work_id' => $work->id
                     ])}}" class="text-decoration-none text-body">{{$work->title}}</a>
                 </h5>
