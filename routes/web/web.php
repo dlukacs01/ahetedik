@@ -20,7 +20,7 @@ Route::get('/adatvedelmi-nyilatkozat', 'HomeController@gdpr')->name('home.gdpr')
 Route::get('/kategoriak', 'CategoryController@index_front')->name('category.front.index');
 Route::get('/kategoriak/{category_slug}', 'WorkController@work_category')->name('work.category');
 Route::get('/lapszamok/{post_slug}', 'PostController@show')->name('post'); // route model binding (post instead of post id)
-Route::get('/muvek/{work_slug}', 'WorkController@show')->name('work');
+Route::get('/muvek/{work_slug}/mu-{work_id}', 'WorkController@show')->name('work');
 Route::get('/hirek/{story_slug}', 'StoryController@show')->name('story');
 Route::get('/szerzok', 'UserController@index_front')->name('user.front.index'); // view all users in front
 Route::get('/szerzok/{username}', 'UserController@show')->name('user.profile.show'); // user profile page in front

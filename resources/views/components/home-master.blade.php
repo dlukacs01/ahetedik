@@ -178,7 +178,10 @@
                             <ul class="list-unstyled mb-0">
                                 @foreach($works as $work)
                                     <li>
-                                        <a href="{{route('work', $work->slug)}}">{{$work->title}}</a>
+                                        <a href="{{route('work', [
+                                            'work_slug' => $work->slug,
+                                            'work_id' => $work->id
+                                        ])}}">{{$work->title}}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -198,7 +201,10 @@
                             <ul class="list-unstyled mb-0">
                                 @foreach($works_active as $work_active)
                                     <li>
-                                        <a href="{{route('work', $work_active->slug)}}">{{$work_active->title}}</a>
+                                        <a href="{{route('work', [
+                                            'work_slug' => $work_active->slug,
+                                            'work_id' => $work_active->id
+                                        ])}}">{{$work_active->title}}</a>
                                     </li>
                                 @endforeach
                             </ul>

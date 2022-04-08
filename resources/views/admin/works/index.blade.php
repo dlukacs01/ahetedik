@@ -2,8 +2,8 @@
     @section('content')
         <h1 class="mt-4">Összes mű (legújabb legelől, 10 mű / oldal)</h1>
 
-        @if(session('message'))
-            <div class="alert alert-danger">{{session('message')}}</div>
+        @if(session('work-deleted-message'))
+            <div class="alert alert-success">{{session('work-deleted-message')}}</div>
         @elseif(session('work-created-message'))
             <div class="alert alert-success">{{session('work-created-message')}}</div>
         @elseif(session('work-updated-message'))

@@ -22,9 +22,10 @@ class WorkController extends Controller
             'works'=>$works
         ]);
     }
-    public function show($work_slug){
+    public function show($work_slug, $work_id){
         Carbon::setLocale('hu');
-        $work = Work::where('slug', $work_slug)->first();
+        // $work = Work::where('slug', $work_slug)->first();
+        $work = Work::findOrFail($work_id);
         return view('work', ['work'=>$work]);
     }
     public function index(){
@@ -54,13 +55,14 @@ class WorkController extends Controller
             'body'=>'required|string'
         ]);
 
+        // $date = date('Y-m-d_H-i-s');
         $inputs['slug'] = Str::of(Str::lower(request('title')))->slug('-');
 
         // check for duplicate work for same author (user)
         $user = User::findOrFail(request('user_id'));
         $user_works = $user->works;
         foreach($user_works as $user_work){
-            if($user_work->slug == $inputs['slug']) {
+            if($user_work->title == $inputs['title']) {
                 session()->flash('work-duplicate-message', 'Ehhez a szerzőhőz ezzel a címmel már tartozik mű ('.$inputs['title'].')');
                 return back();
             }
@@ -96,7 +98,7 @@ class WorkController extends Controller
     public function destroy(Work $work, Request $request){
         // $this->authorize('delete', $work); // POLICY
         $work->delete();
-        $request->session()->flash('message', 'A mű törlése sikeres volt');
+        $request->session()->flash('work-deleted-message', 'A mű törlése sikeres volt');
         return back();
     }
     public function update(Work $work){
