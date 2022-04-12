@@ -42,7 +42,7 @@ class HomeController extends Controller
         Carbon::setLocale('hu');
 
         // LAPSZÁMOK >>> legújabb legelöl, 10 lapszám / oldal
-        $posts = Post::where('active',1)->orderBy('id', 'desc')->paginate(10);
+        $posts = Post::where('active',0)->orderBy('id', 'desc')->paginate(10);
 
         return view('posts', ['posts'=>$posts]);
     }
