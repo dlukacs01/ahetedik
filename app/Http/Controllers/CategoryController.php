@@ -62,7 +62,7 @@ class CategoryController extends Controller
 
         $category->name = Str::ucfirst(request('name'));
         $category->slug = Str::of(request('name'))->slug('-');
-        if($category->isDirty('name')){
+        if($category->isDirty('name') || $category->isDirty('category_image')){
             session()->flash('category-updated', 'A kategória frissítése sikeres volt ('.request('name').')');
             $category->save();
         } else {

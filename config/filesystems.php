@@ -57,7 +57,8 @@ return [
 
         'testDisk' => [
             'driver' => 'local',
-            'root' => public_path('test_disk'),
+            'root' => public_path('app/public'),
+            'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
 
