@@ -31,6 +31,7 @@ class StoryPolicy
     public function view(User $user, Story $story)
     {
         //
+
         return $user->id === $story->user_id;
     }
 
@@ -43,6 +44,8 @@ class StoryPolicy
     public function create(User $user)
     {
         //
+
+        // if the one making the request is the logged in user
         return $user->is($user);
     }
 
@@ -56,6 +59,7 @@ class StoryPolicy
     public function update(User $user, Story $story)
     {
         //
+
         return $user->id === $story->user_id;
     }
 
@@ -69,6 +73,7 @@ class StoryPolicy
     public function delete(User $user, Story $story)
     {
         //
+
         return $user->id === $story->user_id;
     }
 
