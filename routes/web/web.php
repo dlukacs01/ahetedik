@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // Auth::routes();
-Auth::routes(['register' => false]); // https://stackoverflow.com/questions/29183348/how-to-disable-registration-new-users-in-laravel
+Auth::routes(['register' => true]); // DISABLE REGISTRATION
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/lapszamok', 'HomeController@index_all')->name('home.all');

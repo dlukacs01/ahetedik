@@ -11,6 +11,8 @@ class HeadingController extends Controller
 {
     //
 
+    // ***** ROVATOK *****
+
     public function index(){
         Carbon::setLocale('hu');
         // $headings = Heading::orderBy('id','DESC')->paginate(10);

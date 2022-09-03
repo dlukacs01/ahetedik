@@ -13,130 +13,176 @@ class ArticleController extends Controller
 {
     //
 
-    public function index(){
-        Carbon::setLocale('hu');
-        // $articles = Article::orderBy('id','DESC')->paginate(10);
-        $articles = Article::orderBy('id','DESC')->get();
-        return view('admin.articles.index', ['articles'=>$articles]);
-    }
-    public function create(Request $request){
-        $this->authorize('create', Article::class); // POLICY
+    // ***** CIKKEK *****
 
-        // displaying headings based on selected post
+    public function index(){
+
+        Carbon::setLocale('hu');
+        $articles = Article::orderBy('id','DESC')->get();
+        return view('admin.articles.index', ['articles' => $articles]);
+    }
+
+    public function create(Request $request){
+
+        // POLICY
+        $this->authorize('create', Article::class);
+
         if($request->ajax()) {
 
+            // Displaying headings ('rovatok') based on selected post ('lapszam')
             if($request->post_id) {
+
                 $headings = Heading::where('post_id','=',$request->post_id)->get();
-                return view('partials.admin.articles.create.headings', ['headings'=>$headings]);
+                return view('partials.admin.articles.create.headings', ['headings' => $headings]);
             }
+
+            // Displaying 'cim' or 'szerzok' field based on selected heading-type ('rovat-tipus')
             if($request->heading_id) {
+
                 $heading = Heading::findOrFail($request->heading_id);
+
                 if($heading->type == 'egyeb') {
                     return view('partials.admin.articles.create.cim');
                 }
+
                 if($heading->type == 'muvek') {
                     $users = User::all();
-                    return view('partials.admin.articles.create.szerzok', ['users'=>$users]);
+                    return view('partials.admin.articles.create.szerzok', ['users' => $users]);
                 }
             }
-
         } else {
+
             $posts = Post::all();
-            return view('admin.articles.create', ['posts'=>$posts]);
+            return view('admin.articles.create', ['posts' => $posts]);
         }
     }
-    public function store(){
-        $this->authorize('create', Article::class); // POLICY
 
-        // TODO user_id title
+    public function store(){
+
+        // POLICY
+        $this->authorize('create', Article::class);
+
+        // VALIDATION
         $inputs = request()->validate([
-            'heading_id'=>'required|integer',
-            'body'=>'required|string'
+            'heading_id' => ['required', 'integer'],
+            'user_id' => ['nullable', 'integer'],
+            'title' => ['nullable', 'string', 'max:30'],
+            'body' => ['required', 'string', 'max:100000']
         ]);
 
+        // VALUES
         if(request('title')){
             $inputs['title'] = request('title');
         }
+
         if(request('user_id')){
             $inputs['user_id'] = request('user_id');
         }
 
+        // SAVE, SESSION, REDIRECT
         $heading = Heading::findOrFail(request('heading_id'));
         $heading->articles()->create($inputs);
-
-        session()->flash('article-created-message', 'Az új cikk létrehozása sikeres volt');
-
+        session()->flash('created', 'A cikk létrehozása sikeres.');
         return redirect()->route('article.index');
     }
+
     public function edit(Article $article, Request $request){
-        // TODO check
-        // $this->authorize('view', $article); // POLICY
+
+        // POLICY
+        $this->authorize('view', $article);
 
         if($request->ajax()) {
+
+            // Displaying headings ('rovatok') based on selected post ('lapszam')
             if($request->post_id) {
+
                 $headings = Heading::where('post_id','=',$request->post_id)->get();
                 $article = Article::findOrFail($request->article_id);
+
                 return view('partials.admin.articles.edit.headings', [
-                    'headings'=>$headings,
-                    'article'=>$article
+                    'headings' => $headings,
+                    'article' => $article
                 ]);
             }
+
+            // Displaying 'cim' or 'szerzok' field based on selected heading-type ('rovat-tipus')
             if($request->heading_id) {
+
                 $heading = Heading::findOrFail($request->heading_id);
+
                 if($heading->type == 'egyeb') {
+
                     $article = Article::findOrFail($request->article_id);
-                    return view('partials.admin.articles.edit.cim',['article'=>$article]);
+                    return view('partials.admin.articles.edit.cim', ['article' => $article]);
                 }
+
                 if($heading->type == 'muvek') {
+
                     $article = Article::findOrFail($request->article_id);
                     $users = User::all();
+
                     return view('partials.admin.articles.edit.szerzok', [
-                        'article'=>$article,
-                        'users'=>$users
+                        'article' => $article,
+                        'users' => $users
                     ]);
                 }
             }
         } else {
+
             $posts = Post::all();
+
             return view('admin.articles.edit', [
-                'article'=>$article,
-                'posts'=>$posts
+                'article' => $article,
+                'posts' => $posts
             ]);
         }
     }
+
     public function update(Article $article){
-        // TODO user_id title
+
+        // POLICY
+        $this->authorize('update', $article);
+
+        // VALIDATION
         $inputs = request()->validate([
-            'heading_id'=>'required|integer',
-            'body'=>'required|string'
+            'heading_id' => ['required', 'integer'],
+            'user_id' => ['nullable', 'integer'],
+            'title' => ['nullable', 'string', 'max:30'],
+            'body' => ['required', 'string', 'max:100000']
         ]);
 
+        // VALUES
         $article->heading_id = $inputs['heading_id'];
 
         if(request('title')){
             $article->title = request('title');
         }
+
         if(request('user_id')){
             $article->user_id = request('user_id');
         }
 
         $article->body = $inputs['body'];
 
-        // TODO check
-        // $this->authorize('update', $article); // POLICY
+        // SAVE, SESSION, REDIRECT
+        if($article->isDirty()) {
+            session()->flash('updated', 'A cikk frissítése sikeres.');
+        } else {
+            session()->flash('updated', 'Nem történt módosítás.');
+        }
 
-        $article->save();
-
-        session()->flash('article-updated-message', 'A cikk frissítése sikeres volt');
-
+        $article->save(); // must be after session
         return redirect()->route('article.index');
     }
-    public function destroy(Article $article, Request $request){
-        // TODO check
-        // $this->authorize('delete', $article); // POLICY
 
+    public function destroy(Article $article){
+
+        // POLICY
+        $this->authorize('delete', $article);
+
+        // SAVE, SESSION, REDIRECT
         $article->delete();
-        $request->session()->flash('message', 'A cikk törlése sikeres volt');
+        session()->flash('deleted', 'A cikk törlése sikeres.');
         return back();
     }
 }

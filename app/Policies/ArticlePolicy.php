@@ -31,6 +31,8 @@ class ArticlePolicy
     public function view(User $user, Article $article)
     {
         //
+
+        return $user->id === $article->heading->post->user_id;
     }
 
     /**
@@ -42,6 +44,8 @@ class ArticlePolicy
     public function create(User $user)
     {
         //
+
+        // if the one making the request is the logged in user
         return $user->is($user);
     }
 
@@ -55,6 +59,8 @@ class ArticlePolicy
     public function update(User $user, Article $article)
     {
         //
+
+        return $user->id === $article->heading->post->user_id;
     }
 
     /**
@@ -67,6 +73,8 @@ class ArticlePolicy
     public function delete(User $user, Article $article)
     {
         //
+
+        return $user->id === $article->heading->post->user_id;
     }
 
     /**
