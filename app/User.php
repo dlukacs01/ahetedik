@@ -17,7 +17,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'name', 'avatar', 'email', 'cv', 'password',
+        'username',
+        'name',
+        'avatar',
+        'cv',
+        'email',
+        'password'
     ];
 
     /**
@@ -38,44 +43,34 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function setPasswordAttribute($value){
-        $this->attributes['password'] = bcrypt($value);
+    public function roles(){
+        return $this->belongsToMany(Role::class);
     }
 
-    // ACCESSOR
-    public function getAvatarAttribute($value) {
-        if(empty($value)) {
-            return asset('web/images/avatar_default.png');
-        }
-        if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
-            return $value;
-        }
-        return asset('storage/' . $value);
-    }
-
-    // Get the posts for the user.
     public function posts(){
         return $this->hasMany(Post::class);
     }
 
-    // Get the works for the user.
     public function works(){
         return $this->hasMany(Work::class);
     }
 
-    // Get the stories for the user.
     public function stories(){
         return $this->hasMany(Story::class);
     }
 
-    // The permissions that belong to the user.
-    public function permissions(){
-        return $this->belongsToMany(Permission::class);
-    }
+    // accessor (get after db)
+    public function getAvatarAttribute($value) {
 
-    // The roles that belong to the user.
-    public function roles(){
-        return $this->belongsToMany(Role::class);
+        if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
+            return $value;
+        }
+
+        if (strpos($value, 'default_avatar') !== FALSE) {
+            return asset('web/' . $value);
+        }
+
+        return asset('storage/' . $value);
     }
 
     public function userHasRole($role_input){
