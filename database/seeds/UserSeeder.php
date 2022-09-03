@@ -22,8 +22,7 @@ class UserSeeder extends Seeder
                 'email' => 'lukacs.dvid@gmail.com',
                 'password' => '$2y$10$uuzZ6C8FcameysV60sIaYOTTGZJaCWtGBhcSuwYtFT2H9SCKP10My', // Ahetedik0123!?#
                 'email_verified_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now()
+                'created_at' => now()
             ]
         ]);
     }

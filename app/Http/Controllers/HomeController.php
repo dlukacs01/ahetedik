@@ -20,7 +20,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        // $this->middleware('auth'); // preventing to reach home page by login
     }
 
     /**
@@ -28,81 +28,77 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        Carbon::setLocale('hu');
+    public function index() {
 
-        // $post = Post::latest()->first();
+        Carbon::setLocale('hu');
         $posts = Post::where('active',1)->orderBy('id', 'desc')->get();
-
-        return view('home', ['posts'=>$posts]);
+        return view('home', ['posts' => $posts]);
     }
-    public function index_all()
-    {
-        Carbon::setLocale('hu');
 
-        // LAPSZÁMOK >>> legújabb legelöl, 10 lapszám / oldal
+    public function posts() {
+        Carbon::setLocale('hu');
         $posts = Post::where('active',0)->orderBy('id', 'desc')->paginate(10);
-
-        return view('posts', ['posts'=>$posts]);
+        return view('posts', ['posts' => $posts]);
     }
-    public function stories_all()
-    {
+
+    public function stories() {
         Carbon::setLocale('hu');
-
-        // HÍREK >>> legújabb legelöl, 10 hír / oldal
         $stories = Story::whereDate('expiration_date', '>=', date('Y-m-d'))->orderBy('id', 'desc')->paginate(10);
-
-        return view('stories', ['stories'=>$stories]);
+        return view('stories', ['stories' => $stories]);
     }
+
     public function search(){
+
         Carbon::setLocale('hu');
 
         // Get the search value from the request
         $search = request('search');
 
-        // Search in the title and body columns from the posts table
         $users = User::query()
             ->where('name', 'LIKE', "%{$search}%")
             ->get();
 
-        // Search in the title and body columns from the posts table
         $works = Work::query()
             ->where('title', 'LIKE', "%{$search}%")
             ->orwhereHas('user', function($q) use($search) {
                 $q->where('name', 'LIKE', "%{$search}%");
             })->get();
 
-        // Return the search view with the resluts compacted
         return view('search', [
-            'search'=>$search,
-            'users'=>$users,
-            'works'=>$works
+            'search' => $search,
+            'users' => $users,
+            'works' => $works
         ]);
 
     }
-    public function szerzoknek(){
+
+    public function szerzoknek() {
         $meta = Meta::findOrFail(1);
-        return view('metas.szerzoknek', ['meta'=>$meta]);
+        return view('metas.szerzoknek', ['meta' => $meta]);
     }
-    public function nyilatkozat(){
+
+    public function nyilatkozat() {
         $meta = Meta::findOrFail(1);
-        return view('metas.nyilatkozat', ['meta'=>$meta]);
+        return view('metas.nyilatkozat', ['meta' => $meta]);
     }
-    public function elvek(){
+
+    public function elvek() {
         $meta = Meta::findOrFail(1);
-        return view('metas.elvek', ['meta'=>$meta]);
+        return view('metas.elvek', ['meta' => $meta]);
     }
-    public function jogok(){
+
+    public function jogok() {
         $meta = Meta::findOrFail(1);
-        return view('metas.jogok', ['meta'=>$meta]);
+        return view('metas.jogok', ['meta' => $meta]);
     }
-    public function impresszum(){
+
+    public function impresszum() {
         $meta = Meta::findOrFail(1);
-        return view('metas.impresszum', ['meta'=>$meta]);
+        return view('metas.impresszum', ['meta' => $meta]);
     }
-    public function gdpr(){
+
+    public function gdpr() {
         $meta = Meta::findOrFail(1);
-        return view('metas.gdpr', ['meta'=>$meta]);
+        return view('metas.gdpr', ['meta' => $meta]);
     }
 }
