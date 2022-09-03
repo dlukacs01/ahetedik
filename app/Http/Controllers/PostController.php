@@ -12,81 +12,111 @@ class PostController extends Controller
 {
     //
 
-    public function index(){
+    // ***** LAPSZAMOK *****
+
+    public function posts() {
         Carbon::setLocale('hu');
-        // $posts = Post::all();
-        // $posts = auth()->user()->posts()->orderBy('id','DESC')->paginate(10);
-        // $posts = Post::orderBy('id','DESC')->paginate(10);
-        $posts = Post::orderBy('id','DESC')->get();
-        return view('admin.posts.index', ['posts'=>$posts]);
+        $posts = Post::where('active',0)->orderBy('id', 'desc')->paginate(10);
+        return view('posts', ['posts' => $posts]);
     }
-    // route model binding (getting the post directly, instead of post id)
-    public function show($post_slug){
+
+    public function show($post_slug) {
         Carbon::setLocale('hu');
         $post = Post::where('slug', $post_slug)->first();
-        return view('blog-post', ['post'=>$post]);
+        return view('blog-post', ['post' => $post]);
     }
-    public function create(){
-        $this->authorize('create', Post::class); // POLICY
+
+    public function index() {
+        Carbon::setLocale('hu');
+        $posts = Post::orderBy('id','DESC')->get();
+        return view('admin.posts.index', ['posts' => $posts]);
+    }
+
+    public function create() {
+
+        // POLICY
+        $this->authorize('create', Post::class);
+
         return view('admin.posts.create');
     }
-    public function store(){
-        $this->authorize('create', Post::class); // POLICY
 
-        // body => required
-        $inputs = request()->validate([
-            'title'=>'required|string',
-            'post_image'=>'required|file',
-            'active'=>'required|integer'
+    public function store() {
+
+        // POLICY
+        $this->authorize('create', Post::class);
+
+        // VALIDATION
+        request()->validate([
+            'title' => ['required', 'string', 'max:30'],
+            'post_image' => ['required', 'image'],
+            'active' => ['required', 'integer']
         ]);
 
+        // VALUES
+        $inputs['title'] = request('title');
         $inputs['slug'] = Str::of(Str::lower(request('title')))->slug('-');
 
         if(request('post_image')){
             $inputs['post_image'] = request('post_image')->store('images');
         }
 
+        $inputs['active'] = request('active');
+
+        // SAVE, SESSION, REDIRECT
         auth()->user()->posts()->create($inputs);
-
-        session()->flash('post-created-message', 'Az új lapszám létrehozása sikeres volt ('.$inputs['title'].')');
-
+        session()->flash('created', 'A lapszám létrehozása sikeres.');
         return redirect()->route('post.index');
     }
-    public function edit(Post $post){
-        // $this->authorize('view', $post); // POLICY
-//        if(auth()->user()->can('view', $post)) {
-//
-//        }
-        return view('admin.posts.edit', ['post'=>$post]);
+
+    public function edit(Post $post) {
+
+        // POLICY
+        $this->authorize('view', $post);
+
+        return view('admin.posts.edit', ['post' => $post]);
     }
-    public function destroy(Post $post, Request $request){
-        // $this->authorize('delete', $post); // POLICY
-        $post->delete();
-        $request->session()->flash('message', 'A lapszám törlése sikeres volt');
-        return back();
-    }
-    public function update(Post $post){
-        // body => required
-        $inputs = request()->validate([
-            'title'=>'required|string',
-            'active'=>'required|integer'
+
+    public function update(Post $post) {
+
+        // POLICY
+        $this->authorize('update', $post);
+
+        // VALIDATION
+        request()->validate([
+            'title' => ['required', 'string', 'max:30'],
+            'post_image' => ['required', 'image'],
+            'active' => ['required', 'integer']
         ]);
 
+        // VALUES
+        $post->title = request('title');
+        $post->slug = Str::of(Str::lower(request('title')))->slug('-');
+
         if(request('post_image')){
-            $inputs['post_image'] = request('post_image')->store('images');
-            $post->post_image = $inputs['post_image'];
+            $post->post_image = request('post_image')->store('images');
         }
 
-        $post->title = $inputs['title'];
-        // $post->body = $inputs['body'];
-        $post->active = $inputs['active'];
+        $post->active = request('active');
 
-        // $this->authorize('update', $post); // POLICY
+        // SAVE, SESSION, REDIRECT
+        if($post->isDirty()) {
+            session()->flash('updated', 'A lapszám frissítése sikeres.');
+        } else {
+            session()->flash('updated', 'Nem történt módosítás.');
+        }
 
-        $post->save();
-
-        session()->flash('post-updated-message', 'A lapszám frissítése sikeres volt ('.$inputs['title'].')');
-
+        $post->save(); // must be after session
         return redirect()->route('post.index');
+    }
+
+    public function destroy(Post $post) {
+
+        // POLICY
+        $this->authorize('delete', $post);
+
+        // SAVE, SESSION, REDIRECT
+        $post->delete();
+        session()->flash('deleted', 'A lapszám törlése sikeres.');
+        return back();
     }
 }

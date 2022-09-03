@@ -31,6 +31,7 @@ class PostPolicy
     public function view(User $user, Post $post)
     {
         //
+
         return $user->id === $post->user_id;
     }
 
@@ -43,6 +44,8 @@ class PostPolicy
     public function create(User $user)
     {
         //
+
+        // if the one making the request is the logged in user
         return $user->is($user);
     }
 
@@ -56,6 +59,7 @@ class PostPolicy
     public function update(User $user, Post $post)
     {
         //
+
         return $user->id === $post->user_id;
     }
 
@@ -69,6 +73,7 @@ class PostPolicy
     public function delete(User $user, Post $post)
     {
         //
+
         return $user->id === $post->user_id;
     }
 

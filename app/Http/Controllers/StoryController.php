@@ -10,6 +10,13 @@ use Illuminate\Support\Str;
 class StoryController extends Controller
 {
     //
+
+    public function stories() {
+        Carbon::setLocale('hu');
+        $stories = Story::whereDate('expiration_date', '>=', date('Y-m-d'))->orderBy('id', 'desc')->paginate(10);
+        return view('stories', ['stories' => $stories]);
+    }
+
     public function show($story_slug){
         Carbon::setLocale('hu');
         $story = Story::where('slug', $story_slug)->first();

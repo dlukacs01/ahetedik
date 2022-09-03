@@ -35,18 +35,6 @@ class HomeController extends Controller
         return view('home', ['posts' => $posts]);
     }
 
-    public function posts() {
-        Carbon::setLocale('hu');
-        $posts = Post::where('active',0)->orderBy('id', 'desc')->paginate(10);
-        return view('posts', ['posts' => $posts]);
-    }
-
-    public function stories() {
-        Carbon::setLocale('hu');
-        $stories = Story::whereDate('expiration_date', '>=', date('Y-m-d'))->orderBy('id', 'desc')->paginate(10);
-        return view('stories', ['stories' => $stories]);
-    }
-
     public function search() {
 
         Carbon::setLocale('hu');
@@ -69,36 +57,5 @@ class HomeController extends Controller
             'users' => $users,
             'works' => $works
         ]);
-
-    }
-
-    public function szerzoknek() {
-        $meta = Meta::findOrFail(1);
-        return view('metas.szerzoknek', ['meta' => $meta]);
-    }
-
-    public function nyilatkozat() {
-        $meta = Meta::findOrFail(1);
-        return view('metas.nyilatkozat', ['meta' => $meta]);
-    }
-
-    public function elvek() {
-        $meta = Meta::findOrFail(1);
-        return view('metas.elvek', ['meta' => $meta]);
-    }
-
-    public function jogok() {
-        $meta = Meta::findOrFail(1);
-        return view('metas.jogok', ['meta' => $meta]);
-    }
-
-    public function impresszum() {
-        $meta = Meta::findOrFail(1);
-        return view('metas.impresszum', ['meta' => $meta]);
-    }
-
-    public function gdpr() {
-        $meta = Meta::findOrFail(1);
-        return view('metas.gdpr', ['meta' => $meta]);
     }
 }
