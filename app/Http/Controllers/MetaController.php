@@ -8,30 +8,39 @@ use Illuminate\Http\Request;
 class MetaController extends Controller
 {
     //
-    public function index(){
+    public function index() {
         $meta = Meta::findOrFail(1);
-        return view('admin.metas.index', ['meta'=>$meta]);
+        return view('admin.metas.index', ['meta' => $meta]);
     }
-    public function update(Meta $meta){
 
-        $inputs = request()->validate([
-            'szerzoknek'=>'required|string',
-            'nyilatkozat'=>'required|string',
-            'elvek'=>'required|string',
-            'jogok'=>'required|string',
-            'impresszum'=>'required|string',
-            'gdpr'=>'required|string'
+    public function update(Meta $meta) {
+
+        // VALIDATION
+        request()->validate([
+            'szerzoknek' => ['required', 'string', 'max:100000'],
+            'nyilatkozat' => ['required', 'string', 'max:100000'],
+            'elvek' => ['required', 'string', 'max:100000'],
+            'jogok' => ['required', 'string', 'max:100000'],
+            'impresszum' => ['required', 'string', 'max:100000'],
+            'gdpr' => ['required', 'string', 'max:100000']
         ]);
 
-        $meta->szerzoknek = $inputs['szerzoknek'];
-        $meta->nyilatkozat = $inputs['nyilatkozat'];
-        $meta->elvek = $inputs['elvek'];
-        $meta->jogok = $inputs['jogok'];
-        $meta->impresszum = $inputs['impresszum'];
-        $meta->gdpr = $inputs['gdpr'];
+        // VALUES
+        $meta->szerzoknek = request('szerzoknek');
+        $meta->nyilatkozat = request('nyilatkozat');
+        $meta->elvek = request('elvek');
+        $meta->jogok = request('jogok');
+        $meta->impresszum = request('impresszum');
+        $meta->gdpr = request('gdpr');
 
-        $meta->save();
-        session()->flash('meta-updated-message', 'A leírások frissítése sikeres volt');
+        // SAVE, SESSION, REDIRECT
+        if($meta->isDirty()) {
+            session()->flash('updated', 'A meták frissítése sikeres.');
+        } else {
+            session()->flash('updated', 'Nem történt módosítás.');
+        }
+
+        $meta->save(); // must be after session
         return back();
     }
 }
