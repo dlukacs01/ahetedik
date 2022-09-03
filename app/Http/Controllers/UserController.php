@@ -104,12 +104,11 @@ class UserController extends Controller
 
         // VALIDATIONS
         request()->validate([
-            'username' => ['required', 'string', 'alpha_dash', 'max:30', 'unique:users'],
+            'username' => ['required', 'string', 'alpha_dash', 'max:30', 'unique:users,id'],
             'name' => ['required', 'string', 'max:30'],
-            'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
-            'cv' => ['required', 'string', 'max:100000'],
+            'email' => ['required', 'string', 'email', 'max:50', 'unique:users,id'],
             'password' => [
-                'required',
+                'nullable',
                 'string',
                 'confirmed',
                 'min:10',             // must be at least 10 characters in length
@@ -118,7 +117,8 @@ class UserController extends Controller
                 'regex:/[0-9]/',      // must contain at least one digit
                 'regex:/[@$!%*#?&]/', // must contain a special character
             ],
-            'avatar' => ['required', 'image']
+            'avatar' => ['nullable', 'image'],
+            'cv' => ['nullable', 'string', 'max:100000']
         ]);
 
         // VALUES
