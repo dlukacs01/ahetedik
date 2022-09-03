@@ -31,8 +31,8 @@ class HeadingPolicy
     public function view(User $user, Heading $heading)
     {
         //
-        // TODO check
-        // return $user->id === $heading->user_id;
+
+        return $user->id === $heading->post->user_id;
     }
 
     /**
@@ -44,6 +44,8 @@ class HeadingPolicy
     public function create(User $user)
     {
         //
+
+        // if the one making the request is the logged in user
         return $user->is($user);
     }
 
@@ -57,6 +59,8 @@ class HeadingPolicy
     public function update(User $user, Heading $heading)
     {
         //
+
+        return $user->id === $heading->post->user_id;
     }
 
     /**
@@ -69,6 +73,8 @@ class HeadingPolicy
     public function delete(User $user, Heading $heading)
     {
         //
+
+        return $user->id === $heading->post->user_id;
     }
 
     /**

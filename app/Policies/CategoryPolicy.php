@@ -41,6 +41,8 @@ class CategoryPolicy
      */
     public function create(User $user)
     {
+        //
+
         // if the one making the request is the logged in user
         return $user->is($user);
     }

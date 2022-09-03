@@ -14,68 +14,93 @@ class HeadingController extends Controller
     // ***** ROVATOK *****
 
     public function index(){
-        Carbon::setLocale('hu');
-        // $headings = Heading::orderBy('id','DESC')->paginate(10);
-        $headings = Heading::orderBy('id','DESC')->get();
-        return view('admin.headings.index', ['headings'=>$headings]);
-    }
-    public function create(){
-        $this->authorize('create', Heading::class); // POLICY
-        $posts = Post::all();
-        return view('admin.headings.create', ['posts'=>$posts]);
-    }
-    public function store(){
-        $this->authorize('create', Heading::class); // POLICY
 
-        $inputs = request()->validate([
-            'post_id'=>'required|integer',
-            'type'=>'required|string',
-            'title'=>'required|string'
+        Carbon::setLocale('hu');
+        $headings = Heading::orderBy('id','DESC')->get();
+        return view('admin.headings.index', ['headings' => $headings]);
+    }
+
+    public function create(){
+
+        // POLICY
+        $this->authorize('create', Heading::class);
+
+        $posts = Post::all();
+        return view('admin.headings.create', ['posts' => $posts]);
+    }
+
+    public function store(){
+
+        // POLICY
+        $this->authorize('create', Heading::class);
+
+        // VALIDATION
+        request()->validate([
+            'post_id' => ['required', 'integer'],
+            'type' => ['required', 'string', 'max:30'],
+            'title' => ['required', 'string', 'max:30']
         ]);
 
+        // VALUES
+        $inputs['post_id'] = request('post_id');
+        $inputs['type'] = request('type');
+        $inputs['title'] = request('title');
+
+        // SAVE, SESSION, REDIRECT
         $post = Post::findOrFail(request('post_id'));
         $post->headings()->create($inputs);
-
-        session()->flash('heading-created-message', 'Az új rovat létrehozása sikeres volt ('.$inputs['title'].')');
-
+        session()->flash('created', 'A rovat létrehozása sikeres.');
         return redirect()->route('heading.index');
     }
+
     public function edit(Heading $heading){
-        // TODO check
-        // $this->authorize('view', $heading); // POLICY
+
+        // POLICY
+        $this->authorize('view', $heading);
 
         $posts = Post::all();
         return view('admin.headings.edit', [
-            'heading'=>$heading,
-            'posts'=>$posts
+            'heading' => $heading,
+            'posts' => $posts
         ]);
     }
+
     public function update(Heading $heading){
-        $inputs = request()->validate([
-            'post_id'=>'required|integer',
-            'type'=>'required|string',
-            'title'=>'required|string'
+
+        // POLICY
+        $this->authorize('update', $heading);
+
+        // VALIDATION
+        request()->validate([
+            'post_id' => ['required', 'integer'],
+            'type' => ['required', 'string', 'max:30'],
+            'title' => ['required', 'string', 'max:30']
         ]);
 
-        $heading->post_id = $inputs['post_id'];
-        $heading->type = $inputs['type'];
-        $heading->title = $inputs['title'];
+        // VALUES
+        $heading->post_id = request('post_id');
+        $heading->type = request('type');
+        $heading->title = request('title');
 
-        // TODO check
-        // $this->authorize('update', $heading); // POLICY
+        // SAVE, SESSION, REDIRECT
+        if($heading->isDirty()) {
+            session()->flash('updated', 'A rovat frissítése sikeres.');
+        } else {
+            session()->flash('updated', 'Nem történt módosítás.');
+        }
 
-        $heading->save();
-
-        session()->flash('heading-updated-message', 'A rovat frissítése sikeres volt ('.$inputs['title'].')');
-
+        $heading->save(); // must be after session
         return redirect()->route('heading.index');
     }
-    public function destroy(Heading $heading, Request $request){
-        // TODO check
-        // $this->authorize('delete', $heading); // POLICY
 
+    public function destroy(Heading $heading, Request $request){
+
+        // POLICY
+        $this->authorize('delete', $heading);
+
+        // SAVE, SESSION, REDIRECT
         $heading->delete();
-        $request->session()->flash('message', 'A rovat törlése sikeres volt');
+        session()->flash('deleted', 'A rovat törlése sikeres.');
         return back();
     }
 }

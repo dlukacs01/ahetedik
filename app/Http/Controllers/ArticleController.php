@@ -147,7 +147,7 @@ class ArticleController extends Controller
         $this->authorize('update', $article);
 
         // VALIDATION
-        $inputs = request()->validate([
+        request()->validate([
             'heading_id' => ['required', 'integer'],
             'user_id' => ['nullable', 'integer'],
             'title' => ['nullable', 'string', 'max:30'],
@@ -155,7 +155,7 @@ class ArticleController extends Controller
         ]);
 
         // VALUES
-        $article->heading_id = $inputs['heading_id'];
+        $article->heading_id = request('heading_id');
 
         if(request('title')){
             $article->title = request('title');
@@ -165,7 +165,7 @@ class ArticleController extends Controller
             $article->user_id = request('user_id');
         }
 
-        $article->body = $inputs['body'];
+        $article->body = request('body');
 
         // SAVE, SESSION, REDIRECT
         if($article->isDirty()) {
