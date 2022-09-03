@@ -9,70 +9,89 @@ use Illuminate\Support\Str;
 class CategoryController extends Controller
 {
     //
-    public function index(){
-        return view('admin.categories.index', [
-            'categories'=>Category::orderBy('name')->paginate(10)
-        ]);
+
+    public function categories(){
+        $categories = Category::orderBy('name')->paginate(10);
+        return view('categories', ['categories' => $categories]);
     }
 
-    // KATEGÓRIÁK >>> ABC sorrend, 10 kategória / oldal
-    public function index_front(){
-        return view('categories', [
-            'categories'=>Category::orderBy('name')->paginate(10)
-        ]);
+    public function index(){
+        $categories = Category::orderBy('name')->paginate(10);
+        return view('admin.categories.index', ['categories' => $categories]);
     }
-    public function edit(Category $category){
-        return view('admin.categories.edit', [
-            'category'=>$category
-        ]);
-    }
+
     public function create(){
+
+        // POLICY
+        $this->authorize('create', Category::class);
+
         return view('admin.categories.create');
     }
-    public function store(){
-        $this->authorize('create', Category::class); // POLICY
 
-        $inputs = request()->validate([
-            'name'=>'required|string',
-            'category_image'=>'required|file'
+    public function store(){
+
+        // POLICY
+        $this->authorize('create', Category::class);
+
+        // VALIDATION
+        request()->validate([
+            'name' => ['required', 'string', 'max:30'],
+            'slug' => ['required', 'string', 'max:30'],
+            'category_image' => ['required', 'image'],
         ]);
 
+        // VALUES
         $inputs['name'] = Str::ucfirst(request('name'));
         $inputs['slug'] = Str::of(Str::lower(request('name')))->slug('-');
 
-        if(request('category_image')){
+        if(request('category_image')) {
             $inputs['category_image'] = request('category_image')->store('images');
         }
 
+        // SAVE, SESSION, REDIRECT
         Category::create($inputs);
-
-        session()->flash('category-created-message', 'Az új kategória létrehozása sikeres volt ('.$inputs['name'].')');
-
+        session()->flash('created', 'A kategória létrehozása sikeres.');
         return redirect()->route('category.index');
     }
+
+    public function edit(Category $category){
+        return view('admin.categories.edit', ['category' => $category]);
+    }
+
     public function update(Category $category){
-        $inputs = request()->validate([
-            'name'=>'required|string'
+
+        // VALIDATION
+        request()->validate([
+            'name' => ['required', 'string', 'max:30'],
+            'slug' => ['required', 'string', 'max:30'],
+            'category_image' => ['required', 'image'],
         ]);
+
+        // VALUES
+        $category->name = Str::ucfirst(request('name'));
+        $category->slug = Str::of(request('name'))->slug('-');
 
         if(request('category_image')){
             $inputs['category_image'] = request('category_image')->store('images');
             $category->category_image = $inputs['category_image'];
         }
 
-        $category->name = Str::ucfirst(request('name'));
-        $category->slug = Str::of(request('name'))->slug('-');
-        if($category->isDirty('name') || $category->isDirty('category_image')){
-            session()->flash('category-updated', 'A kategória frissítése sikeres volt ('.request('name').')');
-            $category->save();
+        // SAVE, SESSION, REDIRECT
+        if($category->isDirty()) {
+            session()->flash('updated', 'A kategória frissítése sikeres.');
         } else {
-            session()->flash('category-updated', 'Nem történt módosítás');
+            session()->flash('updated', 'Nem történt módosítás.');
         }
+
+        $category->save(); // must be after session
         return redirect()->route('category.index');
     }
+
     public function destroy(Category $category){
+
+        // SAVE, SESSION, REDIRECT
         $category->delete();
-        session()->flash('category-deleted', 'A kategória törlése sikeres volt: '.$category->name);
+        session()->flash('deleted', 'A kategória törlése sikeres.');
         return back();
     }
 }

@@ -63,14 +63,17 @@ class ArticleController extends Controller
         $this->authorize('create', Article::class);
 
         // VALIDATION
-        $inputs = request()->validate([
+        request()->validate([
             'heading_id' => ['required', 'integer'],
-            'user_id' => ['nullable', 'integer'],
             'title' => ['nullable', 'string', 'max:30'],
+            'user_id' => ['nullable', 'integer'],
             'body' => ['required', 'string', 'max:100000']
         ]);
 
         // VALUES
+        $inputs['heading_id'] = request('heading_id');
+        $inputs['body'] = request('body');
+
         if(request('title')){
             $inputs['title'] = request('title');
         }
