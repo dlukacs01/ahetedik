@@ -11,141 +11,160 @@ use Illuminate\Support\Str;
 
 class WorkController extends Controller
 {
-    // MŰVEK >>> legújabb legelől, 10 mű / oldal
-    public function work_category($category_slug){
+    public function work_category($category_slug) {
         Carbon::setLocale('hu');
         $category = Category::where('slug', $category_slug)->first(); // needed for page title
-        // $works = $category->works()->whereDate('release_date', '<=', date('Y-m-d'))->get();
         $works = $category->works()->whereDate('release_date', '<=', date('Y-m-d'))->orderBy('id','DESC')->paginate(10);
+
         return view('works', [
-            'category'=>$category,
-            'works'=>$works
+            'category' => $category,
+            'works' => $works
         ]);
     }
-    public function show($work_slug, $work_id){
+
+    public function show($work_slug, $work_id) {
         Carbon::setLocale('hu');
-        // $work = Work::where('slug', $work_slug)->first();
         $work = Work::findOrFail($work_id);
-        return view('work', ['work'=>$work]);
+        return view('work', ['work' => $work]);
     }
-    public function index(){
+
+    public function index() {
         Carbon::setLocale('hu');
-        // $works = auth()->user()->works()->paginate(5);
-        // $works = Work::orderBy('id','DESC')->paginate(10);
         $works = Work::orderBy('id','DESC')->get();
-        return view('admin.works.index', ['works'=>$works]);
+        return view('admin.works.index', ['works' => $works]);
     }
-    public function create(){
-        $this->authorize('create', Work::class); // POLICY
+
+    public function create() {
+
+        // POLICY
+        $this->authorize('create', Work::class);
+
         $categories = Category::all();
         $users = User::all();
+
         return view('admin.works.create', [
-            'categories'=>$categories,
-            'users'=>$users
+            'categories' => $categories,
+            'users' => $users
         ]);
     }
-    public function store(){
-        $this->authorize('create', Work::class); // POLICY
 
-        $inputs = request()->validate([
-            'title'=>'required|string',
-            'release_date'=>'required|date',
-            'user_id'=>'required|integer',
-            'active'=>'required|integer',
-            'body'=>'required|string'
+    public function store() {
+
+        // POLICY
+        $this->authorize('create', Work::class);
+
+        // VALIDATION
+        request()->validate([
+            'title' => ['required', 'string', 'max:30'],
+            'release_date' => ['required', 'date'],
+            'user_id' => ['required', 'integer'],
+            'work_image' => ['nullable', 'image'],
+            'active' => ['required', 'integer'],
+            'body' => ['required', 'string', 'max:100000']
         ]);
 
-        // $date = date('Y-m-d_H-i-s');
+        // VALUES
+        $inputs['title'] = request('title');
         $inputs['slug'] = Str::of(Str::lower(request('title')))->slug('-');
 
-        // check for duplicate work for same author (user)
-        $user = User::findOrFail(request('user_id'));
-        $user_works = $user->works;
-        foreach($user_works as $user_work){
-            if($user_work->title == $inputs['title']) {
-                session()->flash('work-duplicate-message', 'Ehhez a szerzőhőz ezzel a címmel már tartozik mű ('.$inputs['title'].')');
-                return back();
-            }
-        }
+        $inputs['release_date'] = request('release_date');
+        $inputs['user_id'] = request('user_id');
 
         if(request('work_image')){
             $inputs['work_image'] = request('work_image')->store('images');
         }
 
-        // auth()->user()->works()->create($inputs);
+        $inputs['active'] = request('active');
+        $inputs['body'] = request('body');
+
+        // Check for duplicate work for same author
+        $user = User::findOrFail(request('user_id'));
+        $user_works = $user->works;
+        foreach($user_works as $user_work){
+            if($user_work->slug == $inputs['slug']) {
+                session()->flash('duplicated', 'Ehhez a szerzőhőz ezzel a címmel már tartozik mű.');
+                return back();
+            }
+        }
+
+        // SAVE, SESSION, REDIRECT
         $work = Work::create($inputs);
 
-        // multiple categories
+        // Multiple categories
         $categories = request('categories');
         foreach ($categories as $category) {
             $work->categories()->attach($category);
         }
 
-        session()->flash('work-created-message', 'Az új mű létrehozása sikeres volt ('.$inputs['title'].')');
-
+        session()->flash('created', 'A mű létrehozása sikeres.');
         return redirect()->route('work.index');
     }
-    public function edit(Work $work){
-        // $this->authorize('view', $work); // POLICY
+
+    public function edit(Work $work) {
+
+        // POLICY
+
         $categories = Category::all();
         $users = User::all();
+
         return view('admin.works.edit', [
-            'work'=>$work,
-            'categories'=>$categories,
-            'users'=>$users
+            'work' => $work,
+            'categories' => $categories,
+            'users' => $users
         ]);
     }
-    public function destroy(Work $work, Request $request){
-        // $this->authorize('delete', $work); // POLICY
-        $work->delete();
-        $request->session()->flash('work-deleted-message', 'A mű törlése sikeres volt');
-        return back();
-    }
-    public function update(Work $work){
-        $inputs = request()->validate([
-            'title'=>'required|string',
-            'release_date'=>'required|date',
-            'user_id'=>'required|integer',
-            'active'=>'required|integer',
-            'body'=>'required|string'
+
+    public function update(Work $work) {
+
+        // POLICY
+
+        // VALIDATION
+        request()->validate([
+            'title' => ['required', 'string', 'max:30'],
+            'release_date' => ['required', 'date'],
+            'user_id' => ['required', 'integer'],
+            'work_image' => ['nullable', 'image'],
+            'active' => ['required', 'integer'],
+            'body' => ['required', 'string', 'max:100000']
         ]);
 
-        $work->title = $inputs['title'];
+        // VALUES
+        $work->title = request('title');
         $work->slug = Str::of(Str::lower(request('title')))->slug('-');
 
-        // check for duplicate work for same author (user)
-//        $user = User::findOrFail(request('user_id'));
-//        $user_works = $user->works;
-//        foreach($user_works as $user_work){
-//            if($user_work->slug == $work->slug) {
-//                session()->flash('work-duplicate-message', 'Ehhez a szerzőhőz ezzel a címmel már tartozik mű ('.$inputs['title'].')');
-//                return back();
-//            }
-//        }
+        $work->release_date = request('release_date');
+        $work->user_id = request('user_id');
 
         if(request('work_image')){
-            $inputs['work_image'] = request('work_image')->store('images');
-            $work->work_image = $inputs['work_image'];
+            $work->work_image = request('work_image')->store('images');
         }
 
-        $work->release_date = $inputs['release_date'];
+        $work->active = request('active');
+        $work->body = request('body');
 
-        // $work->category_id = $inputs['category_id'];
+        // SAVE, SESSION, REDIRECT
+        if($work->isDirty()) {
+            session()->flash('updated', 'A mű frissítése sikeres.');
+        } else {
+            session()->flash('updated', 'Nem történt módosítás.');
+        }
 
-        // multiple categories
+        $work->save(); // must be after session
+
+        // Multiple categories
         $categories = request('categories');
         $work->categories()->sync($categories);
 
-        $work->user_id = $inputs['user_id'];
-        $work->active = $inputs['active'];
-        $work->body = $inputs['body'];
-
-        // $this->authorize('update', $work); // POLICY
-
-        $work->save();
-
-        session()->flash('work-updated-message', 'A mű frissítése sikeres volt ('.$inputs['title'].')');
-
         return redirect()->route('work.index');
+    }
+
+    public function destroy(Work $work) {
+
+        // POLICY
+
+        // SAVE, SESSION, REDIRECT
+        $work->delete();
+        session()->flash('deleted', 'A mű törlése sikeres.');
+        return back();
     }
 }

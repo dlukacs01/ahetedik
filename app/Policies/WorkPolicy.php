@@ -31,7 +31,6 @@ class WorkPolicy
     public function view(User $user, Work $work)
     {
         //
-        // return $user->id === $work->user_id;
     }
 
     /**
@@ -43,6 +42,8 @@ class WorkPolicy
     public function create(User $user)
     {
         //
+
+        // if the one making the request is the logged in user
         return $user->is($user);
     }
 
@@ -56,7 +57,6 @@ class WorkPolicy
     public function update(User $user, Work $work)
     {
         //
-        // return $user->id === $work->user_id;
     }
 
     /**
@@ -69,7 +69,6 @@ class WorkPolicy
     public function delete(User $user, Work $work)
     {
         //
-        // return $user->id === $work->user_id;
     }
 
     /**
