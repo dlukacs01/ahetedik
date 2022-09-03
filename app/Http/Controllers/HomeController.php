@@ -47,7 +47,7 @@ class HomeController extends Controller
         return view('stories', ['stories' => $stories]);
     }
 
-    public function search(){
+    public function search() {
 
         Carbon::setLocale('hu');
 
