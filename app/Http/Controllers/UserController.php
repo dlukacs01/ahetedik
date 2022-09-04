@@ -77,7 +77,7 @@ class UserController extends Controller
                 'regex:/[0-9]/',      // must contain at least one digit
                 'regex:/[@$!%*#?&]/', // must contain a special character
             ],
-            'avatar' => ['required', 'image']
+            'avatar' => ['nullable', 'image']
         ]);
 
         // VALUES

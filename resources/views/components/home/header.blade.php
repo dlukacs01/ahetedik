@@ -1,9 +1,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
+    <meta name="description" content="A Hetedik Független Irodalmi, Kulturális Folyóirat és Alkotóközösség">
+    <meta name="keywords" content="hetedik, független, irodalom, kultúra, folyóirat, alkotó, közösség, költészet, költő">
+    <meta name="author" content="David Lukacs">
 
     <title>{!! isset($title) ? $title : config('app.name') !!}</title>
 
@@ -20,7 +20,7 @@
     <link href="{{ asset('css/blog-home.css') }}" rel="stylesheet">
 
     <!-- Custom styles (components) -->
-    <link href="{{ asset('css/custom/articles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom/home/articles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom/categories.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom/profile.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom/users.css') }}" rel="stylesheet">

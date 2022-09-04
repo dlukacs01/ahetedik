@@ -50,17 +50,13 @@
                 @enderror
             </div>
             <div class="form-group required">
-                <label for="password-confirmation" class="control-label">Jelszó megerősítése</label>
+                <label for="password_confirmation" class="control-label">Jelszó megerősítése</label>
                 <small>Minimum 8 karakter!</small>
                 <input type="password"
-                       name="password-confirmation"
-                       class="form-control"
-                       id="password-confirmation"
-                       aria-describedby=""
-                       pattern=".{8,}"
-                       required
-                       title="8 characters minimum">
-                @error('password-confirmation')
+                       name="password_confirmation"
+                       id="password_confirmation"
+                       class="form-control">
+                @error('password_confirmation')
                 <div class="invalid-feedback">{{$message}}</div>
                 @enderror
             </div>

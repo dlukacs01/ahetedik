@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Meta;
 use App\Post;
-use App\Story;
 use App\User;
 use App\Work;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -30,9 +25,7 @@ class HomeController extends Controller
      */
     public function index() {
 
-        Carbon::setLocale('hu');
-
-        $title = config('app.name') . " &mdash;";
+        $title = config('app.name') . " &mdash; Független Irodalmi, Kulturális Folyóirat és Alkotóközösség";
         $posts = Post::where('active',1)->orderBy('id', 'desc')->get();
 
         return view('home', [
@@ -42,8 +35,6 @@ class HomeController extends Controller
     }
 
     public function search() {
-
-        Carbon::setLocale('hu');
 
         // Get the search value from the request
         $search = request('search');

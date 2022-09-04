@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MetaSeeder::class);
 
         // factory(\App\User::class, 300)->create(); // koltok
-        factory(\App\Post::class, 300)->create();
+        // factory(\App\Post::class, 300)->create();
     }
 }

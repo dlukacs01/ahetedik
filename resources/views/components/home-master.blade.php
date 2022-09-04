@@ -7,7 +7,7 @@
 
         <x-home.topnav></x-home.topnav>
 
-        <div class="container" style="background-color: rgb(229,229,233);">
+        <div class="container pt-4 home-master-container">
             @yield('content')
         </div>
 
