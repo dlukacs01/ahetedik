@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Story;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class StoryController extends Controller
@@ -12,19 +10,28 @@ class StoryController extends Controller
     //
 
     public function stories() {
-        Carbon::setLocale('hu');
+
+        $title = config('app.name') . " &mdash; Hírek";
         $stories = Story::whereDate('expiration_date', '>=', date('Y-m-d'))->orderBy('id', 'desc')->paginate(10);
-        return view('stories', ['stories' => $stories]);
+
+        return view('stories', [
+            'title' => $title,
+            'stories' => $stories
+        ]);
     }
 
     public function show($story_slug) {
-        Carbon::setLocale('hu');
+
         $story = Story::where('slug', $story_slug)->first();
-        return view('story', ['story' => $story]);
+        $title = config('app.name') . " &mdash; " . $story->title;
+
+        return view('story', [
+            'story' => $story,
+            'title' => $title
+        ]);
     }
 
     public function index() {
-        Carbon::setLocale('hu');
         $stories = Story::orderBy('id','DESC')->get();
         return view('admin.stories.index', ['stories'=>$stories]);
     }

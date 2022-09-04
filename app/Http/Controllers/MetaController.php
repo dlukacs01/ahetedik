@@ -10,33 +10,69 @@ class MetaController extends Controller
     //
 
     public function szerzoknek() {
+
+        $title = config('app.name') . " &mdash; Szerzőink figyelmébe";
         $meta = Meta::findOrFail(1);
-        return view('metas.szerzoknek', ['meta' => $meta]);
+
+        return view('metas.szerzoknek', [
+            'title' => $title,
+            'meta' => $meta
+        ]);
     }
 
     public function nyilatkozat() {
+
+        $title = config('app.name') . " &mdash; Szerkesztőségi nyilatkozat";
         $meta = Meta::findOrFail(1);
-        return view('metas.nyilatkozat', ['meta' => $meta]);
+
+        return view('metas.nyilatkozat', [
+            'title' => $title,
+            'meta' => $meta
+        ]);
     }
 
     public function elvek() {
+
+        $title = config('app.name') . " &mdash; Szerkesztési elvek";
         $meta = Meta::findOrFail(1);
-        return view('metas.elvek', ['meta' => $meta]);
+
+        return view('metas.elvek', [
+            'title' => $title,
+            'meta' => $meta
+        ]);
     }
 
     public function jogok() {
+
+        $title = config('app.name') . " &mdash; Szerzői jogok";
         $meta = Meta::findOrFail(1);
-        return view('metas.jogok', ['meta' => $meta]);
+
+        return view('metas.jogok', [
+            'title' => $title,
+            'meta' => $meta
+        ]);
     }
 
     public function impresszum() {
+
+        $title = config('app.name') . " &mdash; Impresszum";
         $meta = Meta::findOrFail(1);
-        return view('metas.impresszum', ['meta' => $meta]);
+
+        return view('metas.impresszum', [
+            'title' => $title,
+            'meta' => $meta
+        ]);
     }
 
     public function gdpr() {
+
+        $title = config('app.name') . " &mdash; Általános Adatvédelmi Nyilatkozat";
         $meta = Meta::findOrFail(1);
-        return view('metas.gdpr', ['meta' => $meta]);
+
+        return view('metas.gdpr', [
+            'title' => $title,
+            'meta' => $meta
+        ]);
     }
 
     public function index() {

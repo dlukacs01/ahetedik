@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Post;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -15,19 +12,28 @@ class PostController extends Controller
     // ***** LAPSZAMOK *****
 
     public function posts() {
-        Carbon::setLocale('hu');
+
+        $title = config('app.name') . " &mdash; Korábbi lapszámok";
         $posts = Post::where('active',0)->orderBy('id', 'desc')->paginate(10);
-        return view('posts', ['posts' => $posts]);
+
+        return view('posts', [
+            'title' => $title,
+            'posts' => $posts
+        ]);
     }
 
     public function show($post_slug) {
-        Carbon::setLocale('hu');
+
         $post = Post::where('slug', $post_slug)->first();
-        return view('blog-post', ['post' => $post]);
+        $title = config('app.name') . " &mdash; " . $post->title;
+
+        return view('post', [
+            'post' => $post,
+            'title' => $title
+        ]);
     }
 
     public function index() {
-        Carbon::setLocale('hu');
         $posts = Post::orderBy('id','DESC')->get();
         return view('admin.posts.index', ['posts' => $posts]);
     }

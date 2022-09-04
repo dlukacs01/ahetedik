@@ -21,7 +21,7 @@
                     <a class="nav-link" href="{{ route('category.front.index') }}">Kategóriák</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.front.index') }}">Szerzők</a>
+                    <a class="nav-link" href="{{ route('user.authors') }}">Szerzők</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home.szerzoknek') }}">Szerzőink figyelmébe</a>

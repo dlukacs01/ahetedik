@@ -4,26 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     //
 
-    public function poets(Request $request) {
+    public function authors(Request $request) {
+
+        $title = config('app.name') . " &mdash; Szerzők";
 
         if($request->ajax()) {
+
             $users = User::where('name','LIKE',$request->search."%")->orderBy('name')->paginate(10);
-            return view('partials.home.users', ['users' => $users]);
+
+            return view('partials.home.authors', [
+                'title' => $title,
+                'users' => $users
+            ]);
         } else {
+
             $users = User::orderBy('name')->paginate(10);
-            return view('users', ['users' => $users]);
+
+            return view('authors', [
+                'title' => $title,
+                'users' => $users
+            ]);
         }
     }
 
     public function show($username) {
-        Carbon::setLocale('hu');
         $user = User::where('username', $username)->first();
         $works = $user->works;
 
@@ -34,7 +44,6 @@ class UserController extends Controller
     }
 
     public function index() {
-        Carbon::setLocale('hu');
         $users = User::orderBy('name')->get();
         return view('admin.users.index', ['users' => $users]);
     }

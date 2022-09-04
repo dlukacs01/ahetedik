@@ -25,7 +25,9 @@
                     <div class="d-flex justify-content-between flex-wrap p-1">
                         @foreach($heading->articles as $article)
                             <div class="p-2 article-item border mt-1">
+
                                 <x-home.article-card :article="$article"></x-home.article-card>
+
                             </div>
                         @endforeach
                     </div>

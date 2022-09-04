@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -11,8 +10,14 @@ class CategoryController extends Controller
     //
 
     public function categories(){
-        $categories = Category::orderBy('name')->paginate(10);
-        return view('categories', ['categories' => $categories]);
+
+        $title = config('app.name') . " &mdash; Kategóriák";
+        $categories = Category::orderBy('name')->get();
+
+        return view('categories', [
+            'title' => $title,
+            'categories' => $categories
+        ]);
     }
 
     public function index(){
