@@ -31,8 +31,14 @@ class HomeController extends Controller
     public function index() {
 
         Carbon::setLocale('hu');
+
+        $title = config('app.name') . " &mdash;";
         $posts = Post::where('active',1)->orderBy('id', 'desc')->get();
-        return view('home', ['posts' => $posts]);
+
+        return view('home', [
+            'title' => $title,
+            'posts' => $posts
+        ]);
     }
 
     public function search() {

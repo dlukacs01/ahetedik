@@ -1,14 +1,19 @@
-<x-home-master>
+<x-home-master :title="$title">
+
 @section('content')
 
-{{--    <h1 class="my-4">Page Heading--}}
-{{--        <small>Secondary Text</small>--}}
-{{--    </h1>--}}
+    <div class="row">
+        <div class="col-md-8">
+            @foreach($posts as $post)
+                <x-home.post :post="$post"></x-home.post>
+            @endforeach
+        </div>
 
-    <!-- Blog Post -->
-    @foreach($posts as $post)
-    <x-home.post :post="$post"></x-home.post>
-    @endforeach
+        <div class="col-md-4">
+            <x-home.sidenav></x-home.sidenav>
+        </div>
+    </div>
 
 @endsection
+
 </x-home-master>

@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    // 'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'A hetedik'),
 
     /*
     |--------------------------------------------------------------------------
@@ -67,6 +68,7 @@ return [
     |
     */
 
+    /* 'timezone' => 'UTC', */
     'timezone' => 'Europe/Budapest',
 
     /*
@@ -80,7 +82,8 @@ return [
     |
     */
 
-    'locale' => 'en',
+    // 'locale' => 'en',
+    'locale' => 'hu',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +96,8 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    // 'fallback_locale' => 'en',
+    'fallback_locale' => 'hu',
 
     /*
     |--------------------------------------------------------------------------
@@ -106,7 +110,8 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    // 'faker_locale' => 'en_US',
+    'faker_locale' => 'hu_HU',
 
     /*
     |--------------------------------------------------------------------------
