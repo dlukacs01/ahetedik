@@ -1,0 +1,22 @@
+/**************************/
+/* AUTHORS */
+/**************************/
+
+.authors-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.author-item {
+    display: flex;
+    gap: 1rem;
+    background-color: #fff;
+    align-items: start;
+}
+
+.author-item img {
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+}

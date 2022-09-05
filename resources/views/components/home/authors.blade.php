@@ -1,16 +1,16 @@
 @foreach($users as $user)
 
-    <div class="grid-item-users d-flex">
+    <div class="author-item p-3 rounded">
 
-        <img src="{{ $user->avatar }}" class="rounded" alt="">
+        <img src="{{ $user->avatar }}" class="rounded" alt="{{ $user->name }}">
 
-        <div class="ml-3">
-            <div>
-                <h5 class="my-1">{{ $user->name }}</h5>
-            </div>
-
-            <a href="{{ route('user.profile.show', $user->username) }}" class="btn btn-primary btn-sm my-1">Profil megtekintése</a>
+        <div>
+            <h5>{{ $user->name }}</h5>
+            <a href="{{ route('user.profile.show', $user->username) }}" class="btn btn-primary btn-sm my-1">
+                Profil megtekintése
+            </a>
         </div>
+
     </div>
 
 @endforeach

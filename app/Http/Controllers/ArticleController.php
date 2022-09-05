@@ -6,7 +6,6 @@ use App\Article;
 use App\Heading;
 use App\Post;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -16,8 +15,6 @@ class ArticleController extends Controller
     // ***** CIKKEK *****
 
     public function index(){
-
-        Carbon::setLocale('hu');
         $articles = Article::orderBy('id','DESC')->get();
         return view('admin.articles.index', ['articles' => $articles]);
     }

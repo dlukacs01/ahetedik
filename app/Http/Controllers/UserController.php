@@ -35,11 +35,13 @@ class UserController extends Controller
 
     public function show($username) {
         $user = User::where('username', $username)->first();
+        $title = config('app.name') . " &mdash; " . $user->name;
         $works = $user->works;
 
         return view('profile', [
-            'user'=>$user,
-            'works'=>$works
+            'user'=> $user,
+            'title' => $title,
+            'works'=> $works
         ]);
     }
 

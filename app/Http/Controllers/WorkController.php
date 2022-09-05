@@ -5,31 +5,34 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\User;
 use App\Work;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class WorkController extends Controller
 {
-    public function work_category($category_slug) {
-        Carbon::setLocale('hu');
-        $category = Category::where('slug', $category_slug)->first(); // needed for page title
+    public function works($category_slug) {
+        $category = Category::where('slug', $category_slug)->first();
+        $title = $title = config('app.name') . " &mdash; " . $category->title;
         $works = $category->works()->whereDate('release_date', '<=', date('Y-m-d'))->orderBy('id','DESC')->paginate(10);
 
         return view('works', [
             'category' => $category,
+            'title' => $title,
             'works' => $works
         ]);
     }
 
     public function show($work_slug, $work_id) {
-        Carbon::setLocale('hu');
+
         $work = Work::findOrFail($work_id);
-        return view('work', ['work' => $work]);
+        $title = config('app.name') . " &mdash; " . $work->title;
+
+        return view('work', [
+            'work' => $work,
+            'title' => $title
+        ]);
     }
 
     public function index() {
-        Carbon::setLocale('hu');
         $works = Work::orderBy('id','DESC')->get();
         return view('admin.works.index', ['works' => $works]);
     }

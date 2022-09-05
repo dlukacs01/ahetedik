@@ -7,7 +7,7 @@
 
         <x-home.topnav></x-home.topnav>
 
-        <div class="container pt-4 home-master-container">
+        <div class="container pt-3 home-master-container">
             @yield('content')
         </div>
 

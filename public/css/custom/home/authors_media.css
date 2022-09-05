@@ -1,0 +1,9 @@
+/*********************************/
+/* .col-sm- (small devices - screen width equal to or greater than 576px)
+/*********************************/
+
+@media (max-width: 576px) {
+    .authors-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

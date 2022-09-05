@@ -18,7 +18,7 @@ Route::get('/impresszum', 'MetaController@impresszum')->name('home.impresszum');
 Route::get('/adatvedelmi-nyilatkozat', 'MetaController@gdpr')->name('home.gdpr');
 
 Route::get('/kategoriak', 'CategoryController@categories')->name('category.front.index');
-Route::get('/kategoriak/{category_slug}', 'WorkController@work_category')->name('work.category');
+Route::get('/kategoriak/{category_slug}', 'WorkController@works')->name('work.category');
 Route::get('/lapszamok/{post_slug}', 'PostController@show')->name('post'); // route model binding (post instead of post id)
 Route::get('/muvek/{work_slug}/mu-{work_id}', 'WorkController@show')->name('work');
 Route::get('/hirek/{story_slug}', 'StoryController@show')->name('story');

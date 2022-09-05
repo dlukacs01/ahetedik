@@ -25,7 +25,7 @@
     <!-- Custom styles -->
     <link href="{{asset('css/custom/categories.css')}}" rel="stylesheet">
     <link href="{{asset('css/custom/profile.css')}}" rel="stylesheet">
-    <link href="{{asset('css/custom/users.css')}}" rel="stylesheet">
+    <link href="{{asset('css/custom/authors.css')}}" rel="stylesheet">
 
 </head>
 

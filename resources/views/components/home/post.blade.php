@@ -30,32 +30,29 @@
                                 <div class="col-md-6 px-1 mb-1">
 
                                     {{-- CIKK (muvek) --}}
-                                    <div class="card">
-                                        <h6 class="card-header">
-                                            <a href="{{ route('user.profile.show', ['username' => $article->user->username]) }}"
-                                               class="text-body text-decoration-none">
-                                                {{ $article->user->name }}
-                                            </a>
-                                        </h6>
-                                        <div class="card-body p-2">
-                                            <div class="row">
+                                    <div class="card mb-3 border-1 p-1">
+                                        <div class="row no-gutters">
 
-                                                <div class="col-md-4">
-                                                    <img src="{{ $article->user->avatar }}" alt="" class="rounded article-user-avatar">
+                                            <div class="col-md-4">
+                                                <img src="{{ $article->user->avatar }}" class="card-img article-user-avatar" alt="...">
+                                            </div>
+
+                                            <div class="col-md-8">
+                                                <div class="card-body pt-2">
+                                                    <h5 class="card-title mb-1">
+                                                        <a href="{{ route('user.profile.show', ['username' => $article->user->username]) }}"
+                                                           class="text-body text-decoration-none">{{ $article->user->name }}</a>
+                                                    </h5>
+
+                                                    <p class="card-text mb-1">{!! $article->body !!}</p>
                                                 </div>
-                                                <div class="col-md-8">{!! $article->body !!}</div>
-
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
                             @endforeach
                         </div>
-
                     @endif
-
                 </div>
             </div>
         @endforeach

@@ -1,12 +1,12 @@
 <x-home-master :title="$title">
     @section('content')
 
-        <x-home.forms.poets-filter></x-home.forms.poets-filter>
-
         <div class="row">
             <div class="col-md-8">
 
-                <h1 class="mt-4">Szerzők</h1>
+                <h1 class="mt-3">Szerzők</h1>
+
+                <x-home.forms.poets-filter></x-home.forms.poets-filter>
 
                 <div class="authors-container">
                     <x-home.authors :users="$users"></x-home.authors>
