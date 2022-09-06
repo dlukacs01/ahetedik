@@ -5,7 +5,7 @@
 </a>
 <div class="collapse" id="collapsePosts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
     <nav class="sb-sidenav-menu-nested nav">
-        <a class="nav-link" href="{{route('post.create')}}">Új lapszám</a>
-        <a class="nav-link" href="{{route('post.index')}}">Összes lapszám</a>
+        <a class="nav-link" href="{{ route('post.create') }}">Új lapszám</a>
+        <a class="nav-link" href="{{ route('post.index') }}">Összes lapszám</a>
     </nav>
 </div>

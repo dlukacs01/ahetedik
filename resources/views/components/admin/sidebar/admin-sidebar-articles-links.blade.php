@@ -5,7 +5,7 @@
 </a>
 <div class="collapse" id="collapseArticles" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
     <nav class="sb-sidenav-menu-nested nav">
-        <a class="nav-link" href="{{route('article.create')}}">Új cikk</a>
-        <a class="nav-link" href="{{route('article.index')}}">Összes cikk</a>
+        <a class="nav-link" href="{{ route('article.create') }}">Új cikk</a>
+        <a class="nav-link" href="{{ route('article.index') }}">Összes cikk</a>
     </nav>
 </div>

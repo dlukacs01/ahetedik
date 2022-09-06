@@ -5,7 +5,7 @@
 </a>
 <div class="collapse" id="collapseUsers" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
     <nav class="sb-sidenav-menu-nested nav">
-        <a class="nav-link" href="{{route('user.create')}}">Új felhasználó</a>
-        <a class="nav-link" href="{{route('user.index')}}">Összes felhasználó</a>
+        <a class="nav-link" href="{{ route('user.create') }}">Új felhasználó</a>
+        <a class="nav-link" href="{{ route('user.index') }}">Összes felhasználó</a>
     </nav>
 </div>

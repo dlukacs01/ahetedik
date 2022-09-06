@@ -5,7 +5,7 @@
 </a>
 <div class="collapse" id="collapseStories" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
     <nav class="sb-sidenav-menu-nested nav">
-        <a class="nav-link" href="{{route('story.create')}}">Új hír</a>
-        <a class="nav-link" href="{{route('story.index')}}">Összes hír</a>
+        <a class="nav-link" href="{{ route('story.create') }}">Új hír</a>
+        <a class="nav-link" href="{{ route('story.index') }}">Összes hír</a>
     </nav>
 </div>

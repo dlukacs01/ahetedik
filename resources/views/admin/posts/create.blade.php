@@ -1,57 +1,9 @@
 <x-admin-master>
     @section('content')
+
         <h1 class="mt-4">Új lapszám</h1>
 
-        <form method="post" action="{{route('post.store')}}" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group required">
-                <label for="title" class="control-label">Cím</label>
-                <input type="text" name="title" class="form-control" id="title" aria-describedby="" placeholder="Írd be a címet" required>
-            </div>
-            <div class="form-group required">
-                <label for="post_image" class="control-label">Borító</label>
-                <input type="file" name="post_image" class="form-control-file" id="post_image" required>
-            </div>
-            <div class="form-group required">
-                <label for="type" class="control-label">Megjelenik a főoldalon?</label>
-                <select class="form-control" id="active" name="active">
-                    <option value="1">Igen</option>
-                    <option value="0">Nem</option>
-                </select>
-            </div>
-{{--            <div class="form-group">--}}
-{{--                <label for="body">Beharangozó</label>--}}
-{{--                <textarea name="body" class="form-control" id="body" cols="30" rows="30"></textarea>--}}
-{{--            </div>--}}
-            <button type="submit" class="btn btn-primary">Mentés</button>
-        </form>
-    @endsection
+        <x-admin.forms.posts.create></x-admin.forms.posts.create>
 
-{{--    @section('scripts')--}}
-{{--        <script>--}}
-{{--            tinymce.init({--}}
-{{--                selector: 'textarea',--}}
-{{--                plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',--}}
-{{--                toolbar_mode: 'floating',--}}
-{{--                style_formats: [--}}
-{{--                    {--}}
-{{--                        title: 'Image Left',--}}
-{{--                        selector: 'img',--}}
-{{--                        styles: {--}}
-{{--                            'float': 'left',--}}
-{{--                            'margin': '0 10px 0 10px'--}}
-{{--                        }--}}
-{{--                    },--}}
-{{--                    {--}}
-{{--                        title: 'Image Right',--}}
-{{--                        selector: 'img',--}}
-{{--                        styles: {--}}
-{{--                            'float': 'right',--}}
-{{--                            'margin': '0 0 10px 10px'--}}
-{{--                        }--}}
-{{--                    }--}}
-{{--                ]--}}
-{{--            });--}}
-{{--        </script>--}}
-{{--    @endsection--}}
+    @endsection
 </x-admin-master>

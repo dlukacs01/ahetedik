@@ -5,7 +5,7 @@
 </a>
 <div class="collapse" id="collapseHeadings" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
     <nav class="sb-sidenav-menu-nested nav">
-        <a class="nav-link" href="{{route('heading.create')}}">Új rovat</a>
-        <a class="nav-link" href="{{route('heading.index')}}">Összes rovat</a>
+        <a class="nav-link" href="{{ route('heading.create') }}">Új rovat</a>
+        <a class="nav-link" href="{{ route('heading.index') }}">Összes rovat</a>
     </nav>
 </div>
