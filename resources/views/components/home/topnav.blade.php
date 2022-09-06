@@ -12,19 +12,19 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home.all') }}">Korábbi lapszámok</a>
+                    <a class="nav-link" href="{{ route('post.posts') }}">Korábbi lapszámok</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home.all.stories') }}">Hírek</a>
+                    <a class="nav-link" href="{{ route('story.stories') }}">Hírek</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('category.front.index') }}">Kategóriák</a>
+                    <a class="nav-link" href="{{ route('category.categories') }}">Kategóriák</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.authors') }}">Szerzők</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home.szerzoknek') }}">Szerzőink figyelmébe</a>
+                    <a class="nav-link" href="{{ route('meta.szerzoknek') }}">Szerzőink figyelmébe</a>
                 </li>
             </ul>
         </div>

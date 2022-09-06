@@ -72,13 +72,4 @@ class User extends Authenticatable
 
         return asset('storage/' . $value);
     }
-
-    public function userHasRole($role_input){
-        foreach($this->roles as $user_role){
-            if(Str::lower($user_role->name) == Str::lower($role_input)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

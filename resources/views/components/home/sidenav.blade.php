@@ -54,7 +54,7 @@ $works_active = App\Work::latest()->where('active',1)->whereDate('release_date',
                 <ul class="list-unstyled mb-0">
                     @foreach($categories as $category)
                         <li>
-                            <a href="{{ route('work.category', $category->slug) }}">{{ $category->name }}</a>
+                            <a href="{{ route('work.works', $category->slug) }}">{{ $category->name }}</a>
                         </li>
                     @endforeach
                 </ul>
