@@ -89,7 +89,6 @@
 
     <div class="form-group required">
         <label for="password_confirmation" class="control-label">Jelszó megerősítése</label>
-        <small>Minimum 8 karakter!</small>
         <input type="password"
                name="password_confirmation"
                id="password_confirmation"

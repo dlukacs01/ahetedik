@@ -1,5 +1,3 @@
-{{--<script src="/path-to-your-tinymce/tinymce.min.js"></script>--}}
-{{--<textarea name="content" class="form-control my-editor">{!! old('content', $content) !!}</textarea>--}}
 <script>
     var editor_config = {
         path_absolute : "/",

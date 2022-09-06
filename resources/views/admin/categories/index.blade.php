@@ -1,22 +1,9 @@
 <x-admin-master>
     @section('content')
-        <h1 class="mt-4">Kategóriák (ABC sorrend, 10 kategória / oldal)</h1>
 
-        @if(session()->has('category-deleted'))
-            <div class="alert alert-danger">
-                {{session('category-deleted')}}
-            </div>
-        @endif
-        @if(session()->has('category-created-message'))
-            <div class="alert alert-success">
-                {{session('category-created-message')}}
-            </div>
-        @endif
-        @if(session()->has('category-updated'))
-            <div class="alert alert-success">
-                {{session('category-updated')}}
-            </div>
-        @endif
+        <h1 class="mt-4">Kategóriák</h1>
+
+        <x-admin.session-message></x-admin.session-message>
 
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -41,14 +28,20 @@
                 <tbody>
                 @foreach($categories as $category)
                     <tr>
-                        <td>{{$category->id}}</td>
-                        <td><a href="{{route('category.edit', $category->id)}}">{{$category->name}}</a></td>
-                        <td>{{$category->slug}}</td>
-                        <td><img width="100px" src="{{$category->category_image}}" alt=""></td>
+                        <td>{{ $category->id }}</td>
                         <td>
-                            <form method="post" action="{{route('category.destroy', $category->id)}}">
+                            <a href="{{ route('category.edit', $category) }}">{{ $category->name }}</a>
+                        </td>
+                        <td>{{ $category->slug }}</td>
+                        <td>
+                            <img width="100px" src="{{ $category->category_image }}" alt="{{ $category->name }}">
+                        </td>
+                        <td>
+                            <form method="post" action="{{ route('category.destroy', $category) }}">
+
                                 @csrf
                                 @method('DELETE')
+
                                 <button type="submit" class="btn btn-danger">Törlés</button>
                             </form>
                         </td>
@@ -56,12 +49,6 @@
                 @endforeach
                 </tbody>
             </table>
-        </div>
-
-        <div class="d-flex">
-            <div class="mx-auto">
-                {{$categories->links()}}
-            </div>
         </div>
 
     @endsection

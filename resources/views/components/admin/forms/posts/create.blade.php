@@ -1,5 +1,7 @@
 <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
+
     @csrf
+
     <div class="form-group required">
         <label for="title" class="control-label">Cím</label>
         <input type="text"
@@ -23,10 +25,16 @@
         <label for="type" class="control-label">Megjelenik a főoldalon?</label>
         <select name="active"
                 id="active"
-                class="form-control">
+                class="form-control @error('active') is-invalid @enderror">
             <option value="1">Igen</option>
             <option value="0">Nem</option>
         </select>
+
+        @error('active')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div>
 
     <div class="form-group required">

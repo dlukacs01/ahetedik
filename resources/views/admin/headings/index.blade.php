@@ -1,21 +1,10 @@
 <x-admin-master>
     @section('content')
-        <h1 class="mt-4">Összes rovat (legújabb legelől, 10 rovat / oldal)</h1>
 
-        @if(session('message'))
-            <div class="alert alert-danger">{{session('message')}}</div>
-        @elseif(session('heading-created-message'))
-            <div class="alert alert-success">{{session('heading-created-message')}}</div>
-        @elseif(session('heading-updated-message'))
-            <div class="alert alert-success">{{session('heading-updated-message')}}</div>
-        @endif
+        <h1 class="mt-4">Rovatok</h1>
 
-        {{--        <div class="card mb-4">--}}
-        {{--            <div class="card-header">--}}
-        {{--                <i class="fas fa-table mr-1"></i>--}}
-        {{--                DataTable Example--}}
-        {{--            </div>--}}
-        {{--            <div class="card-body">--}}
+        <x-admin.session-message></x-admin.session-message>
+
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable-headings" width="100%" cellspacing="0">
                 <thead>
@@ -43,33 +32,30 @@
                 <tbody>
                 @foreach($headings as $heading)
                     <tr>
-                        <td>{{$heading->id}}</td>
-                        <td>{{$heading->post->title}}</td>
-                        <td>{{$heading->type}}</td>
-                        <td><a href="{{route('heading.edit', $heading->id)}}">{{$heading->title}}</a></td>
-                        <td>{{$heading->created_at->diffForHumans()}}</td>
-                        <td>{{$heading->updated_at->diffForHumans()}}</td>
+                        <td>{{ $heading->id }}</td>
+                        <td>{{ $heading->post->title }}</td>
+                        <td>{{ $heading->type }}</td>
                         <td>
-                            {{--@can('view', $post)--}}
-                            <form method="post" action="{{route('heading.destroy', $heading->id)}}" enctype="multipart/form-data">
+                            <a href="{{ route('heading.edit', $heading) }}">{{ $heading->title }}</a>
+                        </td>
+                        <td>{{ $heading->created_at->diffForHumans() }}</td>
+                        <td>{{ $heading->updated_at->diffForHumans() }}</td>
+                        <td>
+                            <form method="post" action="{{route('heading.destroy', $heading) }}">
+
                                 @csrf
                                 @method('DELETE')
+
                                 <button type="submit" class="btn btn-danger">Törlés</button>
                             </form>
-                            {{--@endcan--}}
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
-        {{--            </div>--}}
-        {{--        </div>--}}
 
-{{--        <div class="d-flex">--}}
-{{--            <div class="mx-auto">--}}
-{{--                {{$headings->links()}}--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        <x-admin-pagination :objects="$headings"></x-admin-pagination>
+
     @endsection
 </x-admin-master>

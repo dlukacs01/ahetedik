@@ -2,7 +2,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="A Hetedik Független Irodalmi, Kulturális Folyóirat és Alkotóközösség">
-    <meta name="keywords" content="hetedik, független, irodalom, kultúra, folyóirat, alkotó, közösség, költészet, költő">
+    <meta name="keywords" content="hetedik, független, irodalom, kultúra, folyóirat, alkotó, közösség, költészet,
+                            költő, irodalom, művészet, kortárs, vers, líra, próza, epika, novella, elbeszélés, kritika,
+                            tárca, recenzió, dráma, színmű, riport, interjú">
     <meta name="author" content="David Lukacs">
 
     <title>{!! isset($title) ? $title : config('app.name') !!}</title>

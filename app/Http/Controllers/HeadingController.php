@@ -14,9 +14,7 @@ class HeadingController extends Controller
     // ***** ROVATOK *****
 
     public function index(){
-
-        Carbon::setLocale('hu');
-        $headings = Heading::orderBy('id','DESC')->get();
+        $headings = Heading::orderBy('id', 'desc')->paginate(config('custom.admin.tables.pagination.items_per_page'));
         return view('admin.headings.index', ['headings' => $headings]);
     }
 

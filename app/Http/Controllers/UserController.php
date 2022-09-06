@@ -16,7 +16,7 @@ class UserController extends Controller
 
         if($request->ajax()) {
 
-            $users = User::where('name','LIKE',$request->search."%")->orderBy('name')->paginate(10);
+            $users = User::where('name', 'LIKE', $request->search."%")->orderBy('name')->paginate(config('custom.home.users.pagination.items_per_page'));
 
             return view('partials.home.authors', [
                 'title' => $title,
@@ -24,7 +24,7 @@ class UserController extends Controller
             ]);
         } else {
 
-            $users = User::orderBy('name')->paginate(10);
+            $users = User::orderBy('name')->paginate(config('custom.home.users.pagination.items_per_page'));
 
             return view('authors', [
                 'title' => $title,
@@ -46,7 +46,7 @@ class UserController extends Controller
     }
 
     public function index() {
-        $users = User::orderBy('name')->get();
+        $users = User::orderBy('name')->paginate(config('custom.admin.tables.pagination.items_per_page'));
         return view('admin.users.index', ['users' => $users]);
     }
 

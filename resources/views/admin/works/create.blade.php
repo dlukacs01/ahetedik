@@ -2,8 +2,8 @@
     @section('content')
         <h1 class="mt-4">Új mű</h1>
 
-        @if(session('work-duplicate-message'))
-            <div class="alert alert-danger">{{session('work-duplicate-message')}}</div>
+        @if(session('duplicated'))
+            <div class="alert alert-danger">{{ session('duplicated')}} </div>
         @endif
 
         <x-admin.forms.works.create></x-admin.forms.works.create>

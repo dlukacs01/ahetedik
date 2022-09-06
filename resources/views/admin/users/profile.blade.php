@@ -106,6 +106,5 @@
                 });
             });
         </script>
-
     @endsection
 </x-admin-master>

@@ -14,14 +14,14 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Főmenü</div>
-                            <a class="nav-link" href="{{route('admin.index')}}">
+                            <a class="nav-link" href="{{ route('admin.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Vezérlőpult
                             </a>
 
                             <div class="sb-sidenav-menu-heading">Kezelés</div>
 
-                            @if(auth()->user()->userHasRole('Admin') or auth()->user()->userHasRole('Editor'))
+                            @if(auth()->user()->userHasRole('admin') or auth()->user()->userHasRole('editor'))
                                 <x-admin.sidebar.admin-sidebar-posts-links></x-admin.sidebar.admin-sidebar-posts-links>
                                 <x-admin.sidebar.admin-sidebar-headings-links></x-admin.sidebar.admin-sidebar-headings-links>
                                 <x-admin.sidebar.admin-sidebar-articles-links></x-admin.sidebar.admin-sidebar-articles-links>
@@ -31,7 +31,7 @@
 
                             <div class="sb-sidenav-menu-heading">Egyéb</div>
 
-                            @if(auth()->user()->userHasRole('Admin'))
+                            @if(auth()->user()->userHasRole('admin'))
                                 <x-admin.sidebar.admin-sidebar-categories-links></x-admin.sidebar.admin-sidebar-categories-links>
                                 <x-admin.sidebar.admin-sidebar-metas-links></x-admin.sidebar.admin-sidebar-metas-links>
                                 <x-admin.sidebar.admin-sidebar-users-links></x-admin.sidebar.admin-sidebar-users-links>

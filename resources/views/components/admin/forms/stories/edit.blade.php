@@ -19,6 +19,7 @@
             </span>
         @enderror
     </div>
+
     <div class="form-group required">
         <label for="expiration_date" class="control-label">Lejárati idő</label>
         <input type="date"

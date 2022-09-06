@@ -3,10 +3,6 @@
 
         <h1 class="mt-4">Mű szerkesztése</h1>
 
-        @if(session('work-duplicate-message'))
-            <div class="alert alert-danger">{{session('work-duplicate-message')}}</div>
-        @endif
-
         <x-admin.forms.works.edit :work="$work">
 
     @endsection

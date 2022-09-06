@@ -1,80 +1,66 @@
 <x-admin-master>
     @section('content')
-        <h1 class="mt-4">Összes lapszám (legújabb legelől, 10 lapszám / oldal)</h1>
 
-        @if(session('message'))
-            <div class="alert alert-danger">{{session('message')}}</div>
-        @elseif(session('post-created-message'))
-            <div class="alert alert-success">{{session('post-created-message')}}</div>
-        @elseif(session('post-updated-message'))
-            <div class="alert alert-success">{{session('post-updated-message')}}</div>
-        @endif
+        <h1 class="mt-4">Lapszámok</h1>
 
-{{--        <div class="card mb-4">--}}
-{{--            <div class="card-header">--}}
-{{--                <i class="fas fa-table mr-1"></i>--}}
-{{--                DataTable Example--}}
-{{--            </div>--}}
-{{--            <div class="card-body">--}}
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable-posts" width="100%" cellspacing="0">
-                        <thead>
+        <x-admin.session-message></x-admin.session-message>
+
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable-posts" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Szerző</th>
+                        <th>Cím</th>
+                        <th>Borító</th>
+                        <th>Elkészült</th>
+                        <th>Frissítve</th>
+                        <th>Törlés</th>
+                        <th>Aktív</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Szerző</th>
+                        <th>Cím</th>
+                        <th>Borító</th>
+                        <th>Elkészült</th>
+                        <th>Frissítve</th>
+                        <th>Törlés</th>
+                        <th>Aktív</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach($posts as $post)
                         <tr>
-                            <th>Id</th>
-                            <th>Szerző</th>
-                            <th>Cím</th>
-                            <th>Borító</th>
-                            <th>Elkészült</th>
-                            <th>Frissítve</th>
-                            <th>Törlés</th>
-                            <th>Aktív</th>
-                        </tr>
-                        </thead>
-                        <tfoot>
-                        <tr>
-                            <th>Id</th>
-                            <th>Szerző</th>
-                            <th>Cím</th>
-                            <th>Borító</th>
-                            <th>Elkészült</th>
-                            <th>Frissítve</th>
-                            <th>Törlés</th>
-                            <th>Aktív</th>
-                        </tr>
-                        </tfoot>
-                        <tbody>
-                        @foreach($posts as $post)
-                        <tr>
-                            <td>{{$post->id}}</td>
-                            <td>{{$post->user->name}}</td>
-                            <td><a href="{{route('post.edit', $post->id)}}">{{$post->title}}</a></td>
+                            <td>{{ $post->id }}</td>
+                            <td>{{ $post->user->name }}</td>
                             <td>
-                                <img width="100px" src="{{$post->post_image}}" alt="">
+                                <a href="{{ route('post.edit', $post) }}">{{ $post->title }}</a>
                             </td>
-                            <td>{{$post->created_at->diffForHumans()}}</td>
-                            <td>{{$post->updated_at->diffForHumans()}}</td>
                             <td>
-                                {{--@can('view', $post)--}}
-                                <form method="post" action="{{route('post.destroy', $post->id)}}" enctype="multipart/form-data">
+                                <img width="100px" src="{{ $post->post_image }}" alt="{{ $post->title }}">
+                            </td>
+                            <td>{{ $post->created_at->diffForHumans() }}</td>
+                            <td>{{ $post->updated_at->diffForHumans() }}</td>
+                            <td>
+                                <form method="post" action="{{ route('post.destroy', $post) }}">
+
                                     @csrf
                                     @method('DELETE')
+
                                     <button type="submit" class="btn btn-danger">Törlés</button>
                                 </form>
-                                {{--@endcan--}}
                             </td>
-                            <td>{{$post->active ? 'igen' : 'nem'}}</td>
+                            <td>{{ $post->active ? 'igen' : 'nem' }}</td>
                         </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-{{--            </div>--}}
-{{--        </div>--}}
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
-{{--        <div class="d-flex">--}}
-{{--            <div class="mx-auto">--}}
-{{--                {{$posts->links()}}--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        <x-admin-pagination :objects="$posts"></x-admin-pagination>
+
     @endsection
 </x-admin-master>

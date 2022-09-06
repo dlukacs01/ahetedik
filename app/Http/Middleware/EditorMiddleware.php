@@ -15,8 +15,8 @@ class EditorMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if($request->user()->role->slug != "editor") {
-            abort(403, 'Nincs megfelelő jogosultságod!');
+        if($request->user()->userHasRole("editor")) {
+            abort(403, "Nincs megfelelő jogosultságod!");
         }
         return $next($request);
     }

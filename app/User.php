@@ -72,4 +72,13 @@ class User extends Authenticatable
 
         return asset('storage/' . $value);
     }
+
+    public function userHasRole($input_role) {
+        foreach($this->roles as $role) {
+            if($role->slug == $input_role) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

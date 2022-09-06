@@ -40,7 +40,7 @@
                                             <div class="col-md-8">
                                                 <div class="card-body pt-2">
                                                     <h5 class="card-title mb-1">
-                                                        <a href="{{ route('user.profile.show', ['username' => $article->user->username]) }}"
+                                                        <a href="{{ route('user.show', ['username' => $article->user->username]) }}"
                                                            class="text-body text-decoration-none">{{ $article->user->name }}</a>
                                                     </h5>
 

@@ -5,7 +5,7 @@
 
         <div class="card-body pb-1 pt-3">
             <h5 class="card-title">
-                <a href="{{ route('work.category', $category->slug) }}" class="stretched-link text-decoration-none text-body">
+                <a href="{{ route('work.works', $category->slug) }}" class="stretched-link text-decoration-none text-body">
                     {{ $category->name }}
                 </a>
             </h5>

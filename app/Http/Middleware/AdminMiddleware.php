@@ -15,8 +15,8 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if($request->user()->role->slug != "admin") {
-            abort(403, 'Nincs megfelelő jogosultságod!');
+        if($request->user()->userHasRole("admin")) {
+            abort(403, "Nincs megfelelő jogosultságod!");
         }
         return $next($request);
     }

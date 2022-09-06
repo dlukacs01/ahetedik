@@ -12,7 +12,9 @@ class StoryController extends Controller
     public function stories() {
 
         $title = config('app.name') . " &mdash; Hírek";
-        $stories = Story::whereDate('expiration_date', '>=', date('Y-m-d'))->orderBy('id', 'desc')->paginate(10);
+        $stories = Story::whereDate('expiration_date', '>=', date('Y-m-d'))
+            ->orderBy('id', 'desc')
+            ->paginate(config('custom.home.stories.pagination.items_per_page'));
 
         return view('stories', [
             'title' => $title,
@@ -32,8 +34,8 @@ class StoryController extends Controller
     }
 
     public function index() {
-        $stories = Story::orderBy('id','DESC')->get();
-        return view('admin.stories.index', ['stories'=>$stories]);
+        $stories = Story::orderBy('id', 'desc')->paginate(config('custom.admin.tables.pagination.items_per_page'));
+        return view('admin.stories.index', ['stories' => $stories]);
     }
 
     public function create() {

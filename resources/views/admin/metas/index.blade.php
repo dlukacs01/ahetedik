@@ -3,11 +3,7 @@
 
         <h1 class="mt-4">Az oldalhoz tartozó leírások</h1>
 
-        @if(session()->has('meta-updated-message'))
-            <div class="alert alert-success">
-                {{session('meta-updated-message')}}
-            </div>
-        @endif
+        <x-admin.session-message></x-admin.session-message>
 
         <x-admin.forms.metas.index :meta="$meta"></x-admin.forms.metas.index>
 

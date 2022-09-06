@@ -10,9 +10,13 @@ use Illuminate\Support\Str;
 class WorkController extends Controller
 {
     public function works($category_slug) {
+
         $category = Category::where('slug', $category_slug)->first();
         $title = $title = config('app.name') . " &mdash; " . $category->title;
-        $works = $category->works()->whereDate('release_date', '<=', date('Y-m-d'))->orderBy('id','DESC')->paginate(10);
+        $works = $category->works()
+            ->whereDate('release_date', '<=', date('Y-m-d'))
+            ->orderBy('id', 'desc')
+            ->paginate(config('custom.home.works.pagination.items_per_page'));
 
         return view('works', [
             'category' => $category,
@@ -33,7 +37,7 @@ class WorkController extends Controller
     }
 
     public function index() {
-        $works = Work::orderBy('id','DESC')->get();
+        $works = Work::orderBy('id', 'desc')->paginate(config('custom.admin.tables.pagination.items_per_page'));
         return view('admin.works.index', ['works' => $works]);
     }
 

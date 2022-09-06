@@ -14,7 +14,7 @@ class PostController extends Controller
     public function posts() {
 
         $title = config('app.name') . " &mdash; Korábbi lapszámok";
-        $posts = Post::where('active',0)->orderBy('id', 'desc')->paginate(10);
+        $posts = Post::where('active',0)->orderBy('id', 'desc')->paginate(config('custom.home.posts.pagination.items_per_page'));
 
         return view('posts', [
             'title' => $title,
@@ -34,7 +34,7 @@ class PostController extends Controller
     }
 
     public function index() {
-        $posts = Post::orderBy('id','DESC')->get();
+        $posts = Post::orderBy('id', 'desc')->paginate(config('custom.admin.tables.pagination.items_per_page'));
         return view('admin.posts.index', ['posts' => $posts]);
     }
 

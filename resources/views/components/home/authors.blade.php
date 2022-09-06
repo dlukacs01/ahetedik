@@ -6,7 +6,7 @@
 
         <div>
             <h5>{{ $user->name }}</h5>
-            <a href="{{ route('user.profile.show', $user->username) }}" class="btn btn-primary btn-sm my-1">
+            <a href="{{ route('user.show', $user->username) }}" class="btn btn-primary btn-sm my-1">
                 Profil megtekintése
             </a>
         </div>
