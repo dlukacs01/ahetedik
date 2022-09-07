@@ -10,13 +10,13 @@
             <div class="card-body pt-2">
 
                 <h5 class="card-title mb-1">
-                    <a href="{{route('work', ['work_slug' => $work->slug, 'work_id' => $work->id])}}"
+                    <a href="{{ route('work', ['work_slug' => $work->slug, 'work_id' => $work->id]) }}"
                        class="text-decoration-none text-body">{{ $work->title }}</a>
                 </h5>
 
                 <p class="card-text mb-1">
                     <small>
-                        Szerző: <a href="{{ route('user.profile.show', $work->user->username) }}">{{ $work->user->name }}</a>
+                        Szerző: <a href="{{ route('user.show', $work->user->username) }}">{{ $work->user->name }}</a>
                     </small>
                 </p>
 
@@ -25,7 +25,7 @@
                         Kategória(ák):
                         <br>
                         @foreach($work->categories as $category)
-                            <a href="{{ route('work.category', $category->slug) }}" class="ml-2">{{ $category->name }}</a>
+                            <a href="{{ route('work.works', $category->slug) }}" class="ml-2">{{ $category->name }}</a>
                             <br>
                         @endforeach
                     </small>

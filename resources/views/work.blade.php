@@ -9,8 +9,7 @@
 
                 <!-- Author -->
                 <p class="lead">
-                    Írta:
-                    <a href="{{ route('user.profile.show', $work->user->username) }}">{{ $work->user->name }}</a>
+                    Írta: <a href="{{ route('user.show', $work->user->username) }}">{{ $work->user->name }}</a>
                 </p>
 
                 <hr>

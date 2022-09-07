@@ -10,7 +10,7 @@
 
         <div class="card-footer text-muted">
             Közzétéve {{ $story->created_at->diffForHumans() }}
-            <a href="{{ route('user.profile.show', $story->user->username) }}">{{ $story->user->name }}</a>
+            <a href="{{ route('user.show', $story->user->username) }}">{{ $story->user->name }}</a>
         </div>
 
     </div>

@@ -12,7 +12,7 @@
         <div class="card-footer text-muted">
             Közzétéve {{ $post->created_at->diffForHumans() }}
 
-            <a href="{{ route('user.profile.show', $post->user->username) }}">{{ $post->user->name }}</a>
+            <a href="{{ route('user.show', $post->user->username) }}">{{ $post->user->name }}</a>
         </div>
     </div>
 @endforeach
