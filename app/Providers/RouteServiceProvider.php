@@ -97,7 +97,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapPostsRoutes()
     {
         Route::prefix('admin')
-            ->middleware(['web', 'auth', 'admin', 'editor'])
+            ->middleware(['web', 'auth', 'role:admin,editor'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web/posts.php'));
     }
@@ -105,7 +105,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapHeadingsRoutes()
     {
         Route::prefix('admin')
-            ->middleware(['web', 'auth', 'admin', 'editor'])
+            ->middleware(['web', 'auth', 'role:admin,editor'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web/headings.php'));
     }
@@ -113,7 +113,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapArticlesRoutes()
     {
         Route::prefix('admin')
-            ->middleware(['web', 'auth', 'admin', 'editor'])
+            ->middleware(['web', 'auth', 'role:admin,editor'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web/articles.php'));
     }
@@ -121,7 +121,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWorksRoutes()
     {
         Route::prefix('admin')
-            ->middleware(['web', 'auth', 'admin', 'editor'])
+            ->middleware(['web', 'auth', 'role:admin,editor'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web/works.php'));
     }
@@ -129,7 +129,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapStoriesRoutes()
     {
         Route::prefix('admin')
-            ->middleware(['web', 'auth', 'admin', 'editor'])
+            ->middleware(['web', 'auth', 'role:admin,editor'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web/stories.php'));
     }
@@ -137,7 +137,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapCategoriesRoutes()
     {
         Route::prefix('admin')
-            ->middleware(['web','auth','admin'])
+            ->middleware(['web','auth','role:admin'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web/categories.php'));
     }
@@ -145,7 +145,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapMetasRoutes()
     {
         Route::prefix('admin')
-            ->middleware(['web','auth','admin'])
+            ->middleware(['web','auth','role:admin'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web/metas.php'));
     }
@@ -153,7 +153,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapUsersRoutes()
     {
         Route::prefix('admin')
-            ->middleware(['web', 'auth', 'admin'])
+            ->middleware(['web', 'auth', 'role:admin'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web/users.php'));
     }

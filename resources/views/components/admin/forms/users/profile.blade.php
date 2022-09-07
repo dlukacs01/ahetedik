@@ -4,7 +4,7 @@
     @method('PUT')
 
     <div class="my-4">
-        <img class="rounded-circle avatar" src="{{ $user->avatar }}">
+        <img class="rounded-circle avatar" src="{{ $user->avatar }}" alt="{{ $user->name }}">
     </div>
 
     <div class="form-group required">
@@ -60,8 +60,8 @@
     <div class="form-group required">
         <label for="cv" class="control-label">Bemutatkozás</label>
         <textarea name="cv"
-                  class="form-control @error('cv') is-invalid @enderror"
                   id="cv"
+                  class="form-control @error('cv') is-invalid @enderror"
                   rows="10">{{ $user->cv }}</textarea>
 
         @error('cv')
@@ -114,5 +114,5 @@
         @enderror
     </div>
 
-    <button type="submit" id="submit" class="btn btn-primary">Mentés</button>
+    <button type="submit" id="submit" class="btn btn-primary mb-3">Mentés</button>
 </form>

@@ -102,8 +102,8 @@
     <div class="form-group required">
         <label for="body" class="control-label">Tartalom</label>
         <textarea name="body"
-                  class="form-control @error('body') is-invalid @enderror"
                   id="body"
+                  class="form-control @error('body') is-invalid @enderror"
                   rows="10">{{ $work->body }}</textarea>
 
         @error('body')
@@ -127,9 +127,9 @@
         @enderror
     </div>
 
-    <div>
+    <div class="mb-3">
         <img height="100px" src="{{ $work->work_image }}" alt="{{ $work->title }}">
     </div>
 
-    <button type="submit" id="submit" class="btn btn-primary">Mentés</button>
+    <button type="submit" id="submit" class="btn btn-primary mb-3">Mentés</button>
 </form>

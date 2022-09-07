@@ -2,7 +2,7 @@
     @section('content')
         <h1 class="mt-4">Új cikk</h1>
 
-        <x.admin.forms.articles.create></x.admin.forms.articles.create>
+        <x-admin.forms.articles.create :posts="$posts"></x-admin.forms.articles.create>
 
     @endsection
 

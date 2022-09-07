@@ -38,12 +38,10 @@
 
     <div class="form-group required">
         <label for="body" class="control-label">Tartalom</label>
-        <textarea
-            name="body"
-            class="form-control @error('body') is-invalid @enderror"
-            id="body"
-            required
-            rows="10">{{ $story->body }}</textarea>
+        <textarea name="body"
+                  id="body"
+                  class="form-control @error('body') is-invalid @enderror"
+                  rows="10">{{ $story->body }}</textarea>
 
         @error('body')
             <span class="invalid-feedback" role="alert">
@@ -66,9 +64,9 @@
         @enderror
     </div>
 
-    <div>
+    <div class="mb-3">
         <img height="100px" src="{{ $story->story_image }}" alt="{{ $story->title }}">
     </div>
 
-    <button type="submit" id="submit" class="btn btn-primary">Mentés</button>
+    <button type="submit" id="submit" class="btn btn-primary mb-3">Mentés</button>
 </form>

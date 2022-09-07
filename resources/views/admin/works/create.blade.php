@@ -6,7 +6,7 @@
             <div class="alert alert-danger">{{ session('duplicated')}} </div>
         @endif
 
-        <x-admin.forms.works.create></x-admin.forms.works.create>
+        <x-admin.forms.works.create :categories="$categories" :users="$users"></x-admin.forms.works.create>
 
     @endsection
 

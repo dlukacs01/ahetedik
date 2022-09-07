@@ -10,6 +10,7 @@
                class="form-control @error('name') is-invalid @enderror"
                required
                autofocus
+               autocomplete="name"
                placeholder="Kategória neve"
                value="{{ old('name') }}">
 
@@ -35,5 +36,5 @@
         @enderror
     </div>
 
-    <button type="submit" class="btn btn-primary">Mentés</button>
+    <button type="submit" class="btn btn-primary mb-3">Mentés</button>
 </form>

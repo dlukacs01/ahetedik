@@ -21,11 +21,13 @@
         @enderror
     </div>
 
+    <!-- HEADINGS based on selected post -->
     <div class="form-group required">
         <label for="heading_id" class="control-label">Rovat:</label>
         <select name="heading_id" id="heading_id" class="form-control"></select>
     </div>
 
+    <!-- TITLE or USER based on heading-type -->
     <div id="ajax_result" class="form-group required"></div>
 
     <div class="form-group required">
@@ -42,5 +44,5 @@
         @enderror
     </div>
 
-    <button type="submit" id="submit" class="btn btn-primary">Mentés</button>
+    <button type="submit" id="submit" class="btn btn-primary mb-3">Mentés</button>
 </form>

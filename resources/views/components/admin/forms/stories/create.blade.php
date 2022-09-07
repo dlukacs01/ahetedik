@@ -11,7 +11,7 @@
                required
                autofocus
                autocomplete="title"
-               placeholder="Írd be a címet"
+               placeholder="Hír címe"
                value="{{ old('title') }}">
 
         @error('title')
@@ -66,5 +66,5 @@
         @enderror
     </div>
 
-    <button type="submit" id="submit" class="btn btn-primary">Mentés</button>
+    <button type="submit" id="submit" class="btn btn-primary mb-3">Mentés</button>
 </form>

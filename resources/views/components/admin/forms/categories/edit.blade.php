@@ -34,9 +34,9 @@
         @enderror
     </div>
 
-    <div>
+    <div class="mb-3">
         <img height="100px" src="{{ $category->category_image }}" alt="{{ $category->name }}">
     </div>
 
-    <button type="submit" class="btn btn-primary">Mentés</button>
+    <button type="submit" class="btn btn-primary mb-3">Mentés</button>
 </form>
