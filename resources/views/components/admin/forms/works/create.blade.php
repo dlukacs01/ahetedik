@@ -42,7 +42,7 @@
         @foreach($categories as $category)
             <div class="form-check">
                 <label class="form-check-label" for="{{ $category->id }}">
-                    <div class="checkbox-group">
+                    <div class="checkbox-group required-chckbx">
                         <input type="checkbox"
                                 class="form-check-input"
                                 name="categories[]"

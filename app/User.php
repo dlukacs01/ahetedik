@@ -59,6 +59,11 @@ class User extends Authenticatable
         return $this->hasMany(Story::class);
     }
 
+    // mutator for hashing password
+    public function setPasswordAttribute($value) {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
     // accessor (get after db)
     public function getAvatarAttribute($value) {
 

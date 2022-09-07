@@ -6,11 +6,10 @@
 
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
 
-        @if(auth()->user()->userHasRole('Admin'))
+        @if(auth()->user()->userHasRole('admin'))
             <a class="dropdown-item" href="{{ route('user.profile.edit', auth()->user()) }}">Beállítások</a>
+            <div class="dropdown-divider"></div>
         @endif
-
-        <div class="dropdown-divider"></div>
 
         {{--https://stackoverflow.com/questions/43087648/logging-out-via-a-link-in-laravel--}}
         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

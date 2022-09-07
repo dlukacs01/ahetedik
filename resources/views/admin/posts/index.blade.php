@@ -9,42 +9,29 @@
             <table class="table table-bordered" id="dataTable-posts" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Szerző</th>
                         <th>Cím</th>
+                        <th>Szerző</th>
                         <th>Borító</th>
-                        <th>Elkészült</th>
-                        <th>Frissítve</th>
-                        <th>Törlés</th>
+                        <th>Létrehozva</th>
+                        <th>Szerkesztve</th>
                         <th>Aktív</th>
+                        <th>Törlés</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Id</th>
-                        <th>Szerző</th>
-                        <th>Cím</th>
-                        <th>Borító</th>
-                        <th>Elkészült</th>
-                        <th>Frissítve</th>
-                        <th>Törlés</th>
-                        <th>Aktív</th>
-                    </tr>
-                </tfoot>
                 <tbody>
                     @foreach($posts as $post)
                         <tr>
-                            <td>{{ $post->id }}</td>
-                            <td>{{ $post->user->name }}</td>
-                            <td>
+                            <td class="align-middle">
                                 <a href="{{ route('post.edit', $post) }}">{{ $post->title }}</a>
                             </td>
+                            <td class="align-middle">{{ $post->user->name }}</td>
                             <td>
                                 <img width="100px" src="{{ $post->post_image }}" alt="{{ $post->title }}">
                             </td>
-                            <td>{{ $post->created_at->diffForHumans() }}</td>
-                            <td>{{ $post->updated_at->diffForHumans() }}</td>
-                            <td>
+                            <td class="align-middle">{{ $post->created_at->diffForHumans() }}</td>
+                            <td class="align-middle">{{ $post->updated_at->diffForHumans() }}</td>
+                            <td class="align-middle">{{ $post->active ? 'igen' : 'nem' }}</td>
+                            <td class="align-middle">
                                 <form method="post" action="{{ route('post.destroy', $post) }}">
 
                                     @csrf
@@ -53,14 +40,13 @@
                                     <button type="submit" class="btn btn-danger">Törlés</button>
                                 </form>
                             </td>
-                            <td>{{ $post->active ? 'igen' : 'nem' }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
 
-        <x-admin-pagination :objects="$posts"></x-admin-pagination>
+        <x-admin.pagination :objects="$posts"></x-admin.pagination>
 
     @endsection
 </x-admin-master>

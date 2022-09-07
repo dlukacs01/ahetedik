@@ -1,21 +1,21 @@
 {{-- LAPSZAM --}}
 <div class="card">
     <h5 class="card-header text-center">{{ $post->title }}</h5>
-    <div class="card-body">
+    <div class="card-body pb-1 px-2 pt-2">
 
         @foreach($post->headings as $heading)
 
             {{-- ROVAT --}}
-            <div class="card mb-3">
+            <div class="card mb-2">
                 <h6 class="card-header">{{ $heading->title }}</h6>
-                <div class="card-body">
+                <div class="card-body pb-1 px-2 pt-2">
 
                     @if($heading->type == 'egyeb')
                         @foreach($heading->articles as $article)
 
                             {{-- CIKK (egyeb) --}}
                             <div class="card">
-                                <div class="card-header">{{ $article->title }}</div>
+                                <h6 class="card-header">{{ $article->title }}</h6>
                                 <div class="card-body">{!! $article->body !!}</div>
                             </div>
 
@@ -24,13 +24,13 @@
 
                     @if($heading->type == 'muvek')
 
-                        <div class="row">
+                        <div class="row px-3">
                             @foreach($heading->articles as $article)
 
                                 <div class="col-md-6 px-1 mb-1">
 
                                     {{-- CIKK (muvek) --}}
-                                    <div class="card mb-3 border-1 p-1">
+                                    <div class="card border-1 p-1">
                                         <div class="row no-gutters">
 
                                             <div class="col-md-4">

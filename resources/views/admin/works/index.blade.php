@@ -9,45 +9,31 @@
             <table class="table table-bordered" id="dataTable-works" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Cím</th>
                         <th>Szerző</th>
-                        <th>Borító</th>
                         <th>Megjelenési idő</th>
-                        <th>Elkészült</th>
-                        <th>Frissítve</th>
-                        <th>Törlés</th>
+                        <th>Borító</th>
+                        <th>Létrehozva</th>
+                        <th>Szerkesztve</th>
                         <th>Kiemelt</th>
+                        <th>Törlés</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Id</th>
-                        <th>Cím</th>
-                        <th>Szerző</th>
-                        <th>Borító</th>
-                        <th>Megjelenési idő</th>
-                        <th>Elkészült</th>
-                        <th>Frissítve</th>
-                        <th>Törlés</th>
-                        <th>Kiemelt</th>
-                    </tr>
-                </tfoot>
                 <tbody>
                     @foreach($works as $work)
                         <tr>
-                            <td>{{ $work->id }}</td>
-                            <td>
+                            <td class="align-middle">
                                 <a href="{{route('work.edit', $work) }}">{{ $work->title }}</a>
                             </td>
-                            <td>{{ $work->user->name }}</td>
+                            <td class="align-middle">{{ $work->user->name }}</td>
+                            <td class="align-middle">{{ $work->release_date }}</td>
                             <td>
                                 <img width="100px" src="{{ $work->work_image }}" alt="{{ $work->title }}">
                             </td>
-                            <td>{{ $work->release_date }}</td>
-                            <td>{{ $work->created_at->diffForHumans() }}</td>
-                            <td>{{ $work->updated_at->diffForHumans() }}</td>
-                            <td>
+                            <td class="align-middle">{{ $work->created_at->diffForHumans() }}</td>
+                            <td class="align-middle">{{ $work->updated_at->diffForHumans() }}</td>
+                            <td class="align-middle">{{ $work->active ? 'igen' : 'nem' }}</td>
+                            <td class="align-middle">
                                 <form method="post" action="{{ route('work.destroy', $work )}}">
 
                                     @csrf
@@ -56,14 +42,13 @@
                                     <button type="submit" class="btn btn-danger">Törlés</button>
                                 </form>
                             </td>
-                            <td>{{ $work->active ? 'igen' : 'nem' }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
 
-        <x-admin-pagination :objects="$works"></x-admin-pagination>
+        <x-admin.pagination :objects="$works"></x-admin.pagination>
 
     @endsection
 </x-admin-master>

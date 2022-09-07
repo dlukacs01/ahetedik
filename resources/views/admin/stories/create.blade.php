@@ -3,7 +3,7 @@
 
         <h1 class="mt-4">Új hír</h1>
 
-        <x.admin.forms.stories.create></x.admin.forms.stories.create>
+        <x-admin.forms.stories.create></x-admin.forms.stories.create>
 
     @endsection
 

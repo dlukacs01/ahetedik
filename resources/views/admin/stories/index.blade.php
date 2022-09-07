@@ -9,43 +9,29 @@
             <table class="table table-bordered" id="dataTable-stories" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Cím</th>
                         <th>Szerző</th>
-                        <th>Borító</th>
                         <th>Lejárati idő</th>
-                        <th>Elkészült</th>
-                        <th>Frissítve</th>
+                        <th>Borító</th>
+                        <th>Létrehozva</th>
+                        <th>Szerkesztve</th>
                         <th>Törlés</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Id</th>
-                        <th>Cím</th>
-                        <th>Szerző</th>
-                        <th>Borító</th>
-                        <th>Lejárati idő</th>
-                        <th>Elkészült</th>
-                        <th>Frissítve</th>
-                        <th>Törlés</th>
-                    </tr>
-                </tfoot>
                 <tbody>
                     @foreach($stories as $story)
                         <tr>
-                            <td>{{ $story->id }}</td>
-                            <td>
+                            <td class="align-middle">
                                 <a href="{{ route('story.edit', $story) }}">{{ $story->title }}</a>
                             </td>
-                            <td>{{ $story->user->name }}</td>
+                            <td class="align-middle">{{ $story->user->name }}</td>
+                            <td class="align-middle">{{ $story->expiration_date }}</td>
                             <td>
                                 <img width="100px" src="{{ $story->story_image }}" alt="{{ $story->title }}">
                             </td>
-                            <td>{{ $story->expiration_date }}</td>
-                            <td>{{ $story->created_at->diffForHumans() }}</td>
-                            <td>{{ $story->updated_at->diffForHumans() }}</td>
-                            <td>
+                            <td class="align-middle">{{ $story->created_at->diffForHumans() }}</td>
+                            <td class="align-middle">{{ $story->updated_at->diffForHumans() }}</td>
+                            <td class="align-middle">
                                 <form method="post" action="{{ route('story.destroy', $story) }}">
 
                                     @csrf
@@ -60,7 +46,7 @@
             </table>
         </div>
 
-        <x-admin-pagination :objects="$stories"></x-admin-pagination>
+        <x-admin.pagination :objects="$stories"></x-admin.pagination>
 
     @endsection
 </x-admin-master>

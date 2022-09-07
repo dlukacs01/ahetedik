@@ -8,40 +8,30 @@
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable-headings" width="100%" cellspacing="0">
                 <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Lapszám</th>
-                    <th>Típus</th>
-                    <th>Cím</th>
-                    <th>Elkészült</th>
-                    <th>Frissítve</th>
-                    <th>Törlés</th>
-                </tr>
+                    <tr>
+                        <th>Cím</th>
+                        <th>Lapszám</th>
+                        <th>Típus</th>
+                        <th>Létrehozva</th>
+                        <th>Szerkesztve</th>
+                        <th>Törlés</th>
+                    </tr>
                 </thead>
-                <tfoot>
-                <tr>
-                    <th>Id</th>
-                    <th>Lapszám</th>
-                    <th>Típus</th>
-                    <th>Cím</th>
-                    <th>Elkészült</th>
-                    <th>Frissítve</th>
-                    <th>Törlés</th>
-                </tr>
-                </tfoot>
                 <tbody>
                 @foreach($headings as $heading)
                     <tr>
-                        <td>{{ $heading->id }}</td>
-                        <td>{{ $heading->post->title }}</td>
-                        <td>{{ $heading->type }}</td>
-                        <td>
+                        <td class="align-middle">
                             <a href="{{ route('heading.edit', $heading) }}">{{ $heading->title }}</a>
                         </td>
-                        <td>{{ $heading->created_at->diffForHumans() }}</td>
-                        <td>{{ $heading->updated_at->diffForHumans() }}</td>
-                        <td>
-                            <form method="post" action="{{route('heading.destroy', $heading) }}">
+                        <td class="align-middle">{{ $heading->post->title }}</td>
+                        <td class="align-middle">
+                            @if($heading->type == "muvek") Művek @endif
+                            @if($heading->type == "egyeb") Egyéb @endif
+                        </td>
+                        <td class="align-middle">{{ $heading->created_at->diffForHumans() }}</td>
+                        <td class="align-middle">{{ $heading->updated_at->diffForHumans() }}</td>
+                        <td class="align-middle">
+                            <form method="post" action="{{ route('heading.destroy', $heading) }}">
 
                                 @csrf
                                 @method('DELETE')
@@ -55,7 +45,7 @@
             </table>
         </div>
 
-        <x-admin-pagination :objects="$headings"></x-admin-pagination>
+        <x-admin.pagination :objects="$headings"></x-admin.pagination>
 
     @endsection
 </x-admin-master>
