@@ -154,7 +154,7 @@ class UserController extends Controller
         }
 
         $user->save(); // must be after session
-        return redirect()->route('user.edit', $user);
+        return redirect()->route('user.index');
     }
 
     public function attach(User $user) {

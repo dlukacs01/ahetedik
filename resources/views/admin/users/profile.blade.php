@@ -1,11 +1,11 @@
 <x-admin-master>
     @section('content')
-        <h1 class="mt-4">{{$user->name}}</h1>
+        <h1 class="mt-4">{{ $user->name }}</h1>
 
         <div class="row">
             <div class="col-sm-6">
 
-                <x-admin-forms-user-profile :user="$user"></x-admin-forms-user-profile>
+                <x-admin.forms.users.profile :user="$user"></x-admin.forms.users.profile>
 
             </div>
         </div>

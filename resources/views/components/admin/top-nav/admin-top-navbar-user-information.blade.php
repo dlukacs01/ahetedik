@@ -7,7 +7,7 @@
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
 
         @if(auth()->user()->userHasRole('admin'))
-            <a class="dropdown-item" href="{{ route('user.profile.edit', auth()->user()) }}">Beállítások</a>
+            <a class="dropdown-item" href="{{ route('user.edit', auth()->user()) }}">Beállítások</a>
             <div class="dropdown-divider"></div>
         @endif
 

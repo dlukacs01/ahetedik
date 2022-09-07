@@ -39,6 +39,8 @@ class HomeController extends Controller
         // Get the search value from the request
         $search = request('search');
 
+        $title = "Találatok a következőre: " . $search ." &mdash; " . config('app.name');
+
         $users = User::query()
             ->where('name', 'LIKE', "%{$search}%")
             ->get();
@@ -51,6 +53,7 @@ class HomeController extends Controller
 
         return view('search', [
             'search' => $search,
+            'title' => $title,
             'users' => $users,
             'works' => $works
         ]);
