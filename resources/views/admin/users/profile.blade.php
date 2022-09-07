@@ -19,72 +19,62 @@
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
-                        <tr>
-                            <th>Opciók</th>
-                            <th>Id</th>
-                            <th>Név</th>
-                            <th>Slug</th>
-                            <th>Hozzárendel</th>
-                            <th>Leválaszt</th>
-                        </tr>
-                        </thead>
-                        <tfoot>
-                        <tr>
-                            <th>Opciók</th>
-                            <th>Id</th>
-                            <th>Név</th>
-                            <th>Slug</th>
-                            <th>Hozzárendel</th>
-                            <th>Leválaszt</th>
-                        </tr>
-                        </tfoot>
-                        <tbody>
-                        @foreach($roles as $role)
                             <tr>
-                                <td>
-                                    <input type="checkbox"
-                                    @foreach($user->roles as $user_role)
-                                        @if($user_role->slug == $role->slug)
-                                            checked
-                                        @endif()
-                                    @endforeach
-                                    >
-                                </td>
-                                <td>{{$role->id}}</td>
-                                <td>{{$role->name}}</td>
-                                <td>{{$role->slug}}</td>
-                                <td>
-                                    <form method="post" action="{{route('user.role.attach', $user)}}">
-                                        @method('PUT')
-                                        @csrf
-                                        <input type="hidden" name="role" value="{{$role->id}}">
-                                        <button
-                                            type="submit"
-                                            class="btn btn-primary"
-                                            @if($user->roles->contains($role))
-                                            disabled
-                                            @endif
-                                        >Hozzárendel
-                                        </button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form method="post" action="{{route('user.role.detach', $user)}}">
-                                        @method('PUT')
-                                        @csrf
-                                        <input type="hidden" name="role" value="{{$role->id}}">
-                                        <button
-                                            type="submit"
-                                            class="btn btn-danger"
-                                            @if(!$user->roles->contains($role))
-                                            disabled
-                                            @endif
-                                        >Leválaszt
-                                        </button>
-                                    </form>
-                                </td>
+                                <th>Opciók</th>
+                                <th>Név</th>
+                                <th>Hozzárendel</th>
+                                <th>Leválaszt</th>
                             </tr>
-                        @endforeach
+                        </thead>
+                        <tbody>
+                            @foreach($roles as $role)
+                                <tr>
+                                    <td>
+                                        <input type="checkbox"
+                                        @foreach($user->roles as $user_role)
+                                            @if($user_role->slug == $role->slug)
+                                                checked
+                                            @endif()
+                                        @endforeach
+                                        >
+                                    </td>
+                                    <td>{{ $role->name }}</td>
+                                    <td>
+                                        <form method="post" action="{{ route('user.role.attach', $user) }}">
+
+                                            @method('PUT')
+                                            @csrf
+
+                                            <input type="hidden" name="role" value="{{ $role->id }}">
+                                            <button
+                                                type="submit"
+                                                class="btn btn-primary"
+                                                @if($user->roles->contains($role))
+                                                disabled
+                                                @endif
+                                            >Hozzárendel
+                                            </button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form method="post" action="{{ route('user.role.detach', $user) }}">
+
+                                            @method('PUT')
+                                            @csrf
+
+                                            <input type="hidden" name="role" value="{{ $role->id }}">
+                                            <button
+                                                type="submit"
+                                                class="btn btn-danger"
+                                                @if(!$user->roles->contains($role))
+                                                disabled
+                                                @endif
+                                            >Leválaszt
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
