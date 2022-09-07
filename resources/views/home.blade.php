@@ -5,9 +5,11 @@
     <div class="row">
         <div class="col-md-8">
 
-            @foreach($posts as $post)
-                <x-home.post :post="$post"></x-home.post>
-            @endforeach
+            <div class="mt-4">
+                @foreach($posts as $post)
+                    <x-home.post :post="$post"></x-home.post>
+                @endforeach
+            </div>
 
         </div>
 

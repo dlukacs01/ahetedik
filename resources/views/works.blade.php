@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-8">
 
-                <h1 class="mt-4 mb-3">{{$category->name}}</h1>
+                <h1 class="mt-4 mb-3">{{ $category->name }}</h1>
 
                 @foreach($works as $work)
                     <x-home.work-card :work="$work"></x-home.work-card>
