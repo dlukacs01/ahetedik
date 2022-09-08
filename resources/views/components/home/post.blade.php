@@ -1,5 +1,5 @@
 {{-- LAPSZAM --}}
-<div class="card">
+<div class="card mb-2">
     <h5 class="card-header text-center">{{ $post->title }}</h5>
     <div class="card-body pb-1 px-2 pt-2">
 
@@ -30,7 +30,7 @@
                                 <div class="col-md-6 px-1 mb-1">
 
                                     {{-- CIKK (muvek) --}}
-                                    <div class="card border-1 p-1">
+                                    <div class="card p-1">
                                         <div class="row no-gutters">
 
                                             <div class="col-md-4">

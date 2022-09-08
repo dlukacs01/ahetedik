@@ -15,9 +15,10 @@ class CreateWorksCategoriesTable extends Migration
     {
         Schema::create('category_work', function (Blueprint $table) {
             $table->primary(['work_id', 'category_id']);
-            // every time we delete a work that owns a category, its going to delete that works category with it
+
             $table->foreignId('work_id')->constrained()->onDelete('cascade');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
+
             $table->timestamps();
         });
     }

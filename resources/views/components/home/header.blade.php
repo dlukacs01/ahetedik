@@ -26,5 +26,6 @@
     <link href="{{ asset('css/custom/home/authors.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom/home/authors_media.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom/home/categories.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom/home/works.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom/profile.css') }}" rel="stylesheet">
 </head>

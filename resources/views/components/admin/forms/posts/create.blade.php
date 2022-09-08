@@ -22,7 +22,22 @@
     </div>
 
     <div class="form-group required">
-        <label for="type" class="control-label">Megjelenik a főoldalon?</label>
+        <label for="release_date" class="control-label">Megjelenési idő</label>
+        <input type="date"
+               name="release_date"
+               id="release_date"
+               class="form-control @error('release_date') is-invalid @enderror"
+               required>
+
+        @error('release_date')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="form-group required">
+        <label for="active" class="control-label">Megjelenik a főoldalon?</label>
         <select name="active"
                 id="active"
                 class="form-control @error('active') is-invalid @enderror">

@@ -19,7 +19,6 @@ class CreateArticlesTable extends Migration
             // every time we delete a heading that owns an article, its going to delete that headings article with it
             $table->foreignId('heading_id')->constrained()->onDelete('cascade');
 
-            // every time we delete a user that owns an article, its going to delete that users article with it
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
 
             $table->string('title')->nullable();

@@ -3,7 +3,7 @@
 
         <h1 class="mt-4">Cikk szerkesztése</h1>
 
-        <x.admin.forms.articles.edit :article="$article"></x.admin.forms.articles.edit>
+        <x-admin.forms.articles.edit :article="$article" :posts="$posts"></x-admin.forms.articles.edit>
 
     @endsection
 

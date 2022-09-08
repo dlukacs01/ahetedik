@@ -15,8 +15,10 @@ class CreateHeadingsTable extends Migration
     {
         Schema::create('headings', function (Blueprint $table) {
             $table->id();
+
             // every time we delete a post that owns a heading, its going to delete that posts heading with it
             $table->foreignId('post_id')->constrained()->onDelete('cascade');
+
             $table->string('type');
             $table->string('title');
             $table->timestamps();

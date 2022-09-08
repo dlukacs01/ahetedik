@@ -1,9 +1,9 @@
 /**************************/
-/* ARTICLES */
+/* WORKS */
 /**************************/
 
-.article-user-avatar {
+.work-card-img {
     width: 100%;
-    min-height: 200px;
+    height: 100%;
     object-fit: cover;
 }

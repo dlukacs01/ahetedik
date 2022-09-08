@@ -21,7 +21,7 @@ class Category extends Model
             return $value;
         }
 
-        if (strpos($value, 'default_category') !== FALSE) {
+        if (strpos($value, 'default_category_image') !== FALSE) {
             return asset('web/' . $value);
         }
 

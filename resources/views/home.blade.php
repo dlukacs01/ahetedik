@@ -7,7 +7,19 @@
 
             <div class="mt-4">
                 @foreach($posts as $post)
-                    <x-home.post :post="$post"></x-home.post>
+
+                    @if($post->status == 'piszkozat')
+                        @if(Auth::check())
+                            @if(auth()->user()->userHasRole('editor') or auth()->user()->userHasRole('admin'))
+                                <x-home.post :post="$post"></x-home.post>
+                            @endif
+                        @endif
+                    @endif
+
+                    @if($post->status == 'eles')
+                        <x-home.post :post="$post"></x-home.post>
+                    @endif
+
                 @endforeach
             </div>
 

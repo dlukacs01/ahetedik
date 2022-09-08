@@ -12,9 +12,10 @@ class WorkController extends Controller
     public function works($category_slug) {
 
         $category = Category::where('slug', $category_slug)->first();
-        $title = $title = config('app.name') . " &mdash; " . $category->title;
+        $title = config('app.name') . " &mdash; " . $category->name;
         $works = $category->works()
             ->whereDate('release_date', '<=', date('Y-m-d'))
+            ->orderBy('release_date', 'desc')
             ->orderBy('id', 'desc')
             ->paginate(config('custom.home.works.pagination.items_per_page'));
 
@@ -37,7 +38,9 @@ class WorkController extends Controller
     }
 
     public function index() {
-        $works = Work::orderBy('id', 'desc')->paginate(config('custom.admin.tables.pagination.items_per_page'));
+        $works = Work::orderBy('release_date', 'desc')
+            ->orderBy('id', 'desc')
+            ->paginate(config('custom.admin.tables.pagination.items_per_page'));
         return view('admin.works.index', ['works' => $works]);
     }
 

@@ -26,7 +26,11 @@ class HomeController extends Controller
     public function index() {
 
         $title = config('app.name') . " &mdash; Független Irodalmi, Kulturális Folyóirat és Alkotóközösség";
-        $posts = Post::where('active',1)->orderBy('id', 'desc')->get();
+
+        $posts = Post::where('active', 1)
+                ->orderBy('status', 'desc')
+                ->orderBy('release_date', 'desc')
+                ->get();
 
         return view('home', [
             'title' => $title,

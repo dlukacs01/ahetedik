@@ -3,7 +3,7 @@
 
         <h1 class="mt-4">Mű szerkesztése</h1>
 
-        <x-admin.forms.works.edit :work="$work">
+        <x-admin.forms.works.edit :work="$work" :categories="$categories" :users="$users"></x-admin.forms.works.edit>
 
     @endsection
 

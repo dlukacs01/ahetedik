@@ -3,7 +3,11 @@
     <div class="row no-gutters">
 
         <div class="col-md-4">
-            <img src="{{ $work->work_image }}" class="card-img" alt="...">
+            @if(strpos($work->work_image, 'default_work_image') !== FALSE and strpos($work->user->avatar, 'default_avatar') === FALSE)
+                <img src="{{ $work->user->avatar }}" class="card-img work-card-img" alt="...">
+            @else
+                <img src="{{ $work->work_image }}" class="card-img work-card-img" alt="...">
+            @endif
         </div>
 
         <div class="col-md-8">
@@ -22,7 +26,7 @@
 
                 <p class="card-text mb-1">
                     <small>
-                        Kategória(ák):
+                        Kategóriák:
                         <br>
                         @foreach($work->categories as $category)
                             <a href="{{ route('work.works', $category->slug) }}" class="ml-2">{{ $category->name }}</a>

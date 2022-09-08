@@ -21,7 +21,39 @@
     </div>
 
     <div class="form-group required">
-        <label for="type" class="control-label">Megjelenik a főoldalon?</label>
+        <label for="release_date" class="control-label">Megjelenési idő</label>
+        <input type="date"
+               name="release_date"
+               id="release_date"
+               class="form-control @error('release_date') is-invalid @enderror"
+               required
+               value="{{ $post->release_date }}">
+
+        @error('release_date')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="form-group required">
+        <label for="status" class="control-label">Megjelenik a főoldalon?</label>
+        <select name="status"
+                id="status"
+                class="form-control @error('status') is-invalid @enderror">
+            <option value="piszkozat" {{ $post->status == 'piszkozat' ? 'selected' : '' }}>Piszkozat</option>
+            <option value="eles" {{ $post->status == 'eles' ? 'selected' : '' }}>Éles</option>
+        </select>
+
+        @error('status')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="form-group required">
+        <label for="active" class="control-label">Megjelenik a főoldalon?</label>
         <select name="active"
                 id="active"
                 class="form-control @error('active') is-invalid @enderror">

@@ -25,7 +25,7 @@ class Work extends Model
             return $value;
         }
 
-        if (strpos($value, 'work_image_default') !== FALSE) {
+        if (strpos($value, 'default_work_image') !== FALSE) {
             return asset('web/' . $value);
         }
 

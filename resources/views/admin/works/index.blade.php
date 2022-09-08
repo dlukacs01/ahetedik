@@ -13,9 +13,9 @@
                         <th>Szerző</th>
                         <th>Megjelenési idő</th>
                         <th>Borító</th>
+                        <th>Kiemelt</th>
                         <th>Létrehozva</th>
                         <th>Szerkesztve</th>
-                        <th>Kiemelt</th>
                         <th>Törlés</th>
                     </tr>
                 </thead>
@@ -28,11 +28,15 @@
                             <td class="align-middle">{{ $work->user->name }}</td>
                             <td class="align-middle">{{ $work->release_date }}</td>
                             <td>
-                                <img width="100px" src="{{ $work->work_image }}" alt="{{ $work->title }}">
+                                @if(strpos($work->work_image, 'default_work_image') !== FALSE and strpos($work->user->avatar, 'default_avatar') === FALSE)
+                                    <img width="100px" src="{{ $work->user->avatar }}" alt="{{ $work->title }}">
+                                @else
+                                    <img width="100px" src="{{ $work->work_image }}" alt="{{ $work->title }}">
+                                @endif
                             </td>
+                            <td class="align-middle">{{ $work->active ? 'igen' : 'nem' }}</td>
                             <td class="align-middle">{{ $work->created_at->diffForHumans() }}</td>
                             <td class="align-middle">{{ $work->updated_at->diffForHumans() }}</td>
-                            <td class="align-middle">{{ $work->active ? 'igen' : 'nem' }}</td>
                             <td class="align-middle">
                                 <form method="post" action="{{ route('work.destroy', $work )}}">
 

@@ -14,7 +14,11 @@ class PostController extends Controller
     public function posts() {
 
         $title = config('app.name') . " &mdash; Korábbi lapszámok";
-        $posts = Post::where('active',0)->orderBy('id', 'desc')->paginate(config('custom.home.posts.pagination.items_per_page'));
+
+        $posts = Post::where('active', 0)
+            ->where('status', 'eles')
+            ->orderBy('release_date', 'desc')
+            ->paginate(config('custom.home.posts.pagination.items_per_page'));
 
         return view('posts', [
             'title' => $title,
@@ -34,7 +38,9 @@ class PostController extends Controller
     }
 
     public function index() {
-        $posts = Post::orderBy('id', 'desc')->paginate(config('custom.admin.tables.pagination.items_per_page'));
+        $posts = Post::orderBy('status', 'desc')
+            ->orderBy('release_date', 'desc')
+            ->paginate(config('custom.admin.tables.pagination.items_per_page'));
         return view('admin.posts.index', ['posts' => $posts]);
     }
 
@@ -54,6 +60,7 @@ class PostController extends Controller
         // VALIDATION
         request()->validate([
             'title' => ['required', 'string', 'max:30'],
+            'release_date' => ['required', 'date'],
             'post_image' => ['required', 'image'],
             'active' => ['required', 'integer']
         ]);
@@ -61,6 +68,8 @@ class PostController extends Controller
         // VALUES
         $inputs['title'] = request('title');
         $inputs['slug'] = Str::of(Str::lower(request('title')))->slug('-');
+
+        $inputs['release_date'] = request('release_date');
 
         if(request('post_image')){
             $inputs['post_image'] = request('post_image')->store('images');
@@ -90,7 +99,9 @@ class PostController extends Controller
         // VALIDATION
         request()->validate([
             'title' => ['required', 'string', 'max:30'],
-            'post_image' => ['required', 'image'],
+            'release_date' => ['required', 'date'],
+            'post_image' => ['nullable', 'image'],
+            'status' => ['required', 'string', 'max:30'],
             'active' => ['required', 'integer']
         ]);
 
@@ -98,10 +109,13 @@ class PostController extends Controller
         $post->title = request('title');
         $post->slug = Str::of(Str::lower(request('title')))->slug('-');
 
+        $post->release_date = request('release_date');
+
         if(request('post_image')){
             $post->post_image = request('post_image')->store('images');
         }
 
+        $post->status = request('status');
         $post->active = request('active');
 
         // SAVE, SESSION, REDIRECT

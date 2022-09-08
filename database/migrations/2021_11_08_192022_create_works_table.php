@@ -15,22 +15,15 @@ class CreateWorksTable extends Migration
     {
         Schema::create('works', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug');
 
-            $table->date('release_date');
-
-            // every time we delete a category that owns a work, its going to delete the categories work with it
-            // $table->foreignId('category_id')->constrained()->onDelete('cascade');
-
-            // every time we delete a user that owns a post, its going to delete that users post with it
+            // every time we delete a user that owns a work, its going to delete that users work with it
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
 
-            // not every work has its own image
-            $table->text('work_image')->nullable();
-
-            $table->text('body');
-
+            $table->string('title');
+            $table->string('slug');
+            $table->date('release_date');
+            $table->text('work_image')->nullable()->default('images/default_work_image.jpg');
+            $table->mediumText('body');
             $table->integer('active');
             $table->timestamps();
         });

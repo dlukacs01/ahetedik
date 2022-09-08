@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'version_no' => "0.7",
+    'version_no' => "0.7.1",
     'older_posts_url' => "http://ahetedik.hu/idaig-megjelent-kiadvanyaink.html",
     'home' => array(
         'works' => array(

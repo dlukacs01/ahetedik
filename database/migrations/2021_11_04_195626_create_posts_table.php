@@ -15,13 +15,15 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+
             // every time we delete a user that owns a post, its going to delete that users post with it
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
             $table->string('title');
             $table->string('slug');
-            // not every post has its own image
-            $table->text('post_image')->nullable();
-            // $table->text('body');
+            $table->date('release_date');
+            $table->text('post_image')->nullable()->default('images/default_post_image.jpg');
+            $table->string('status')->default('piszkozat'); // draft or live
             $table->integer('active');
             $table->timestamps();
         });

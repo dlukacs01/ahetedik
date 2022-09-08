@@ -25,6 +25,10 @@ class Post extends Model
             return $value;
         }
 
+        if (strpos($value, 'default_post_image') !== FALSE) {
+            return asset('web/' . $value);
+        }
+
         return asset('storage/' . $value);
     }
 }

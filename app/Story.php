@@ -21,6 +21,10 @@ class Story extends Model
             return $value;
         }
 
+        if (strpos($value, 'default_story_image') !== FALSE) {
+            return asset('web/' . $value);
+        }
+
         return asset('storage/' . $value);
     }
 }
