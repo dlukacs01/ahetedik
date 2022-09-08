@@ -3,11 +3,7 @@
     <div class="row no-gutters">
 
         <div class="col-md-4">
-            @if(strpos($work->work_image, 'default_work_image') !== FALSE and strpos($work->user->avatar, 'default_avatar') === FALSE)
-                <img src="{{ $work->user->avatar }}" class="card-img work-card-img" alt="...">
-            @else
-                <img src="{{ $work->work_image }}" class="card-img work-card-img" alt="...">
-            @endif
+            <img src="{{ $work->work_image }}" class="card-img work-card-img" alt="...">
         </div>
 
         <div class="col-md-8">

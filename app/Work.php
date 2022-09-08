@@ -21,10 +21,17 @@ class Work extends Model
 
     public function getWorkImageAttribute($value) {
 
+        // there is an uploaded image
         if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
             return $value;
         }
 
+        // no image but there is avatar
+        if(strpos($value, 'default_work_image') !== FALSE and strpos($this->user->avatar, 'default_avatar') === FALSE) {
+            return $this->user->avatar;
+        }
+
+        // no image, no avatar
         if (strpos($value, 'default_work_image') !== FALSE) {
             return asset('web/' . $value);
         }

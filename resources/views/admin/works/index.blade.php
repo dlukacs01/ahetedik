@@ -28,11 +28,7 @@
                             <td class="align-middle">{{ $work->user->name }}</td>
                             <td class="align-middle">{{ $work->release_date }}</td>
                             <td>
-                                @if(strpos($work->work_image, 'default_work_image') !== FALSE and strpos($work->user->avatar, 'default_avatar') === FALSE)
-                                    <img width="100px" src="{{ $work->user->avatar }}" alt="{{ $work->title }}">
-                                @else
-                                    <img width="100px" src="{{ $work->work_image }}" alt="{{ $work->title }}">
-                                @endif
+                                <img width="100px" src="{{ $work->work_image }}" alt="{{ $work->title }}">
                             </td>
                             <td class="align-middle">{{ $work->active ? 'igen' : 'nem' }}</td>
                             <td class="align-middle">{{ $work->created_at->diffForHumans() }}</td>
