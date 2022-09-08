@@ -3,6 +3,8 @@
 
     <x-home.header :title="$title"></x-home.header>
 
+    <x-home-analytics></x-home-analytics>
+
     <body>
 
         <x-home.topnav></x-home.topnav>
