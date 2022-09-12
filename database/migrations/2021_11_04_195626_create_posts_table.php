@@ -21,7 +21,6 @@ class CreatePostsTable extends Migration
 
             $table->string('title');
             $table->string('slug');
-            $table->date('release_date');
             $table->text('post_image')->nullable()->default('images/default_post_image.jpg');
             $table->string('status')->default('piszkozat'); // draft or live
             $table->integer('active');
