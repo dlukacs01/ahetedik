@@ -16,7 +16,7 @@ class AddReleaseDateToPostsTable extends Migration
         Schema::table('posts', function (Blueprint $table) {
             //
 
-            $table->date('release_date')->after('slug');
+            $table->date('release_date')->after('slug')->default(date('Y-m-d'));
         });
     }
 
