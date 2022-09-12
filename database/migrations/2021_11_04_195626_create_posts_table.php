@@ -21,7 +21,7 @@ class CreatePostsTable extends Migration
 
             $table->string('title');
             $table->string('slug');
-            $table->text('post_image')->nullable()->default('images/default_post_image.jpg');
+            $table->text('post_image')->nullable();
             $table->integer('active');
             $table->timestamps();
         });

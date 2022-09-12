@@ -22,7 +22,7 @@ class CreateWorksTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->date('release_date');
-            $table->text('work_image')->nullable()->default('images/default_work_image.jpg');
+            $table->text('work_image')->nullable();
             $table->text('body');
             $table->integer('active');
             $table->timestamps();

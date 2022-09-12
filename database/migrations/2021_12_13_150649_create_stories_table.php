@@ -22,7 +22,7 @@ class CreateStoriesTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->date('expiration_date');
-            $table->text('story_image')->nullable()->default('images/default_story_image.jpg');
+            $table->text('story_image')->nullable();
             $table->text('body');
             $table->timestamps();
         });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class AlterTableStoriesChangeStoryImage extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->string('slug')->unique();
-            $table->text('category_image')->nullable();
-            $table->timestamps();
+
+        DB::statement('ALTER TABLE `stories` CHANGE COLUMN `story_image` `story_image` TEXT DEFAULT "images/default_story_image.jpg";');
+
+        Schema::table('stories', function (Blueprint $table) {
+            //
         });
     }
 
@@ -29,6 +28,8 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::table('stories', function (Blueprint $table) {
+            //
+        });
     }
 }
