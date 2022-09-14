@@ -37,7 +37,7 @@
     </div>
 
     <div class="form-group required">
-        <label for="status" class="control-label">Megjelenik a főoldalon?</label>
+        <label for="status" class="control-label">Státusz</label>
         <select name="status"
                 id="status"
                 class="form-control @error('status') is-invalid @enderror">
