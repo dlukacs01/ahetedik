@@ -86,7 +86,7 @@ class PostController extends Controller
     public function edit(Post $post) {
 
         // POLICY
-        $this->authorize('view', $post);
+        // $this->authorize('view', $post);
 
         return view('admin.posts.edit', ['post' => $post]);
     }
@@ -94,7 +94,7 @@ class PostController extends Controller
     public function update(Post $post) {
 
         // POLICY
-        $this->authorize('update', $post);
+        // $this->authorize('update', $post);
 
         // VALIDATION
         request()->validate([
