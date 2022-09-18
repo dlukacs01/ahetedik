@@ -9,6 +9,7 @@
             <table class="table table-bordered" id="dataTable-works" width="100%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Cím</th>
                         <th>Szerző</th>
                         <th>Megjelenési idő</th>
@@ -22,6 +23,7 @@
                 <tbody>
                     @foreach($works as $work)
                         <tr>
+                            <td class="align-middle">{{ $work->id }}</td>
                             <td class="align-middle">
                                 <a href="{{route('work.edit', $work) }}">{{ $work->title }}</a>
                             </td>

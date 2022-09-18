@@ -16,7 +16,7 @@ $(document).ready(function() {
       "order": [[ 0, "desc" ]] // Order on init. # is the column, starting at 0
   });
   $('#dataTable-users').DataTable({
-      "order": [[ 3, "asc" ]] // Order on init. # is the column, starting at 0
+      "order": [[ 0, "asc" ]] // Order on init. # is the column, starting at 0
   });
 });
 

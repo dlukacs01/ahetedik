@@ -9,6 +9,7 @@
             <table class="table table-bordered" id="dataTable-posts" width="100%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Cím</th>
                         <th>Szerző</th>
                         <th>Megjelenési idő</th>
@@ -23,6 +24,7 @@
                 <tbody>
                     @foreach($posts as $post)
                         <tr>
+                            <td class="align-middle">{{ $post->id }}</td>
                             <td class="align-middle">
                                 <a href="{{ route('post.edit', $post) }}">{{ $post->title }}</a>
                             </td>

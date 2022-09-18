@@ -9,6 +9,7 @@
             <table class="table table-bordered" id="dataTable-headings" width="100%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Cím</th>
                         <th>Lapszám</th>
                         <th>Típus</th>
@@ -20,6 +21,7 @@
                 <tbody>
                 @foreach($headings as $heading)
                     <tr>
+                        <td class="align-middle">{{ $heading->id }}</td>
                         <td class="align-middle">
                             <a href="{{ route('heading.edit', $heading) }}">{{ $heading->title }}</a>
                         </td>
