@@ -15,7 +15,7 @@ class ArticleController extends Controller
     // ***** CIKKEK *****
 
     public function index(){
-        $articles = Article::orderBy('id', 'desc')->paginate(config('custom.admin.tables.pagination.items_per_page'));
+        $articles = Article::orderBy('id', 'desc')->get();
         return view('admin.articles.index', ['articles' => $articles]);
     }
 

@@ -48,7 +48,5 @@
             </table>
         </div>
 
-        <x-admin.pagination :objects="$stories"></x-admin.pagination>
-
     @endsection
 </x-admin-master>

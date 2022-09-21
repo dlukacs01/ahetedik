@@ -38,9 +38,7 @@ class PostController extends Controller
     }
 
     public function index() {
-        $posts = Post::orderBy('status', 'desc')
-            ->orderBy('release_date', 'desc')
-            ->paginate(config('custom.admin.tables.pagination.items_per_page'));
+        $posts = Post::orderBy('id', 'desc')->get();
         return view('admin.posts.index', ['posts' => $posts]);
     }
 

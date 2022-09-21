@@ -55,7 +55,5 @@
             </table>
         </div>
 
-        <x-admin.pagination :objects="$posts"></x-admin.pagination>
-
     @endsection
 </x-admin-master>

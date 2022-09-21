@@ -46,7 +46,7 @@ class UserController extends Controller
     }
 
     public function index() {
-        $users = User::orderBy('name')->paginate(config('custom.admin.tables.pagination.items_per_page'));
+        $users = User::orderBy('name')->get();
         return view('admin.users.index', ['users' => $users]);
     }
 

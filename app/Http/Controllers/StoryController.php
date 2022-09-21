@@ -34,7 +34,7 @@ class StoryController extends Controller
     }
 
     public function index() {
-        $stories = Story::orderBy('id', 'desc')->paginate(config('custom.admin.tables.pagination.items_per_page'));
+        $stories = Story::orderBy('id', 'desc')->get();
         return view('admin.stories.index', ['stories' => $stories]);
     }
 

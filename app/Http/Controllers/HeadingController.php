@@ -14,7 +14,7 @@ class HeadingController extends Controller
     // ***** ROVATOK *****
 
     public function index(){
-        $headings = Heading::orderBy('id', 'desc')->paginate(config('custom.admin.tables.pagination.items_per_page'));
+        $headings = Heading::orderBy('id', 'desc')->get();
         return view('admin.headings.index', ['headings' => $headings]);
     }
 
