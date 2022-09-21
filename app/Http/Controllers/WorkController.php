@@ -38,7 +38,7 @@ class WorkController extends Controller
     }
 
     public function index() {
-        $works = Work::orderBy('id', 'desc')->paginate(config('custom.admin.tables.pagination.items_per_page'));
+        $works = Work::orderBy('id', 'desc');
         return view('admin.works.index', ['works' => $works]);
     }
 
