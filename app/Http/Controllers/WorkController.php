@@ -38,7 +38,7 @@ class WorkController extends Controller
     }
 
     public function index() {
-        $works = Work::orderBy('id', 'desc');
+        $works = Work::orderBy('id', 'desc')->get();
         return view('admin.works.index', ['works' => $works]);
     }
 
