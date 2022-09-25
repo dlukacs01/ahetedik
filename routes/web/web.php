@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // Auth::routes();
-Auth::routes(['register' => true]); // DISABLE REGISTRATION
+Auth::routes(['register' => false]); // DISABLE REGISTRATION
 
 /**************************/
 /* HOME */
