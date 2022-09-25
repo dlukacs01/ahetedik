@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Detail;
 use App\Post;
 use App\User;
 use App\Work;
@@ -31,6 +32,11 @@ class HomeController extends Controller
                 ->orderBy('status', 'desc')
                 ->orderBy('release_date', 'desc')
                 ->get();
+
+        // increment home_view_count
+        $detail = Detail::findOrFail(1);
+        $detail->home_view_count++;
+        $detail->save();
 
         return view('home', [
             'title' => $title,

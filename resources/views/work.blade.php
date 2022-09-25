@@ -16,6 +16,7 @@
 
                 <!-- Date/Time -->
                 <p>Közzétéve {{ $work->created_at->diffForHumans() }}</p>
+                <p>Megtekintések száma: {{ $work->view_count }}</p>
 
                 <hr>
 

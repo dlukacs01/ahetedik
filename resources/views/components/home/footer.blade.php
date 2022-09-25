@@ -7,6 +7,9 @@
             <a href="{{ route('meta.impresszum') }}" class="mr-1 small text-secondary">Impresszum</a>
             <a href="{{ route('meta.gdpr') }}" class="mr-1 small text-secondary">Általános Adatvédelmi Nyilatkozat</a>
         </p>
+        <p class="small">
+            Oldalletöltés száma: {{ App\Detail::findOrFail(1)->home_view_count }}
+        </p>
         <p class="m-0 small">
             &copy; {{ date('Y') }} {{ config('app.name') }} &middot; v{{ config('custom.version_no') }}
         </p>

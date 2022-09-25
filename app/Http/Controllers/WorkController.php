@@ -31,6 +31,10 @@ class WorkController extends Controller
         $work = Work::findOrFail($work_id);
         $title = config('app.name') . " &mdash; " . $work->title;
 
+        // increment view_count
+        $work->view_count++;
+        $work->save();
+
         return view('work', [
             'work' => $work,
             'title' => $title
