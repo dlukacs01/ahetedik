@@ -80,7 +80,7 @@ class StoryController extends Controller
     public function edit(Story $story) {
 
         // POLICY
-        $this->authorize('view', $story);
+        // $this->authorize('view', $story);
 
         return view('admin.stories.edit', ['story' => $story]);
     }
@@ -88,7 +88,7 @@ class StoryController extends Controller
     public function update(Story $story) {
 
         // POLICY
-        $this->authorize('update', $story);
+        // $this->authorize('update', $story);
 
         // VALIDATION
         request()->validate([
