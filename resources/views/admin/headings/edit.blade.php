@@ -3,7 +3,7 @@
 
         <h1 class="mt-4">Rovat szerkesztése</h1>
 
-        <x-admin.forms.headings.edit :heading="$heading"></x-admin.forms.headings.edit>
+        <x-admin.forms.headings.edit :heading="$heading" :posts="$posts"></x-admin.forms.headings.edit>
 
     @endsection
 </x-admin-master>
