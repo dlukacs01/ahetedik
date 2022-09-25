@@ -54,7 +54,7 @@ class HeadingController extends Controller
     public function edit(Heading $heading){
 
         // POLICY
-        $this->authorize('view', $heading);
+        // $this->authorize('view', $heading);
 
         $posts = Post::all();
         return view('admin.headings.edit', [
@@ -66,7 +66,7 @@ class HeadingController extends Controller
     public function update(Heading $heading){
 
         // POLICY
-        $this->authorize('update', $heading);
+        // $this->authorize('update', $heading);
 
         // VALIDATION
         request()->validate([

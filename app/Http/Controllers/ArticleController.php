@@ -89,7 +89,7 @@ class ArticleController extends Controller
     public function edit(Article $article, Request $request){
 
         // POLICY
-        $this->authorize('view', $article);
+        // $this->authorize('view', $article);
 
         if($request->ajax()) {
 
@@ -141,7 +141,7 @@ class ArticleController extends Controller
     public function update(Article $article){
 
         // POLICY
-        $this->authorize('update', $article);
+        // $this->authorize('update', $article);
 
         // VALIDATION
         request()->validate([
