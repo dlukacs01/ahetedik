@@ -65,9 +65,9 @@ class UserController extends Controller
 
         // VALIDATION
         request()->validate([
-            'username' => ['required', 'string', 'alpha_dash', 'max:30', 'unique:users'],
-            'name' => ['required', 'string', 'max:30'],
-            'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
+            'username' => ['required', 'string', 'alpha_dash', 'max:200', 'unique:users'],
+            'name' => ['required', 'string', 'max:200'],
+            'email' => ['required', 'string', 'email', 'max:200', 'unique:users'],
             'cv' => ['required', 'string', 'max:100000'],
             'password' => [
                 'required',
@@ -115,9 +115,10 @@ class UserController extends Controller
 
         // VALIDATIONS
         request()->validate([
-            'username' => ['required', 'string', 'alpha_dash', 'max:30', 'unique:users,id'],
-            'name' => ['required', 'string', 'max:30'],
-            'email' => ['required', 'string', 'email', 'max:50', 'unique:users,id'],
+            'username' => ['required', 'string', 'alpha_dash', 'max:200', 'unique:users,id'],
+            'name' => ['required', 'string', 'max:200'],
+            'email' => ['required', 'string', 'email', 'max:200', 'unique:users,id'],
+            'cv' => ['nullable', 'string', 'max:100000'],
             'password' => [
                 'nullable',
                 'string',
@@ -128,8 +129,7 @@ class UserController extends Controller
                 'regex:/[0-9]/',      // must contain at least one digit
                 'regex:/[@$!%*#?&]/', // must contain a special character
             ],
-            'avatar' => ['nullable', 'image'],
-            'cv' => ['nullable', 'string', 'max:100000']
+            'avatar' => ['nullable', 'image']
         ]);
 
         // VALUES

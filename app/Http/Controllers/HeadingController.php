@@ -35,8 +35,8 @@ class HeadingController extends Controller
         // VALIDATION
         request()->validate([
             'post_id' => ['required', 'integer'],
-            'type' => ['required', 'string', 'max:30'],
-            'title' => ['required', 'string', 'max:30']
+            'type' => ['required', 'string', 'max:200'],
+            'title' => ['required', 'string', 'max:200']
         ]);
 
         // VALUES
@@ -71,8 +71,8 @@ class HeadingController extends Controller
         // VALIDATION
         request()->validate([
             'post_id' => ['required', 'integer'],
-            'type' => ['required', 'string', 'max:30'],
-            'title' => ['required', 'string', 'max:30']
+            'type' => ['required', 'string', 'max:200'],
+            'title' => ['required', 'string', 'max:200']
         ]);
 
         // VALUES

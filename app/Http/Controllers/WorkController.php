@@ -67,7 +67,7 @@ class WorkController extends Controller
 
         // VALIDATION
         request()->validate([
-            'title' => ['required', 'string', 'max:30'],
+            'title' => ['required', 'string', 'max:200'],
             'release_date' => ['required', 'date'],
             'user_id' => ['required', 'integer'],
             'work_image' => ['nullable', 'image'],
@@ -132,7 +132,7 @@ class WorkController extends Controller
 
         // VALIDATION
         request()->validate([
-            'title' => ['required', 'string', 'max:30'],
+            'title' => ['required', 'string', 'max:200'],
             'release_date' => ['required', 'date'],
             'user_id' => ['required', 'integer'],
             'work_image' => ['nullable', 'image'],

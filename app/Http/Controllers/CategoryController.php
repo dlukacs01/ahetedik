@@ -40,7 +40,7 @@ class CategoryController extends Controller
 
         // VALIDATION
         request()->validate([
-            'name' => ['required', 'string', 'max:30'],
+            'name' => ['required', 'string', 'max:200'],
             'category_image' => ['required', 'image']
         ]);
 
@@ -66,8 +66,7 @@ class CategoryController extends Controller
 
         // VALIDATION
         request()->validate([
-            'name' => ['required', 'string', 'max:30'],
-            'slug' => ['required', 'string', 'max:30'],
+            'name' => ['required', 'string', 'max:200'],
             'category_image' => ['required', 'image'],
         ]);
 

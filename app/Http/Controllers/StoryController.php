@@ -53,7 +53,7 @@ class StoryController extends Controller
 
         // VALIDATION
         request()->validate([
-            'title' => ['required', 'string', 'max:30'],
+            'title' => ['required', 'string', 'max:200'],
             'expiration_date' => ['required', 'date'],
             'story_image' => ['required', 'image'],
             'body' => ['required', 'string', 'max:100000']
@@ -92,7 +92,7 @@ class StoryController extends Controller
 
         // VALIDATION
         request()->validate([
-            'title' => ['required', 'string', 'max:30'],
+            'title' => ['required', 'string', 'max:200'],
             'expiration_date' => ['required', 'date'],
             'story_image' => ['required', 'image'],
             'body' => ['required', 'string', 'max:100000']

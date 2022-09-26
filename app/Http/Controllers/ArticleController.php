@@ -62,7 +62,7 @@ class ArticleController extends Controller
         // VALIDATION
         request()->validate([
             'heading_id' => ['required', 'integer'],
-            'title' => ['nullable', 'string', 'max:30'],
+            'title' => ['nullable', 'string', 'max:200'],
             'user_id' => ['nullable', 'integer'],
             'body' => ['required', 'string', 'max:100000']
         ]);
@@ -147,7 +147,7 @@ class ArticleController extends Controller
         request()->validate([
             'heading_id' => ['required', 'integer'],
             'user_id' => ['nullable', 'integer'],
-            'title' => ['nullable', 'string', 'max:30'],
+            'title' => ['nullable', 'string', 'max:200'],
             'body' => ['required', 'string', 'max:100000']
         ]);
 

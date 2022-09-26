@@ -57,7 +57,7 @@ class PostController extends Controller
 
         // VALIDATION
         request()->validate([
-            'title' => ['required', 'string', 'max:30'],
+            'title' => ['required', 'string', 'max:200'],
             'release_date' => ['required', 'date'],
             'post_image' => ['required', 'image'],
             'active' => ['required', 'integer']
@@ -96,10 +96,10 @@ class PostController extends Controller
 
         // VALIDATION
         request()->validate([
-            'title' => ['required', 'string', 'max:30'],
+            'title' => ['required', 'string', 'max:200'],
             'release_date' => ['required', 'date'],
             'post_image' => ['nullable', 'image'],
-            'status' => ['required', 'string', 'max:30'],
+            'status' => ['required', 'string', 'max:200'],
             'active' => ['required', 'integer']
         ]);
 
