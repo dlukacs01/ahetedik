@@ -17,7 +17,7 @@
     <link href="{{ asset('css/custom/blog-admin.css') }}" rel="stylesheet">
 
     <!-- Custom styles (components) -->
-    <link href="{{ asset('css/custom/admin/profile.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom/admin/images.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom/admin/forms.css') }}" rel="stylesheet">
 
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />

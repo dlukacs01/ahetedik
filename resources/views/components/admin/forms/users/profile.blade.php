@@ -3,10 +3,6 @@
     @csrf
     @method('PUT')
 
-    <div class="my-4">
-        <img class="rounded-circle avatar" src="{{ $user->avatar }}" alt="{{ $user->name }}">
-    </div>
-
     <div class="form-group required">
         <label for="username" class="control-label">Felhasználónév</label>
         <input
@@ -62,7 +58,7 @@
         <textarea name="cv"
                   id="cv"
                   class="form-control @error('cv') is-invalid @enderror"
-                  rows="10">{{ $user->cv }}</textarea>
+                  rows="20">{{ $user->cv }}</textarea>
 
         @error('cv')
             <span class="invalid-feedback" role="alert">
@@ -87,13 +83,13 @@
     </div>
 
     <div class="form-group">
-        <label for="password-confirmation">Jelszó megerősítése</label>
+        <label for="password_confirmation">Jelszó megerősítése</label>
         <input type="password"
-               name="password-confirmation"
-               id="password-confirmation"
+               name="password_confirmation"
+               id="password_confirmation"
                class="form-control @error('password_confirmation') is-invalid @enderror">
 
-        @error('password-confirmation')
+        @error('password_confirmation')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>

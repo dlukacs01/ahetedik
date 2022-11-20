@@ -14,7 +14,7 @@
                         @foreach($heading->articles as $article)
 
                             {{-- CIKK (egyeb) --}}
-                            <div class="card">
+                            <div class="card mb-1">
                                 <h6 class="card-header">{{ $article->title }}</h6>
                                 <div class="card-body">{!! $article->body !!}</div>
                             </div>

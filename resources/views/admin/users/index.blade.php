@@ -12,7 +12,7 @@
                         <th>Név</th>
                         <th>Felhasználónév</th>
                         <th>Avatar</th>
-                        <th>Regisztrációs dátum</th>
+                        <th>Regisztráció</th>
                         <th>Profil frissítve</th>
                         <th>Törlés</th>
                     </tr>
@@ -27,7 +27,7 @@
                             <td>
                                 <img height="50px" src="{{ $user->avatar }}" alt="{{ $user->name }}">
                             </td>
-                            <td class="align-middle">{{ $user->created_at->diffForHumans() }}</td>
+                            <td class="align-middle">{{ $user->created_at }}</td>
                             <td class="align-middle">{{ $user->updated_at->diffForHumans() }}</td>
                             <td class="align-middle">
                                 <form method="post" action="{{ route('user.destroy', $user) }}">

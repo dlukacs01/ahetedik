@@ -1,6 +1,11 @@
 <x-admin-master>
     @section('content')
+
         <h1 class="mt-4">{{ $user->name }}</h1>
+
+        <div class="my-4">
+            <img class="rounded-circle avatar" src="{{ $user->avatar }}" alt="{{ $user->name }}">
+        </div>
 
         <div class="row">
             <div class="col-sm-6">

@@ -62,7 +62,7 @@
         <textarea name="cv"
                   id="cv"
                   class="form-control @error('cv') is-invalid @enderror"
-                  rows="10"></textarea>
+                  rows="20"></textarea>
 
         @error('cv')
             <span class="invalid-feedback" role="alert">

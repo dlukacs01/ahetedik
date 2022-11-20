@@ -8,7 +8,10 @@
     @endsection
 
     @section('scripts')
-        @include('includes.tinyeditor');
+
+        {{-- TINY-MCE --}}
+        <script src="{{ asset('js/custom/tiny-mce/langs/hu_HU.js') }}"></script>
+        <script src="{{ asset('js/custom/tiny-mce/tiny-mce.js') }}"></script>
 
         <script>
             $(document).ready(function(){

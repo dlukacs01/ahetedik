@@ -39,7 +39,7 @@
         <textarea name="body"
                   id="body"
                   class="form-control @error('body') is-invalid @enderror"
-                  rows="10">{{ $article->body }}</textarea>
+                  rows="20">{{ $article->body }}</textarea>
 
         @error('body')
             <span class="invalid-feedback" role="alert">

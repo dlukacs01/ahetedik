@@ -8,7 +8,7 @@
 
                 <x-home.forms.poets-filter></x-home.forms.poets-filter>
 
-                <div class="authors-container">
+                <div class="authors-container mb-3">
                     <x-home.authors :users="$users"></x-home.authors>
                 </div>
 

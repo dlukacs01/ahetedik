@@ -157,9 +157,15 @@ class ArticleController extends Controller
         if(request('title')){
             $article->title = request('title');
         }
+        if(!request('title') && $article->title) {
+            $article->title = null;
+        }
 
         if(request('user_id')){
             $article->user_id = request('user_id');
+        }
+        if(!request('user_id') && $article->user_id) {
+            $article->user_id = null;
         }
 
         $article->body = request('body');

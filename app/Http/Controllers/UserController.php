@@ -16,12 +16,15 @@ class UserController extends Controller
 
         if($request->ajax()) {
 
-            $users = User::where('name', 'LIKE', $request->search."%")->orderBy('name')->paginate(config('custom.home.users.pagination.items_per_page'));
+            $users = User::where('name', 'LIKE', "%" . $request->search_key . "%")
+                ->orderBy('name')
+                ->paginate(config('custom.home.users.pagination.items_per_page'));
 
             return view('partials.home.authors', [
                 'title' => $title,
                 'users' => $users
             ]);
+
         } else {
 
             $users = User::orderBy('name')->paginate(config('custom.home.users.pagination.items_per_page'));
@@ -90,7 +93,7 @@ class UserController extends Controller
         $inputs['password'] = request('password');
 
         if(request('avatar')) {
-            $inputs['avatar'] = request('avatar')->store('images');
+            $inputs['avatar'] = request('avatar')->store('images/users/avatars');
         }
 
         // SAVE, SESSION, REDIRECT
@@ -143,7 +146,7 @@ class UserController extends Controller
         }
 
         if(request('avatar')){
-            $inputs['avatar'] = request('avatar')->store('images');
+            $user->avatar = request('avatar')->store('images/users/avatars');
         }
 
         // SAVE, SESSION, REDIRECT
