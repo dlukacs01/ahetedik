@@ -83,7 +83,7 @@ class WorkController extends Controller
         $inputs['user_id'] = request('user_id');
 
         if(request('work_image')){
-            $inputs['work_image'] = request('work_image')->store('images');
+            $inputs['work_image'] = request('work_image')->store('images/works');
         }
 
         $inputs['active'] = request('active');
@@ -148,7 +148,7 @@ class WorkController extends Controller
         $work->user_id = request('user_id');
 
         if(request('work_image')){
-            $work->work_image = request('work_image')->store('images');
+            $work->work_image = request('work_image')->store('images/works');
         }
 
         $work->active = request('active');

@@ -3,7 +3,7 @@
     <h5 class="card-header text-center">{{ $post->title }}</h5>
     <div class="card-body pb-1 px-2 pt-2">
 
-        @foreach($post->headings as $heading)
+        @foreach($post->headings->sortBy('position') as $heading)
 
             {{-- ROVAT --}}
             <div class="card mb-2">
@@ -11,7 +11,7 @@
                 <div class="card-body pb-1 px-2 pt-2">
 
                     @if($heading->type == 'egyeb')
-                        @foreach($heading->articles as $article)
+                        @foreach($heading->articles->sortBy('position') as $article)
 
                             {{-- CIKK (egyeb) --}}
                             <div class="card mb-1">
@@ -25,7 +25,7 @@
                     @if($heading->type == 'muvek')
 
                         <div class="row px-3">
-                            @foreach($heading->articles as $article)
+                            @foreach($heading->articles->sortBy('position') as $article)
 
                                 <div class="col-md-6 px-1 mb-1">
 

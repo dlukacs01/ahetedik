@@ -70,7 +70,7 @@ class PostController extends Controller
         $inputs['release_date'] = request('release_date');
 
         if(request('post_image')){
-            $inputs['post_image'] = request('post_image')->store('images');
+            $inputs['post_image'] = request('post_image')->store('images/posts');
         }
 
         $inputs['active'] = request('active');
@@ -110,7 +110,7 @@ class PostController extends Controller
         $post->release_date = request('release_date');
 
         if(request('post_image')){
-            $post->post_image = request('post_image')->store('images');
+            $post->post_image = request('post_image')->store('images/posts');
         }
 
         $post->status = request('status');

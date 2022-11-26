@@ -10,6 +10,7 @@
                 <thead>
                     <tr>
                         <th>Id</th>
+                        <th>Sorszám</th>
                         <th>Cím</th>
                         <th>Lapszám</th>
                         <th>Típus</th>
@@ -22,6 +23,7 @@
                 @foreach($headings as $heading)
                     <tr>
                         <td class="align-middle">{{ $heading->id }}</td>
+                        <td class="align-middle">{{ $heading->position }}</td>
                         <td class="align-middle">
                             <a href="{{ route('heading.edit', $heading) }}">{{ $heading->title }}</a>
                         </td>

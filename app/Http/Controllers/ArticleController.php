@@ -6,6 +6,7 @@ use App\Article;
 use App\Heading;
 use App\Post;
 use App\User;
+use App\Utility;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -77,6 +78,15 @@ class ArticleController extends Controller
 
         if(request('user_id')){
             $inputs['user_id'] = request('user_id');
+        }
+
+        // POSITION
+        $articles = Heading::findOrFail(request('heading_id'))->articles;
+        if($articles->isEmpty()) {
+            $inputs['position'] = 1;
+        } else {
+            $prev_pos = $articles->max('position');
+            $inputs['position'] = $prev_pos + 1;
         }
 
         // SAVE, SESSION, REDIRECT
@@ -169,6 +179,13 @@ class ArticleController extends Controller
         }
 
         $article->body = request('body');
+
+        // POSITION
+        $old_pos = $article->position;
+        $new_pos = $article->position = request('position');
+        $articles = Heading::findOrFail(request('heading_id'))->articles;
+
+        Utility::position_update($old_pos, $new_pos, $articles);
 
         // SAVE, SESSION, REDIRECT
         if($article->isDirty()) {

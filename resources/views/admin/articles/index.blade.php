@@ -10,6 +10,7 @@
                 <thead>
                     <tr>
                         <th>Id</th>
+                        <th>Sorszám</th>
                         <th>Lapszám</th>
                         <th>Rovat</th>
                         <th>Cím</th>
@@ -23,6 +24,7 @@
                     @foreach($articles as $article)
                         <tr>
                             <td class="align-middle">{{ $article->id }}</td>
+                            <td class="align-middle">{{ $article->position }}</td>
                             <td class="align-middle">{{ $article->heading->post->title }}</td>
                             <td class="align-middle">{{ $article->heading->title }}</td>
                             <td class="align-middle">

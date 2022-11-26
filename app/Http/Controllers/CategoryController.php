@@ -49,7 +49,7 @@ class CategoryController extends Controller
         $inputs['slug'] = Str::of(Str::lower(request('name')))->slug('-');
 
         if(request('category_image')) {
-            $inputs['category_image'] = request('category_image')->store('images');
+            $inputs['category_image'] = request('category_image')->store('images/categories');
         }
 
         // SAVE, SESSION, REDIRECT
@@ -75,7 +75,7 @@ class CategoryController extends Controller
         $category->slug = Str::of(request('name'))->slug('-');
 
         if(request('category_image')){
-            $category->category_image = request('category_image')->store('images');
+            $category->category_image = request('category_image')->store('images/categories');
         }
 
         // SAVE, SESSION, REDIRECT

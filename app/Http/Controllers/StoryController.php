@@ -66,7 +66,7 @@ class StoryController extends Controller
         $inputs['expiration_date'] = request('expiration_date');
 
         if(request('story_image')){
-            $inputs['story_image'] = request('story_image')->store('images');
+            $inputs['story_image'] = request('story_image')->store('images/stories');
         }
 
         $inputs['body'] = request('body');
@@ -105,7 +105,7 @@ class StoryController extends Controller
         $story->expiration_date = request('expiration_date');
 
         if(request('story_image')){
-            $story->story_image = request('story_image')->store('images');
+            $story->story_image = request('story_image')->store('images/stories');
         }
 
         $story->body = request('body');

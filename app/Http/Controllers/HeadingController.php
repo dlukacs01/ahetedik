@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Heading;
 use App\Post;
+use App\Utility;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -44,6 +45,15 @@ class HeadingController extends Controller
         $inputs['type'] = request('type');
         $inputs['title'] = request('title');
 
+        // POSITION
+        $headings = Post::findOrFail(request('post_id'))->headings;
+        if($headings->isEmpty()) {
+            $inputs['position'] = 1;
+        } else {
+            $prev_pos = $headings->max('position');
+            $inputs['position'] = $prev_pos + 1;
+        }
+
         // SAVE, SESSION, REDIRECT
         $post = Post::findOrFail(request('post_id'));
         $post->headings()->create($inputs);
@@ -79,6 +89,13 @@ class HeadingController extends Controller
         $heading->post_id = request('post_id');
         $heading->type = request('type');
         $heading->title = request('title');
+
+        // POSITION
+        $old_pos = $heading->position;
+        $new_pos = $heading->position = request('position');
+        $headings = Post::findOrFail(request('post_id'))->headings;
+
+        Utility::position_update($old_pos, $new_pos, $headings);
 
         // SAVE, SESSION, REDIRECT
         if($heading->isDirty()) {

@@ -14,7 +14,6 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
 
     <!-- Custom styles for this template (general) -->
-    <link href="{{ asset('css/custom/blog-admin.css') }}" rel="stylesheet">
 
     <!-- Custom styles (components) -->
     <link href="{{ asset('css/custom/admin/images.css') }}" rel="stylesheet">

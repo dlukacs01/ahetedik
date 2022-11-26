@@ -34,6 +34,22 @@
 
     <div class="form-group required" id="ajax_result"></div>
 
+    <div class="form-group">
+        <label for="position">Sorszám</label>
+        <input type="number"
+               name="position"
+               id="position"
+               class="form-control @error('position') is-invalid @enderror"
+               required
+               value="{{ $article->position }}">
+
+        @error('position')
+        <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
     <div class="form-group required">
         <label for="body" class="control-label">Tartalom</label>
         <textarea name="body"
