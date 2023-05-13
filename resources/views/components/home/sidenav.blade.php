@@ -3,7 +3,7 @@
 $stories = App\Story::latest()->whereDate('expiration_date', '>=', date('Y-m-d'))->take(3)->get();
 $categories = App\Category::all();
 $works = App\Work::latest()->whereDate('release_date', '<=', date('Y-m-d'))->take(3)->get();
-$works_active = App\Work::latest()->where('active',1)->whereDate('release_date', '<=', date('Y-m-d'))->take(3)->get();
+$works_active = App\Work::latest()->where('active',1)->whereDate('release_date', '<=', date('Y-m-d'))->take(7)->get();
 
 ?>
 
@@ -35,6 +35,28 @@ $works_active = App\Work::latest()->where('active',1)->whereDate('release_date',
                     @foreach($stories as $story)
                         <li>
                             <a href="{{ route('story', $story->slug) }}">{{ $story->title }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{{-- KIEMELT MŰVEK --}}
+<div class="card my-4">
+    <h5 class="card-header">Kiemelt művek</h5>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="list-unstyled mb-0">
+                    @foreach($works_active as $work_active)
+                        <li>
+                            <a href="{{ route('work', [
+                                        'work_slug' => $work_active->slug,
+                                        'work_id' => $work_active->id]) }}">{{ $work_active->title }}</a>
                         </li>
                     @endforeach
                 </ul>
@@ -77,28 +99,6 @@ $works_active = App\Work::latest()->where('active',1)->whereDate('release_date',
                             <a href="{{ route('work', [
                                         'work_slug' => $work->slug,
                                         'work_id' => $work->id]) }}">{{ $work->title }}</a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-{{-- KIEMELT MŰVEK --}}
-<div class="card my-4">
-    <h5 class="card-header">Kiemelt művek</h5>
-    <div class="card-body">
-
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="list-unstyled mb-0">
-                    @foreach($works_active as $work_active)
-                        <li>
-                            <a href="{{ route('work', [
-                                        'work_slug' => $work_active->slug,
-                                        'work_id' => $work_active->id]) }}">{{ $work_active->title }}</a>
                         </li>
                     @endforeach
                 </ul>
