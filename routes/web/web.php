@@ -67,16 +67,20 @@ Route::get('/impresszum', 'MetaController@impresszum')->name('meta.impresszum');
 Route::get('/adatvedelmi-nyilatkozat', 'MetaController@gdpr')->name('meta.gdpr');
 
 /**************************/
+/* PARSER */
+/**************************/
+
+Route::get('/parser/authors', 'ParserController@authors')->name('parser.authors');
+Route::get('/parser/categories', 'ParserController@categories')->name('parser.categories');
+Route::get('/parser', 'ParserController@parser')->name('parser');
+
+/**************************/
 /* OTHER */
 /**************************/
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
-
-Route::get('/parser/authors', 'UtilityController@authors')->name('utility.authors');
-Route::get('/parser/categories', 'UtilityController@categories')->name('utility.categories');
-Route::get('/parser', 'UtilityController@parser')->name('utility.parser');
 
 // MIDDLEWARE CAN VIEW POLICY EXAMPLE
 // Route::get('/admin/posts/{post}/edit', 'PostController@edit')->middleware('can:view,post')->name('post.edit');
