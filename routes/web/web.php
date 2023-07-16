@@ -74,5 +74,9 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
+Route::get('/parser/authors', 'UtilityController@authors')->name('utility.authors');
+Route::get('/parser/categories', 'UtilityController@categories')->name('utility.categories');
+Route::get('/parser', 'UtilityController@parser')->name('utility.parser');
+
 // MIDDLEWARE CAN VIEW POLICY EXAMPLE
 // Route::get('/admin/posts/{post}/edit', 'PostController@edit')->middleware('can:view,post')->name('post.edit');

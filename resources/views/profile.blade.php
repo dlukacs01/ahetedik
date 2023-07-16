@@ -22,6 +22,9 @@
                 @foreach($works as $work)
                     <x-home.work-card :work="$work"></x-home.work-card>
                 @endforeach
+
+                <x-home.pagination :objects="$works"></x-home.pagination>
+
             </div>
 
             <div class="col-md-4">

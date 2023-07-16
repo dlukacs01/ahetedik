@@ -39,7 +39,7 @@ class UserController extends Controller
     public function show($username) {
         $user = User::where('username', $username)->first();
         $title = config('app.name') . " &mdash; " . $user->name;
-        $works = $user->works;
+        $works = $user->works()->paginate(config('custom.home.users.pagination.items_per_page'));
 
         return view('profile', [
             'user'=> $user,
