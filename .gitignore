@@ -1,7 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
-/public/web/parser
+/public/web/parser/versek
 /storage/*.key
 /vendor
 .env
