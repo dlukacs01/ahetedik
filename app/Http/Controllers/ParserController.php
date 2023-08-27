@@ -77,7 +77,7 @@ class ParserController extends Controller
 
                 // bulk insert
                 $data[] = [
-                    'user_id' => 1,
+                    'user_id' => $user_id, // 1, for local
                     'title' => $title,
                     'slug' =>  Str::of(Str::lower($title))->slug('-'),
                     'release_date' => '2023-01-01',
