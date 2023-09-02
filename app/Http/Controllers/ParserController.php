@@ -21,7 +21,7 @@ class ParserController extends Controller
     // BODY
     // echo $document->find('div.itemFullText', 0)->innertext;
 
-    private static $category = "tarcak-es-tanulmanyok";
+    private static $category = "tarcak-es-tanulmanyok"; // !!! CHANGE !!!
 
     public function authors() {
         $files = glob(public_path() . '/web/parser/' . ParserController::$category . '/*html');
@@ -44,7 +44,7 @@ class ParserController extends Controller
         foreach ($works as $work) {
             $data[] = [
                 'work_id' => $work->id,
-                'category_id' => 8, // id of the specific category we insert to
+                'category_id' => 13, // id of the specific category we insert to !!! CHANGE !!!
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
@@ -63,7 +63,7 @@ class ParserController extends Controller
 
         // user_ids
         $counter = 0;
-        $user_ids = file(public_path() . '/web/parser/metas/2023.09.02._user_ids.txt');
+        $user_ids = file(public_path() . '/web/parser/metas/2023.09.02._user_ids.txt'); // !!! CHANGE !!!
 
         // list all html files
         $files = glob(public_path() . '/web/parser/' . ParserController::$category . '/*html');
@@ -82,7 +82,7 @@ class ParserController extends Controller
 
                 // bulk insert
                 $data[] = [
-                    'user_id' => $user_id, // LOCAL: 1, PROD: $user_id
+                    'user_id' => $user_id, // LOCAL: 1, PROD: $user_id !!! CHANGE !!!
                     'title' => $title,
                     'slug' =>  Str::of(Str::lower($title))->slug('-'),
                     'release_date' => '2023-01-01',
