@@ -70,9 +70,9 @@ Route::get('/adatvedelmi-nyilatkozat', 'MetaController@gdpr')->name('meta.gdpr')
 /* PARSER */
 /**************************/
 
-//Route::get('/parser/authors', 'ParserController@authors')->name('parser.authors');
-//Route::get('/parser/categories', 'ParserController@categories')->name('parser.categories');
-//Route::get('/parser', 'ParserController@parser')->name('parser');
+Route::get('/parser/authors', 'ParserController@authors')->name('parser.authors');
+Route::get('/parser/categories', 'ParserController@categories')->name('parser.categories');
+Route::get('/parser', 'ParserController@parser')->name('parser');
 
 /**************************/
 /* OTHER */

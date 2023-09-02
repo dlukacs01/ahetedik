@@ -21,9 +21,14 @@ class ParserController extends Controller
     // BODY
     // echo $document->find('div.itemFullText', 0)->innertext;
 
+    private static $category = "tarcak-es-tanulmanyok";
+
     public function authors() {
-        $files = glob(public_path() . '/web/parser/versek/*html');
+        $files = glob(public_path() . '/web/parser/' . ParserController::$category . '/*html');
         foreach($files as $file) {
+
+            // echo $file . "<br>";
+
             $document = HtmlDomParser::file_get_html($file);
             echo $document->find('meta[name=author]',0)->content."<br>";
         }
@@ -32,14 +37,14 @@ class ParserController extends Controller
     public function categories() {
 
         // get all works for a specific category (e.g. 'versek')
-        $works = Work::where('category','vers')->get();
+        $works = Work::where('category',ParserController::$category)->get();
 
         // bulk insert
         $data = [];
         foreach ($works as $work) {
             $data[] = [
                 'work_id' => $work->id,
-                'category_id' => 1, // id of the specific category we insert to
+                'category_id' => 8, // id of the specific category we insert to
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
@@ -58,10 +63,10 @@ class ParserController extends Controller
 
         // user_ids
         $counter = 0;
-        $user_ids = file(public_path() . '/web/parser/metas/2023.08.16._user_ids.txt');
+        $user_ids = file(public_path() . '/web/parser/metas/2023.09.02._user_ids.txt');
 
         // list all html files
-        $files = glob(public_path() . '/web/parser/versek/*html');
+        $files = glob(public_path() . '/web/parser/' . ParserController::$category . '/*html');
         foreach(array_chunk($files, 2) as $filesChunk) {
 
             $data = [];
@@ -77,13 +82,13 @@ class ParserController extends Controller
 
                 // bulk insert
                 $data[] = [
-                    'user_id' => $user_id, // 1, for local
+                    'user_id' => 1, // LOCAL: 1, PROD: $user_id
                     'title' => $title,
                     'slug' =>  Str::of(Str::lower($title))->slug('-'),
                     'release_date' => '2023-01-01',
                     'body' => $body,
                     'active' => 1,
-                    'category' => 'vers',
+                    'category' => ParserController::$category,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];

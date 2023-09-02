@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /public/web/parser/versek
+/public/web/parser/tarcak-es-tanulmanyok
 /storage/*.key
 /vendor
 .env
