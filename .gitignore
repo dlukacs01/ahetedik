@@ -1,8 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
-/public/web/parser/versek
-/public/web/parser/tarcak-es-tanulmanyok
+/public/web/parser/works
 /storage/*.key
 /vendor
 .env
