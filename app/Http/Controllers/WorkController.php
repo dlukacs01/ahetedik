@@ -31,18 +31,24 @@ class WorkController extends Controller
         $work = Work::findOrFail($work_id);
         $title = config('app.name') . " &mdash; " . $work->title;
 
-        // increment view_count
-        $work->view_count++;
-        $work->save();
+        // check rls date
+        if($work->release_date > date('Y-m-d')) {
+            return view('errors.before_rls_date', ['title' => $title]);
+        } else {
+            // increment view_count
+            $work->view_count++;
+            $work->save();
 
-        return view('work', [
-            'work' => $work,
-            'title' => $title
-        ]);
+            return view('work', [
+                'work' => $work,
+                'title' => $title
+            ]);
+        }
     }
 
     public function index() {
-        $works = Work::orderBy('id', 'desc')->get();
+        // $works = Work::orderBy('id', 'desc')->get(); DATA-TABLES PLUGIN
+        $works = Work::orderBy('id', 'desc')->paginate(config('custom.admin.tables.pagination.items_per_page'));
         return view('admin.works.index', ['works' => $works]);
     }
 

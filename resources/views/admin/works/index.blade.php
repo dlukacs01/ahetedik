@@ -50,5 +50,8 @@
             </table>
         </div>
 
+        {{-- when there is no data-tables plugin --}}
+        <x-home.pagination :objects="$works"></x-home.pagination>
+
     @endsection
 </x-admin-master>
