@@ -21,7 +21,7 @@ class ParserController extends Controller
     // BODY
     // echo $document->find('div.itemFullText', 0)->innertext;
 
-    private static $category = "szerkesztosegi-cikkek"; // !!! CHANGE !!!
+    private static $category = "novellak-es-kisprozak"; // !!! CHANGE !!!
 
     public function authors() {
         $files = glob(public_path() . '/web/parser/works/' . ParserController::$category . '/*html');
@@ -30,7 +30,9 @@ class ParserController extends Controller
             // echo $file . "<br>";
 
             $document = HtmlDomParser::file_get_html($file);
-            echo $document->find('meta[name=author]',0)->content."<br>";
+            $author = $document->find('meta[name=author]',0);
+            echo !empty($author) ? $author->content : "Fábián József";
+            echo "<br>";
         }
     }
 
@@ -44,7 +46,7 @@ class ParserController extends Controller
         foreach ($works as $work) {
             $data[] = [
                 'work_id' => $work->id,
-                'category_id' => 8, // id of the specific category we insert to !!! CHANGE !!!
+                'category_id' => 7, // id of the specific category we insert to !!! CHANGE !!!
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
@@ -63,7 +65,7 @@ class ParserController extends Controller
 
         // user_ids
         $counter = 0;
-        $user_ids = file(public_path() . '/web/parser/metas/2023.09.03._user_ids.txt'); // !!! CHANGE !!!
+        $user_ids = file(public_path() . '/web/parser/metas/2023.09.06._user_ids.txt'); // !!! CHANGE !!!
 
         // list all html files
         $files = glob(public_path() . '/web/parser/works/' . ParserController::$category . '/*html');
