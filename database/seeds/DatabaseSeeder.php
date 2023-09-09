@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
 
         // factory(\App\User::class, 300)->create(); // koltok
         // factory(\App\Post::class, 300)->create();
-        factory(\App\Work::class, 300)->create();
+        // factory(\App\Work::class, 300)->create();
     }
 }
