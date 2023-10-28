@@ -31,7 +31,7 @@ class ParserController extends Controller
 
             $document = HtmlDomParser::file_get_html($file);
             $author = $document->find('meta[name=author]',0);
-            echo !empty($author) ? $author->content : "Fábián József";
+            echo !empty($author) ? $author->content : "HIANYZIK";
             echo "<br>";
         }
     }
@@ -65,7 +65,7 @@ class ParserController extends Controller
 
         // user_ids
         $counter = 0;
-        $user_ids = file(public_path() . '/web/parser/metas/2023.10.28._user_ids.txt'); // !!! CHANGE !!!
+        $user_ids = file(public_path() . '/web/parser/metas/2023.10.28._user_ids_v2.txt'); // !!! CHANGE !!!
 
         // list all html files
         $files = glob(public_path() . '/web/parser/works/' . ParserController::$category . '/*html');
