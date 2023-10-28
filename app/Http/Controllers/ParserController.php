@@ -65,7 +65,7 @@ class ParserController extends Controller
 
         // user_ids
         $counter = 0;
-        $user_ids = file(public_path() . '/web/parser/metas/2023.09.10._user_ids.txt'); // !!! CHANGE !!!
+        $user_ids = file(public_path() . '/web/parser/metas/2023.10.28._user_ids.txt'); // !!! CHANGE !!!
 
         // list all html files
         $files = glob(public_path() . '/web/parser/works/' . ParserController::$category . '/*html');
