@@ -94,7 +94,7 @@ class StoryController extends Controller
         request()->validate([
             'title' => ['required', 'string', 'max:200'],
             'expiration_date' => ['required', 'date'],
-            'story_image' => ['required', 'image'],
+            'story_image' => ['nullable', 'image'],
             'body' => ['required', 'string', 'max:100000']
         ]);
 

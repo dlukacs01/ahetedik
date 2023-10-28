@@ -21,7 +21,7 @@ class ParserController extends Controller
     // BODY
     // echo $document->find('div.itemFullText', 0)->innertext;
 
-    private static $category = "kritikak-es-recenziok"; // !!! CHANGE !!!
+    private static $category = "interjuk-es-riportok"; // !!! CHANGE !!!
 
     public function authors() {
         $files = glob(public_path() . '/web/parser/works/' . ParserController::$category . '/*html');
@@ -46,7 +46,7 @@ class ParserController extends Controller
         foreach ($works as $work) {
             $data[] = [
                 'work_id' => $work->id,
-                'category_id' => 5, // id of the specific category we insert to !!! CHANGE !!!
+                'category_id' => 14, // id of the specific category we insert to !!! CHANGE !!!
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
