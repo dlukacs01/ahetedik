@@ -52,6 +52,23 @@ class WorkController extends Controller
         return view('admin.works.index', ['works' => $works]);
     }
 
+    public function search() {
+
+        // Get the search value from the request
+        $search = request('search');
+
+        $works = Work::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orwhereHas('user', function($q) use($search) {
+                $q->where('name', 'LIKE', "%{$search}%");
+            })->orderBy('id', 'desc')->paginate(config('custom.admin.tables.pagination.items_per_page'));
+
+        return view('admin.works.index', [
+            'search' => $search,
+            'works' => $works
+        ]);
+    }
+
     public function create() {
 
         // POLICY

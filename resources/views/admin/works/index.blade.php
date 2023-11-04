@@ -5,6 +5,10 @@
 
         <x-admin.session-message></x-admin.session-message>
 
+        @if(isset($search))
+            <p class="font-weight-bold mt-4">Találatok a következőre: "{{ $search }}"</p>
+        @endif
+
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable-works" width="100%" cellspacing="0">
                 <thead>
