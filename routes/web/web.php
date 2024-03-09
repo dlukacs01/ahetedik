@@ -71,6 +71,7 @@ Route::get('/adatvedelmi-nyilatkozat', 'MetaController@gdpr')->name('meta.gdpr')
 /**************************/
 
 // Route::get('/parser/authors', 'ParserController@authors')->name('parser.authors');
+// Route::get('/parser/links', 'ParserController@links')->name('parser.links');
 // Route::get('/parser/categories', 'ParserController@categories')->name('parser.categories');
 // Route::get('/parser', 'ParserController@parser')->name('parser');
 

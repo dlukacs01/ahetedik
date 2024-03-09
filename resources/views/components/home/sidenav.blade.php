@@ -1,7 +1,7 @@
 <?php
 
 $stories = App\Story::latest()->whereDate('expiration_date', '>=', date('Y-m-d'))->take(3)->get();
-$categories = App\Category::all();
+$categories = App\Category::orderBy('position')->get();
 $works = App\Work::latest()->whereDate('release_date', '<=', date('Y-m-d'))->take(3)->get();
 $works_active = App\Work::latest()->where('active',1)->whereDate('release_date', '<=', date('Y-m-d'))->take(7)->get();
 

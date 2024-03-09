@@ -21,7 +21,7 @@ class ParserController extends Controller
     // BODY
     // echo $document->find('div.itemFullText', 0)->innertext;
 
-    private static $category = "kitekinto"; // !!! CHANGE !!!
+    private static $category = "versek"; // !!! CHANGE !!!
 
     public function authors() {
         $files = glob(public_path() . '/web/parser/works/' . ParserController::$category . '/*html');
@@ -34,6 +34,18 @@ class ParserController extends Controller
             echo !empty($author) ? $author->content : "HIANYZIK";
             echo "<br>";
         }
+    }
+
+    public function links() {
+        $files = glob(public_path() . '/web/parser/works/' . ParserController::$category . '/*html');
+        foreach($files as $file) {
+            $document = HtmlDomParser::file_get_html($file);
+            $links = $document->find('a');
+            foreach($links as $link) {
+                echo $link->href . '<br>';
+            }
+        }
+        echo "END";
     }
 
     public function categories() {
