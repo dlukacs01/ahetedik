@@ -8,7 +8,8 @@
     @endsection
 
     @section('scripts')
-        @include('includes.tinyeditor');
+        {{-- @include('includes.tinyeditor') --}}
+        <x-admin.tinymce></x-admin.tinymce>
 
         <script>
             $(document).ready(function(){

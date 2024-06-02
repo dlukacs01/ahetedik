@@ -8,9 +8,7 @@
 
     @section('scripts')
 
-        {{-- TINY-MCE --}}
-        <script src="{{ asset('js/custom/tiny-mce/langs/hu_HU.js') }}"></script>
-        <script src="{{ asset('js/custom/tiny-mce/tiny-mce.js') }}"></script>
+        <x-admin.tinymce></x-admin.tinymce>
 
         <script>
             $(document).ready(function(){
