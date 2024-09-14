@@ -14,7 +14,7 @@ class AlterTableUsersChangeAvatar extends Migration
     public function up()
     {
 
-        DB::statement('ALTER TABLE `users` CHANGE COLUMN `avatar` `avatar` TEXT DEFAULT "images/default_avatar.jpg";');
+        DB::statement('ALTER TABLE `users` CHANGE COLUMN `avatar` `avatar` VARCHAR(255) DEFAULT "images/default_avatar.jpg";');
 
         Schema::table('users', function (Blueprint $table) {
             //

@@ -1,6 +1,16 @@
 <?php
 
+use App\Http\Controllers\AdminsController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MetaController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\StoryController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use UniSharp\LaravelFilemanager\Lfm;
 
 // Auth::routes();
 Auth::routes(['register' => false]); // DISABLE REGISTRATION
@@ -9,62 +19,62 @@ Auth::routes(['register' => false]); // DISABLE REGISTRATION
 /* HOME */
 /**************************/
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/kereses', 'HomeController@search')->name('home.search');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/kereses', [HomeController::class, 'search'])->name('home.search');
 
 /**************************/
 /* ADMIN */
 /**************************/
 
 Route::middleware('auth')->group(function(){
-    Route::get('/admin', 'AdminsController@index')->name('admin.index');
+    Route::get('/admin', [AdminsController::class, 'index'])->name('admin.index');
 });
 
 /**************************/
 /* POSTS */
 /**************************/
 
-Route::get('/lapszamok', 'PostController@posts')->name('post.posts');
-Route::get('/lapszamok/{post_slug}', 'PostController@show')->name('post');
+Route::get('/lapszamok', [PostController::class, 'posts'])->name('post.posts');
+Route::get('/lapszamok/{post_slug}', [PostController::class, 'show'])->name('post');
 
 /**************************/
 /* STORIES */
 /**************************/
 
-Route::get('/hirek', 'StoryController@stories')->name('story.stories');
-Route::get('/hirek/{story_slug}', 'StoryController@show')->name('story');
+Route::get('/hirek', [StoryController::class, 'stories'])->name('story.stories');
+Route::get('/hirek/{story_slug}', [StoryController::class, 'show'])->name('story');
 
 /**************************/
 /* CATEGORIES */
 /**************************/
 
-Route::get('/kategoriak', 'CategoryController@categories')->name('category.categories');
+Route::get('/kategoriak', [CategoryController::class, 'categories'])->name('category.categories');
 
 /**************************/
 /* WORKS */
 /**************************/
 
-Route::get('/kategoriak/{category_slug}', 'WorkController@works')->name('work.works');
-Route::get('/muvek/{work_slug}/mu-{work_id}', 'WorkController@show')->name('work');
+Route::get('/kategoriak/{category_slug}', [WorkController::class, 'works'])->name('work.works');
+Route::get('/muvek/{work_slug}/mu-{work_id}', [WorkController::class, 'show'])->name('work');
 
 /**************************/
 /* USERS */
 /**************************/
 
-Route::get('/szerzok', 'UserController@authors')->name('user.authors');
-Route::get('/szerzok/{username}', 'UserController@show')->name('user.show');
+Route::get('/szerzok', [UserController::class, 'authors'])->name('user.authors');
+Route::get('/szerzok/{username}', [UserController::class, 'show'])->name('user.show');
 
 /**************************/
 /* METAS */
 /**************************/
 
-Route::get('/szerzoink-figyelmebe', 'MetaController@szerzoknek')->name('meta.szerzoknek');
+Route::get('/szerzoink-figyelmebe', [MetaController::class, 'szerzoknek'])->name('meta.szerzoknek');
 
-Route::get('/szerkesztosegi-nyilatkozat', 'MetaController@nyilatkozat')->name('meta.nyilatkozat');
-Route::get('/szerkesztesi-elvek', 'MetaController@elvek')->name('meta.elvek');
-Route::get('/szerzoi-jogok', 'MetaController@jogok')->name('meta.jogok');
-Route::get('/impresszum', 'MetaController@impresszum')->name('meta.impresszum');
-Route::get('/adatvedelmi-nyilatkozat', 'MetaController@gdpr')->name('meta.gdpr');
+Route::get('/szerkesztosegi-nyilatkozat', [MetaController::class, 'nyilatkozat'])->name('meta.nyilatkozat');
+Route::get('/szerkesztesi-elvek', [MetaController::class, 'elvek'])->name('meta.elvek');
+Route::get('/szerzoi-jogok', [MetaController::class, 'jogok'])->name('meta.jogok');
+Route::get('/impresszum', [MetaController::class, 'impresszum'])->name('meta.impresszum');
+Route::get('/adatvedelmi-nyilatkozat', [MetaController::class, 'gdpr'])->name('meta.gdpr');
 
 /**************************/
 /* PARSER */
@@ -80,7 +90,7 @@ Route::get('/adatvedelmi-nyilatkozat', 'MetaController@gdpr')->name('meta.gdpr')
 /**************************/
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
+    Lfm::routes();
 });
 
 // MIDDLEWARE CAN VIEW POLICY EXAMPLE

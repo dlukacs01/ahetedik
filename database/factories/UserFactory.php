@@ -1,10 +1,8 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
-use App\User;
-use Faker\Generator as Faker;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,17 +15,26 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
-    return [
-        //
+class UserFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            //
 
-        // KOLTOK
-        'username' => $faker->unique()->userName(),
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$uuzZ6C8FcameysV60sIaYOTTGZJaCWtGBhcSuwYtFT2H9SCKP10My', // Ahetedik0123!?#
-        'email_verified_at' => now(),
-        'created_at' => now(),
-        'updated_at' => now()
-    ];
-});
+            // KOLTOK
+            'username' => $this->faker->unique()->userName(),
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
+            'password' => '$2y$10$uuzZ6C8FcameysV60sIaYOTTGZJaCWtGBhcSuwYtFT2H9SCKP10My', // Ahetedik0123!?#
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now()
+        ];
+    }
+}

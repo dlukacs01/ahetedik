@@ -1,20 +1,27 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
-use App\Post;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Post::class, function (Faker $faker) {
+class PostFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            //
 
-    return [
-        //
-
-        'user_id' => 1,
-        'title' => "Ez a lapszám címe",
-        'slug' => "ez-a-lapszam-cime",
-        'post_image' => $faker->imageUrl('900', '300'),
-        'active' => $faker->randomElement([0, 1]),
-        'created_at' => now()
-    ];
-});
+            'user_id' => 1,
+            'title' => "Ez a lapszám címe",
+            'slug' => "ez-a-lapszam-cime",
+            'post_image' => $this->faker->imageUrl('900', '300'),
+            'active' => $this->faker->randomElement([0, 1]),
+            'created_at' => now()
+        ];
+    }
+}

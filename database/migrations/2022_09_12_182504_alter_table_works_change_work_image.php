@@ -14,7 +14,7 @@ class AlterTableWorksChangeWorkImage extends Migration
     public function up()
     {
 
-        DB::statement('ALTER TABLE `works` CHANGE COLUMN `work_image` `work_image` TEXT DEFAULT "images/default_work_image.jpg";');
+        DB::statement('ALTER TABLE `works` CHANGE COLUMN `work_image` `work_image` VARCHAR(255) DEFAULT "images/default_work_image.jpg";');
 
         Schema::table('works', function (Blueprint $table) {
             //

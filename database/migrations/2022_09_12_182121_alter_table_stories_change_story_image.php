@@ -14,7 +14,7 @@ class AlterTableStoriesChangeStoryImage extends Migration
     public function up()
     {
 
-        DB::statement('ALTER TABLE `stories` CHANGE COLUMN `story_image` `story_image` TEXT DEFAULT "images/default_story_image.jpg";');
+        DB::statement('ALTER TABLE `stories` CHANGE COLUMN `story_image` `story_image` VARCHAR(255) DEFAULT "images/default_story_image.jpg";');
 
         Schema::table('stories', function (Blueprint $table) {
             //

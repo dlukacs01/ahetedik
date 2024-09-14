@@ -14,7 +14,7 @@ class AlterTableCategoriesChangeCategoryImage extends Migration
     public function up()
     {
 
-        DB::statement('ALTER TABLE `categories` CHANGE COLUMN `category_image` `category_image` TEXT DEFAULT "images/default_category_image.jpg";');
+        DB::statement('ALTER TABLE `categories` CHANGE COLUMN `category_image` `category_image` VARCHAR(255) DEFAULT "images/default_category_image.jpg";');
 
         Schema::table('categories', function (Blueprint $table) {
             //
