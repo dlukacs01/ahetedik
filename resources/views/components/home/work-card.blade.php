@@ -3,7 +3,7 @@
     <div class="row no-gutters">
 
         <div class="col-md-4">
-            <img src="{{ $work->work_image }}" class="card-img work-card-img" alt="...">
+            <img src="{{ $work->work_image }}" class="card-img work-card-img" alt="{{ $work->title }}">
         </div>
 
         <div class="col-md-8">
