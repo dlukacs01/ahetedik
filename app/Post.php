@@ -29,6 +29,10 @@ class Post extends Model
             return asset('web/' . $value);
         }
 
+        if(empty($value)){
+            return asset('web/images/default_post_image.jpg');
+        }
+
         return asset('storage/' . $value);
     }
 }

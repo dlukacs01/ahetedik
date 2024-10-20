@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use function PHPUnit\Framework\isEmpty;
 
 class Work extends Model
 {
@@ -27,13 +26,13 @@ class Work extends Model
             return $value;
         }
 
-        // uploaded image
-        if(strpos($value, 'default_work_image') === FALSE && !isEmpty($value)) {
+        // image
+        if(strpos($value, 'default_work_image') === FALSE && !empty($value)) {
             return asset('storage/' . $value);
         }
 
         // avatar
-        if(strpos($this->user->avatar, 'default_avatar') === FALSE && !isEmpty($value)) {
+        if(strpos($this->user->avatar, 'default_avatar') === FALSE && !empty($this->user->avatar)) {
             return $this->user->avatar;
         }
 
@@ -42,9 +41,9 @@ class Work extends Model
             return asset('web/' . $value);
         }
 
-        // no default
-        if (isEmpty($value)) {
-            return asset('web/' . 'images/default_work_image.jpg');
+        // null
+        if (empty($value)) {
+            return asset('web/images/default_work_image.jpg');
         }
 
         return asset('storage/' . $value);

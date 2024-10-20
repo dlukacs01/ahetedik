@@ -75,6 +75,10 @@ class User extends Authenticatable
             return asset('web/' . $value);
         }
 
+        if (empty($value)) {
+            return asset('web/images/default_avatar.jpg');
+        }
+
         return asset('storage/' . $value);
     }
 

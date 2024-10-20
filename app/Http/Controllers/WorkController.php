@@ -31,13 +31,15 @@ class WorkController extends Controller
         $work = Work::findOrFail($work_id);
         $title = config('app.name') . " &mdash; " . $work->title;
 
-        // if work has not been released yet && user it NOT logged in
+        // if work has not been released yet && user is NOT logged in
         if($work->release_date > date('Y-m-d') && !auth()->check()) {
             return view('errors.before_rls_date', ['title' => $title]);
         } else {
             // increment view_count
             $work->view_count++;
+            $work->timestamps = false;
             $work->save();
+            $work->timestamps = true;
 
             return view('work', [
                 'work' => $work,
