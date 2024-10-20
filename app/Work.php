@@ -33,7 +33,7 @@ class Work extends Model
         }
 
         // avatar
-        if(strpos($this->user->avatar, 'default_avatar') === FALSE) {
+        if(strpos($this->user->avatar, 'default_avatar') === FALSE && !isEmpty($value)) {
             return $this->user->avatar;
         }
 
